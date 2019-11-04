@@ -1,3 +1,7 @@
+DROP TABLE IF EXISTS purchase_history;
+DROP TABLE IF EXISTS inventory;
+DROP TABLE IF EXISTS users;
+
 CREATE TABLE users (
     user_id SERIAL PRIMARY KEY,
     username TEXT UNIQUE NOT NULL,
