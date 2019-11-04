@@ -10,26 +10,29 @@ import './App.css';
 class App extends React.Component {
   render() {
     return (
-    <div className="App">
-      <header>
-        <div className='logo'>
-          <img src={logo} />
-        </div>
-        <nav>
-        <NavLink activeClassName="active" exact to="/products">Products</NavLink>
-        <NavLink activeClassName="active" exact to="/my_orders">My Orders</NavLink>
-        </nav>
-        <div className='right-header'>
-          <button className='login'>Login</button>
-          <button className='cart'>Cart</button>
-        </div>
-      </header>
-      <Switch>
-          <Route exact path="/login" component={AuthComponent} />
-      </Switch>
-    </div>
-  );
-}
+      <div className="App">
+        <header>
+          <div className='logo'>
+            <img src={logo} />
+          </div>
+          <nav>
+          <NavLink activeClassName="active" exact to="/products">Products</NavLink>
+          <NavLink activeClassName="active" exact to="/my_orders">My Orders</NavLink>
+          </nav>
+          <div className='right-header'>
+            <button className='login'>Login</button>
+            <button className='cart'>Cart</button>
+          </div>
+        </header>
+        <Switch>
+            <Route exact path="/login" component={AuthComponent} />
+            <Route exact path="/my_orders" render={() => {
+              return <div>My Orders</div>
+            }} />
+        </Switch>
+      </div>
+    );
+  }
 };
 
 function mapReduxStateToProps(reduxState) {

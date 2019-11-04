@@ -6,7 +6,7 @@ module.exports = {
         const db = req.app.get('db');
         const foundUser = await db.find_user_by_email(email)
         if(foundUser.length) {
-            res.status(400).send('User already exists!')
+            res.status(400).send('User already exists! Log in to continue')
         } else {
             const saltRounds = 12;
             const salt = await bcrypt.genSalt(saltRounds);
@@ -42,6 +42,6 @@ module.exports = {
         res.status(200).send("Enjoy your new purchase!")
     },
     userSession: (req, res, next) => {
-        res.status(200).send(req.ession.user);
+        res.status(200).send(req.session.user);
     }
 }
