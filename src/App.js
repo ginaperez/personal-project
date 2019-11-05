@@ -15,7 +15,7 @@ class App extends React.Component {
           <div className='logo'>
             <img src={logo} />
           </div>
-          <nav>
+          <nav> 
           <NavLink activeClassName="active" exact to="/products">Products</NavLink>
           <NavLink activeClassName="active" exact to="/my_orders">My Orders</NavLink>
           </nav>

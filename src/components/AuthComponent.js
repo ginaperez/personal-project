@@ -37,7 +37,44 @@ class AuthComponent extends Component {
     }
 
     render() {
-        return <div>AuthComponent</div>
+        const { email, password, firstName, lastName } = this.state;
+        return this.props.user ? (
+            <Redirect to="/my_orders" />
+        ) : (
+            <div className='auth-container'>
+                <form onSubmit={e => {
+                    e.preventDefault();
+                    if(register) {
+                        this.register();
+                    } else {
+                        this.login();
+                    }
+                }}
+                >
+                    {register && (
+                        <div className='input-container'>
+                            <label>First Name:</label>
+                            <input value={firstName} onChange={(e) => this.setState({
+                                firstName: e.target.value
+                            })
+                        }
+                        />
+                        </div>
+                        <div className='input-container'>
+                            <label>Last Name:</label>
+                            <input value={lastName} onChange={(e) => this.setState({
+                                lastName: e.target.value
+                            })
+                        }
+                        />
+                        </div>
+                    )}
+                    <button>{register ? "Register" : "Login"}</button>
+                </form>
+                
+            </div>
+            
+        )
     }
 };
 
