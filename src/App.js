@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import { setUser } from './ducks/reducer';
 import AuthComponent from './components/AuthComponent';
 import ProfileComponent from './components/ProfileComponent';
+import SearchComponent from './components/SearchComponent';
 import './App.css';
 
 class App extends React.Component {
@@ -14,7 +15,7 @@ class App extends React.Component {
       <div className="App">
         <header className="header-class">
           <div class="header-left-corner">
-            Purchase
+            Search
           </div>
           <div className='logo-links-flex'>
             <div className='logo'>
