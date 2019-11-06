@@ -7,15 +7,56 @@ import { setUser } from './ducks/reducer';
 import AuthComponent from './components/AuthComponent';
 import ProfileComponent from './components/ProfileComponent';
 import SearchComponent from './components/SearchComponent';
+import LoginComponent from './components/LoginComponent';
 import './App.css';
 
 class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      allItems: []
+    };
+    this.getInventory = this.getInventory.bind(this);
+    this.getItemByName = this.getItemByName.bind(this);
+  }
+
+  componentDidMount() {
+    this.getInventory();
+  }
+
+  getInventory() {
+    axios.get(`/auth/inventory`).then(response => {
+      this.setState({
+        allItems: response.data
+      });
+    });
+  }
+
+  getItemByName(name) {
+    axios.get(`/auth/inventory/${name}`).then(response => {
+      if(response.data) {
+        this.setState({
+          allItems: [response.data]
+        })
+      } else {
+        this.setState({
+          allItems: []
+        });
+      }})
+      .catch(err => {
+        this.setState({
+          allItems: []
+        });
+        console.log(err);
+      });
+  }
+  
   render() {
     return (
       <div className="App">
         <header className="header-class">
           <div class="header-left-corner">
-            Search
+            <Link to="/search" className="search">{SearchComponent}</Link>
           </div>
           <div className='logo-links-flex'>
             <div className='logo'>
@@ -24,14 +65,6 @@ class App extends React.Component {
             <nav className='navlinks'>
               <NavLink activeClassName="active" exact to="/products">Products</NavLink>
               <NavLink activeClassName="active" exact to="/my_orders">My Orders</NavLink>
-              {/* {this.props.user || (
-                <button onClick={() => {
-                  axios.post('/auth/login').then(() => {
-                    this.props.setUser(null);
-                  });
-                }}
-                >Login</button>
-              )} */}
             </nav>
           </div>
           <div className='header-right-corner'>
@@ -41,6 +74,7 @@ class App extends React.Component {
         <Switch>
             <Route exact path="/login" component={AuthComponent} />
             <Route exact path="/my_orders" component={ProfileComponent} />
+            <Route exact path="*" component={SearchComponent} />
         </Switch>
       </div>
     );

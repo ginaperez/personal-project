@@ -53,7 +53,7 @@ class AuthComponent extends Component {
                 >
                     {register && (
                         <div className='input-container'>
-                            <label>First Name:</label>
+                            <label>First Name: </label>
                             <input value={firstName} onChange={(e) => this.setState({
                                 firstName: e.target.value
                             })
@@ -62,7 +62,7 @@ class AuthComponent extends Component {
                         </div>
                         )}
                         <div className='input-container'>
-                            <label>Last Name:</label>
+                            <label>Last Name: </label>
                             <input value={lastName} onChange={(e) => this.setState({
                                 lastName: e.target.value
                             })
@@ -70,14 +70,14 @@ class AuthComponent extends Component {
                         />
                         </div>
                         <div className='input-container'>
-                            <label>Email:</label>
+                            <label>Email: </label>
                             <input type="email" value={email} onChange={(e) => this.setState ({
                                 email: e.target.value
                             })}
                         />
                         </div>
                         <div className='input-container'>
-                            <label>Password:</label>
+                            <label>Password: </label>
                             <input type="password" value={password} onChange={(e) => this.setState({
                                 password: e.target.value
                             })}
@@ -85,7 +85,29 @@ class AuthComponent extends Component {
                         </div>
                     <button>{register ? "Register" : "Login"}</button>
                 </form>
-                
+                <form onSubmit={e => {
+                    e.preventDefault();
+                    if(register) {
+                        this.register();
+                    } else {
+                        this.login();
+                    }
+                }}
+                >
+                    <div className="login-input-container">
+                        <label>Email: </label>
+                        <input type="email" value={email} onChange={(e) => this.setState({
+                            email: e.target.value
+                        })} />
+                    </div>
+                    <div className="login-input-container">
+                        <label>Password: </label>
+                        <input type="password" value={password} onChange={(e) => this.setState({
+                            password: e.target.value
+                        })} />
+                    </div>
+                    <button>Login</button>
+                </form>
             </div>
             
         )

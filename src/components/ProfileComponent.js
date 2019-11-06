@@ -1,6 +1,12 @@
 import React, { Component } from 'react';
 
 class ProfileComponent extends Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            myOrders: []
+        }
+    }
     render() {
         return (
             <div>My Orders</div>
@@ -8,4 +14,4 @@ class ProfileComponent extends Component {
     }
 }
 
-export default ProfileComponent
+export default ProfileComponent;
