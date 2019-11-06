@@ -12,23 +12,30 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <header>
-          <div className='logo'>
-            <img src={logo} alt='logo'/>
+        <header className="header-class">
+          <div class="header-left-corner">
+            Purchase
           </div>
-          <nav> 
-          <NavLink activeClassName="active" exact to="/products">Products</NavLink>
-          <NavLink activeClassName="active" exact to="/my_orders">My Orders</NavLink>
-          {/* {this.props.user || (
-            <button onClick={() => {
-              axios.post('/auth/login').then(() => {
-                this.props.setUser(null);
-              });
-            }}
-            >Login</button>
-          )} */}
-          </nav>
-          <Link to="/login" className="login"><button>Log In</button></Link>
+          <div className='logo-links-flex'>
+            <div className='logo'>
+              <img src={logo} alt='logo'/>
+            </div>
+            <nav className='navlinks'>
+              <NavLink activeClassName="active" exact to="/products">Products</NavLink>
+              <NavLink activeClassName="active" exact to="/my_orders">My Orders</NavLink>
+              {/* {this.props.user || (
+                <button onClick={() => {
+                  axios.post('/auth/login').then(() => {
+                    this.props.setUser(null);
+                  });
+                }}
+                >Login</button>
+              )} */}
+            </nav>
+          </div>
+          <div className='header-right-corner'>
+            <Link to="/login" className="login"><button>Log In</button></Link>
+          </div>
         </header>
         <Switch>
             <Route exact path="/login" component={AuthComponent} />
