@@ -37,7 +37,7 @@ class AuthComponent extends Component {
     }
 
     render() {
-        const { email, password, firstName, lastName } = this.state;
+        const { email, password, firstName, lastName, register } = this.state;
         return this.props.user ? (
             <Redirect to="/my_orders" />
         ) : (
@@ -60,6 +60,7 @@ class AuthComponent extends Component {
                         }
                         />
                         </div>
+                        )}
                         <div className='input-container'>
                             <label>Last Name:</label>
                             <input value={lastName} onChange={(e) => this.setState({
@@ -68,7 +69,20 @@ class AuthComponent extends Component {
                         }
                         />
                         </div>
-                    )}
+                        <div className='input-container'>
+                            <label>Email:</label>
+                            <input type="email" value={email} onChange={(e) => this.setState ({
+                                email: e.target.value
+                            })}
+                        />
+                        </div>
+                        <div className='input-container'>
+                            <label>Password:</label>
+                            <input type="password" value={password} onChange={(e) => this.setState({
+                                password: e.target.value
+                            })}
+                        />
+                        </div>
                     <button>{register ? "Register" : "Login"}</button>
                 </form>
                 

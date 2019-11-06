@@ -3,11 +3,6 @@
   align-items: center;
 }
 
-header {
-  background-color: red;
-}
-
-button {
-  display: flex;
-  justify-content: flex-end;
+.login {
+  text-decoration: none;
 }
