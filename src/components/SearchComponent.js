@@ -24,6 +24,7 @@ export default class SearchComponent extends React.Component {
                 <p className="search-form">
                     <label>Search:</label>
                     <input value={itemSearch} onChange={(e) => this.universalInput("itemSearch", e.target.value)} />
+                    <button>Search</button>
                 </p>
             </form>
         )

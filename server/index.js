@@ -27,6 +27,7 @@ massive(CONNECTION_STRING).then(db => {
 app.post('/auth/register', register);
 app.get('/auth/user_session' , userSession);
 app.post('/auth/login', login);
+
 app.delete('/auth/logout', logout);
 
 app.get('/api/inventory', (req, res, next) => {
