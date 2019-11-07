@@ -50,7 +50,6 @@ VALUES ('Farmhouse Style Console Table', 400, 1, 'https://images-na.ssl-images-a
 INSERT INTO inventory (item_name, price, quantity, image)
 VALUES ('Minsmere Coffee Table', 400, 1, 'https://images-na.ssl-images-amazon.com/images/I/81%2BLinGw%2BeL._SX425_.jpg');
 
-
 CREATE TABLE purchase_history (
     purchase_id SERIAL PRIMARY KEY,
     purchase_date DATE DEFAULT NOW(),
@@ -60,3 +59,12 @@ CREATE TABLE purchase_history (
 
 INSERT INTO purchase_history (user_id, item_id)
 VALUES (1, 1);
+INSERT INTO purchase_history (user_id, item_id)
+VALUES (1, 6);
+
+SELECT users.user_id, email, password, purchase_date, item_name, inventory.item_id, price, image 
+FROM users
+JOIN purchase_history
+ON (users.user_id = purchase_history.user_id)
+JOIN inventory
+ON(purchase_history.item_id = inventory.item_id)
