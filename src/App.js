@@ -25,7 +25,7 @@ class App extends React.Component {
   }
 
   getInventory() {
-    axios.get(`/auth/inventory`).then(response => {
+    axios.get(`/inventory`).then(response => {
       this.setState({
         allItems: response.data
       });
@@ -33,7 +33,7 @@ class App extends React.Component {
   }
 
   getItemByName(name) {
-    axios.get(`/auth/inventory/${name}`).then(response => {
+    axios.get(`/inventory/${name}`).then(response => {
       if(response.data) {
         this.setState({
           allItems: [response.data]
