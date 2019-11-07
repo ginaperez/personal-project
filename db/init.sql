@@ -17,38 +17,37 @@ CREATE TABLE inventory (
     item_id SERIAL PRIMARY KEY,
     item_name VARCHAR(64) NOT NULL,
     price INTEGER NOT NULL,
-    quantity TEXT NOT NULL,
     image TEXT NOT NULL
 );
 
-INSERT INTO inventory (item_name, price, quantity, image)
-VALUES ('White Sofa', 400, 1, 'https://images-na.ssl-images-amazon.com/images/I/81%2BLinGw%2BeL._SX425_.jpg');
-INSERT INTO inventory (item_name, price, quantity, image)
-VALUES ('Bastien Light Oak Shelf TV Stand', 200, 1, 'https://images-na.ssl-images-amazon.com/images/I/81%2BLinGw%2BeL._SX425_.jpg');
-INSERT INTO inventory (item_name, price, quantity, image)
-VALUES ('Brown Wicker Bed Frame', 600, 1, 'https://images-na.ssl-images-amazon.com/images/I/81%2BLinGw%2BeL._SX425_.jpg');
-INSERT INTO inventory (item_name, price, quantity, image)
-VALUES ('Dresser', 400, 1, 'https://images-na.ssl-images-amazon.com/images/I/81%2BLinGw%2BeL._SX425_.jpg');
-INSERT INTO inventory (item_name, price, quantity, image)
-VALUES ('White Writing Desk', 400, 1, 'https://images-na.ssl-images-amazon.com/images/I/81%2BLinGw%2BeL._SX425_.jpg');
-INSERT INTO inventory (item_name, price, quantity, image)
-VALUES ('Vintage Rattan Chair', 400, 1, 'https://images-na.ssl-images-amazon.com/images/I/81%2BLinGw%2BeL._SX425_.jpg');
-INSERT INTO inventory (item_name, price, quantity, image)
-VALUES ('Natural Wood Matching End Table Set', 400, 1, 'https://images-na.ssl-images-amazon.com/images/I/81%2BLinGw%2BeL._SX425_.jpg');
-INSERT INTO inventory (item_name, price, quantity, image)
-VALUES ('Dining Set', 400, 1, 'https://images-na.ssl-images-amazon.com/images/I/81%2BLinGw%2BeL._SX425_.jpg');
-INSERT INTO inventory (item_name, price, quantity, image)
-VALUES ('Kitchen Console Table', 400, 1, 'https://images-na.ssl-images-amazon.com/images/I/81%2BLinGw%2BeL._SX425_.jpg');
-INSERT INTO inventory (item_name, price, quantity, image)
-VALUES ('The Goodest Boy', 1000000, 1, 'https://images-na.ssl-images-amazon.com/images/I/81%2BLinGw%2BeL._SX425_.jpg');
-INSERT INTO inventory (item_name, price, quantity, image)
-VALUES ('Plant Stand', 400, 1, 'https://images-na.ssl-images-amazon.com/images/I/81%2BLinGw%2BeL._SX425_.jpg');
-INSERT INTO inventory (item_name, price, quantity, image)
-VALUES ('Poppin Pink File Cabinet', 400, 1, 'https://images-na.ssl-images-amazon.com/images/I/81%2BLinGw%2BeL._SX425_.jpg');
-INSERT INTO inventory (item_name, price, quantity, image)
-VALUES ('Farmhouse Style Console Table', 400, 1, 'https://images-na.ssl-images-amazon.com/images/I/81%2BLinGw%2BeL._SX425_.jpg');
-INSERT INTO inventory (item_name, price, quantity, image)
-VALUES ('Minsmere Coffee Table', 400, 1, 'https://images-na.ssl-images-amazon.com/images/I/81%2BLinGw%2BeL._SX425_.jpg');
+INSERT INTO inventory (item_name, price, image)
+VALUES ('White Sofa', 400, 'https://images-na.ssl-images-amazon.com/images/I/81%2BLinGw%2BeL._SX425_.jpg');
+INSERT INTO inventory (item_name, price, image)
+VALUES ('Bastien Light Oak Shelf TV Stand', 200, 'https://images-na.ssl-images-amazon.com/images/I/81%2BLinGw%2BeL._SX425_.jpg');
+INSERT INTO inventory (item_name, price, image)
+VALUES ('Brown Wicker Bed Frame', 600, 'https://images-na.ssl-images-amazon.com/images/I/81%2BLinGw%2BeL._SX425_.jpg');
+INSERT INTO inventory (item_name, price, image)
+VALUES ('Dresser', 400, 'https://images-na.ssl-images-amazon.com/images/I/81%2BLinGw%2BeL._SX425_.jpg');
+INSERT INTO inventory (item_name, price, image)
+VALUES ('White Writing Desk', 400, 'https://images-na.ssl-images-amazon.com/images/I/81%2BLinGw%2BeL._SX425_.jpg');
+INSERT INTO inventory (item_name, price, image)
+VALUES ('Vintage Rattan Chair', 400, 'https://images-na.ssl-images-amazon.com/images/I/81%2BLinGw%2BeL._SX425_.jpg');
+INSERT INTO inventory (item_name, price, image)
+VALUES ('Natural Wood Matching End Table Set', 400, 'https://images-na.ssl-images-amazon.com/images/I/81%2BLinGw%2BeL._SX425_.jpg');
+INSERT INTO inventory (item_name, price, image)
+VALUES ('Dining Set', 400, 'https://images-na.ssl-images-amazon.com/images/I/81%2BLinGw%2BeL._SX425_.jpg');
+INSERT INTO inventory (item_name, price, image)
+VALUES ('Kitchen Console Table', 400, 'https://images-na.ssl-images-amazon.com/images/I/81%2BLinGw%2BeL._SX425_.jpg');
+INSERT INTO inventory (item_name, price, image)
+VALUES ('The Goodest Boy', 1000000, 'https://images-na.ssl-images-amazon.com/images/I/81%2BLinGw%2BeL._SX425_.jpg');
+INSERT INTO inventory (item_name, price, image)
+VALUES ('Plant Stand', 400, 'https://images-na.ssl-images-amazon.com/images/I/81%2BLinGw%2BeL._SX425_.jpg');
+INSERT INTO inventory (item_name, price, image)
+VALUES ('Poppin Pink File Cabinet', 400, 'https://images-na.ssl-images-amazon.com/images/I/81%2BLinGw%2BeL._SX425_.jpg');
+INSERT INTO inventory (item_name, price, image)
+VALUES ('Farmhouse Style Console Table', 400, 'https://images-na.ssl-images-amazon.com/images/I/81%2BLinGw%2BeL._SX425_.jpg');
+INSERT INTO inventory (item_name, price, image)
+VALUES ('Minsmere Coffee Table', 400, 'https://images-na.ssl-images-amazon.com/images/I/81%2BLinGw%2BeL._SX425_.jpg');
 
 CREATE TABLE purchase_history (
     purchase_id SERIAL PRIMARY KEY,
@@ -59,8 +58,6 @@ CREATE TABLE purchase_history (
 
 INSERT INTO purchase_history (user_id, item_id)
 VALUES (1, 1);
-INSERT INTO purchase_history (user_id, item_id)
-VALUES (1, 6);
 
 SELECT users.user_id, email, password, purchase_date, item_name, inventory.item_id, price, image 
 FROM users
