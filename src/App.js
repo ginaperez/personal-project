@@ -8,7 +8,7 @@ import AuthComponent from './components/AuthComponent';
 import ProfileComponent from './components/ProfileComponent';
 import SearchComponent from './components/SearchComponent';
 import LoginComponent from './components/LoginComponent';
-import './App.css';
+import './App.scss';
 
 class App extends React.Component {
   constructor(props) {
