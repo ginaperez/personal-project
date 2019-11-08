@@ -11,6 +11,7 @@
     "express-session": "^1.17.0",
     "massive": "^6.1.1",
     "middleware": "^1.0.0",
+    "node-sass": "^4.13.0",
     "promise-middleware": "^1.0.7",
     "react": "^16.11.0",
     "react-dom": "^16.11.0",

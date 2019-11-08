@@ -1,0 +1,2 @@
+-- create a table with user_id, item_id
+-- 
