@@ -38,9 +38,7 @@ class AuthComponent extends Component {
 
     render() {
         const { email, password, firstName, lastName, register } = this.state;
-        return this.props.user ? (
-            <Redirect to="/my_orders" />
-        ) : (
+        return this.props.user ? ( <Redirect to="/my_orders" /> ) : (
             <div className='auth-container'>
                 <form onSubmit={e => {
                     e.preventDefault();

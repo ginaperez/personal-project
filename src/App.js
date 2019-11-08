@@ -56,7 +56,8 @@ class App extends React.Component {
       <div className="App">
         <header className="header-class">
           <div class="header-left-corner">
-            <Link to="/search" className="search">{SearchComponent}</Link>
+            <Link to="/search" className="search"></Link>
+            <SearchComponent />
           </div>
           <div className='logo-links-flex'>
             <div className='logo'>
@@ -74,7 +75,6 @@ class App extends React.Component {
         <Switch>
             <Route exact path="/login" component={AuthComponent} />
             <Route exact path="/my_orders" component={ProfileComponent} />
-            <Route exact path="*" component={SearchComponent} />
         </Switch>
       </div>
     );
