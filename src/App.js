@@ -3,7 +3,7 @@ import axios from 'axios';
 import logo from '../src/logo.jpg';
 import { Switch, NavLink, Link, Route, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { setUser } from './ducks/reducer';
+import { setUser } from './redux/reducer';
 import AuthComponent from './components/AuthComponent';
 import ProfileComponent from './components/ProfileComponent';
 import SearchComponent from './components/SearchComponent';
