@@ -8,6 +8,8 @@ const { register, login, logout, userSession } = require('./controller/userContr
 
 const { CONNECTION_STRING, SESSION_SECRET, SERVER_PORT } = process.env;
 
+const cart = [];
+
 app.use(session({
     secret: SESSION_SECRET,
     resave: false,
@@ -27,6 +29,16 @@ massive(CONNECTION_STRING).then(db => {
 app.post('/auth/register', register);
 app.get('/auth/user_session' , userSession);
 app.post('/auth/login', login);
+
+app.get('/api/view_cart', function(req, res, next) {
+    res.status(200).send(products) // replace with inventory from database
+});
+app.post('api/add_to_cart', function(req, res, next) {
+    const { id, name, price, desc } = req.body;
+    let addedProduct = { id, name, price, desc }
+    cart.push(addedProduct)
+    res.status(200).send(cart)
+})
 
 app.delete('/auth/logout', logout);
 

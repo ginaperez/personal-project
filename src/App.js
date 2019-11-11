@@ -7,6 +7,7 @@ import { setUser } from './redux/reducer';
 import AuthComponent from './components/AuthComponent';
 import ProfileComponent from './components/ProfileComponent';
 import SearchComponent from './components/SearchComponent';
+import InventoryComponent from './components/InventoryComponent'
 import LoginComponent from './components/LoginComponent';
 import './App.scss';
 
@@ -76,6 +77,7 @@ class App extends React.Component {
             <Route exact path="/login" component={AuthComponent} />
             <Route exact path="/my_orders" component={ProfileComponent} />
         </Switch>
+        <InventoryComponent />
       </div>
     );
   }
