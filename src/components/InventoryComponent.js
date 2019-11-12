@@ -21,8 +21,8 @@ class InventoryComponent extends React.Component {
         })
     }
 
-    buttonAddToCart = (id, name, price, desc) => {
-        let cart = axios.post('/api/addToCart', {id, name, price, desc})
+    buttonAddToCart = (id) => {
+        let cart = axios.post('/api/addToCart', {id})
         this.props.addToCart(cart)
     }
 
@@ -35,10 +35,7 @@ class InventoryComponent extends React.Component {
                         <div key={i}>
                             <h2>{product.name}</h2>
                             <button onClick={() => this.buttonAddToCart(
-                                product.id,
-                                product.name,
-                                product.price,
-                                product.desc
+                                product.id
                             )}>Add To Cart</button>
                         </div>
                     )

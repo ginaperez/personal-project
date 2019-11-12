@@ -33,7 +33,7 @@ app.post('/auth/login', login);
 app.get('/api/view_cart', function(req, res, next) {
     res.status(200).send(products) // replace with inventory from database
 });
-app.post('api/add_to_cart', function(req, res, next) {
+app.post('/api/add_to_cart', function(req, res, next) {
     const { id, name, price, desc } = req.body;
     let addedProduct = { id, name, price, desc }
     cart.push(addedProduct)

@@ -10,6 +10,7 @@ import SearchComponent from './components/SearchComponent';
 import InventoryComponent from './components/InventoryComponent'
 import LoginComponent from './components/LoginComponent';
 import './App.scss';
+import CartComponent from './components/CartComponent';
 
 class App extends React.Component {
   constructor(props) {
@@ -77,7 +78,7 @@ class App extends React.Component {
             <Route exact path="/login" component={AuthComponent} />
             <Route exact path="/my_orders" component={ProfileComponent} />
         </Switch>
-        <InventoryComponent />
+        <CartComponent />
       </div>
     );
   }
