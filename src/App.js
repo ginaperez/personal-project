@@ -27,7 +27,7 @@ class App extends React.Component {
   }
 
   getInventory() {
-    axios.get(`/inventory`).then(response => {
+    axios.get(`/api/inventory`).then(response => {
       this.setState({
         allItems: response.data
       });
@@ -35,7 +35,7 @@ class App extends React.Component {
   }
 
   getItemByName(name) {
-    axios.get(`/inventory/${name}`).then(response => {
+    axios.get(`/api/inventory/${name}`).then(response => {
       if(response.data) {
         this.setState({
           allItems: [response.data]
