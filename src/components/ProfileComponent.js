@@ -16,7 +16,6 @@ class ProfileComponent extends Component {
         } else {
             this.props.history.push('/')
         }
-        
     }
     render() {
         return (

@@ -18,46 +18,46 @@ class App extends React.Component {
     this.state = {
       allItems: []
     };
-    this.getInventory = this.getInventory.bind(this);
-    this.getItemByName = this.getItemByName.bind(this);
+    // this.getInventory = this.getInventory.bind(this);
+    // this.getItemByName = this.getItemByName.bind(this);
   }
 
   componentDidMount() {
-    this.getInventory();
+    // this.getInventory();
   }
 
-  getInventory() {
-    axios.get(`/api/inventory`).then(response => {
-      this.setState({
-        allItems: response.data
-      });
-    });
-  }
+  // getInventory() {
+  //   axios.get(`/api/inventory`).then(response => {
+  //     this.setState({
+  //       allItems: response.data
+  //     });
+  //   });
+  // }
 
-  getItemByName(name) {
-    axios.get(`/api/inventory/${name}`).then(response => {
-      if(response.data) {
-        this.setState({
-          allItems: [response.data]
-        })
-      } else {
-        this.setState({
-          allItems: []
-        });
-      }})
-      .catch(err => {
-        this.setState({
-          allItems: []
-        });
-        console.log(err);
-      });
-  }
-  
+  // getItemByName(name) {
+  //   axios.get(`/api/inventory/${name}`).then(response => {
+  //     if(response.data) {
+  //       this.setState({
+  //         allItems: [response.data]
+  //       })
+  //     } else {
+  //       this.setState({
+  //         allItems: []
+  //       });
+  //     }})
+  //     .catch(err => {
+  //       this.setState({
+  //         allItems: []
+  //       });
+  //       console.log(err);
+  //     });
+  // }
+
   render() {
     return (
       <div className="App">
         <header className="header-class">
-          <div class="header-left-corner">
+          <div className="header-left-corner">
             <Link to="/search" className="search"></Link>
             <SearchComponent />
           </div>
@@ -66,7 +66,7 @@ class App extends React.Component {
               <img src={logo} alt='logo'/>
             </div>
             <nav className='navlinks'>
-              <NavLink activeClassName="active" exact to="/products">Products</NavLink>
+              <NavLink activeClassName="active" exact to="/inventory">Products</NavLink>
               <NavLink activeClassName="active" exact to="/my_orders">My Orders</NavLink>
             </nav>
           </div>
@@ -78,7 +78,11 @@ class App extends React.Component {
             <Route exact path="/login" component={AuthComponent} />
             <Route exact path="/my_orders" component={ProfileComponent} />
         </Switch>
-        <CartComponent />
+        <div className="main-area">
+          <Switch>
+            <Route exact path="/inventory" component={InventoryComponent} />
+          </Switch>
+        </div>
       </div>
     );
   }

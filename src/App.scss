@@ -9,11 +9,20 @@
   text-decoration: none;
 }
 
+// .header-class {
+//   display: flex;
+//   flex-direction: row;
+//   justify-content: space-evenly;
+//   background-color: F69FA3;
+// }
+
 .header-class {
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
-  background-color: F69FA3;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
 }
 
 .navlinks {
@@ -32,6 +41,7 @@
   align-items: center;
   flex-direction: column;
   text-decoration: none;
+  width: 25%;
 }
 
 .header-left-corner {
@@ -40,6 +50,7 @@
   align-items: center;
   flex-direction: column;
   text-decoration: none;
+  width: 25%;
 }
 
 .header-right-corner {
@@ -47,6 +58,7 @@
   justify-content: space-around;
   align-items: center;
   flex-direction: column;
+  width: 25%;
 }
 
 .input-container {
@@ -84,4 +96,34 @@
   left: 229;
   background-color: red;
   transform: rotate(90deg);
+}
+
+.inventory-grid {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  align-content: stretch;
+}
+// https://stackoverflow.com/questions/29546550/flexbox-4-items-per-row
+.inventory-child {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  width: calc(100% * (1/5) - 10px - 1px);
+  flex-grow: 1;
+  height: 100%;
+  margin: 20px 0 0 2%;
+  padding: 10px 10px 10px 10px;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.wide-element {
+  width: 100%;
+}
+
+.inventory-child-spacer {
+  margin: 10px 0 10px 0;
 }
