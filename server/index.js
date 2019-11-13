@@ -9,6 +9,7 @@ const { register, login, logout, userSession } = require('./controller/userContr
 const { CONNECTION_STRING, SESSION_SECRET, SERVER_PORT } = process.env;
 
 const cart = [];
+const products = 
 
 app.use(session({
     secret: SESSION_SECRET,
@@ -27,8 +28,21 @@ massive(CONNECTION_STRING).then(db => {
 });
 
 app.post('/auth/register', register);
-app.get('/auth/user_session' , userSession);
 app.post('/auth/login', login);
+
+app.use((req, res, next) => {
+
+    if(req.session.user) {
+        next()
+        console.log('hit', req.session.user)
+    }else {
+        // res.writeHead(301, { "Location": "http://" + 'localhost:3000' + '/' });
+        // return res.end();
+        res.redirect('http://localhost:3000/')
+    }
+})
+
+app.get('/auth/user_session' , userSession);
 
 app.get('/api/view_cart', function(req, res, next) {
     res.status(200).send(products) // replace with inventory from database

@@ -10,7 +10,7 @@ class CartComponent extends React.Component {
     }
 
     componentDidMount() {
-        let cart = this.props.getCart();
+        // let cart = this.props.getCart();
         this.setState({
             cart: this.props.cart
         })

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Axios from 'axios';
 
 class ProfileComponent extends Component {
     constructor(props) {
@@ -6,6 +7,16 @@ class ProfileComponent extends Component {
         this.state = {
             myOrders: []
         }
+    }
+    componentDidMount(){
+        if(this.props.user){
+            Axios.get('/api/view_cart').then(res => {
+                console.log(res.data)
+            })
+        } else {
+            this.props.history.push('/')
+        }
+        
     }
     render() {
         return (
