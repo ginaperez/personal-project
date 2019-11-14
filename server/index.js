@@ -5,6 +5,7 @@ const massive = require('massive');
 const session = require('express-session');
 app.use(express.json());
 const { register, login, logout, userSession } = require('./controller/userController');
+const checkForSession = require('../middleware/sessionCheck');
 
 const { CONNECTION_STRING, SESSION_SECRET, SERVER_PORT } = process.env;
 
@@ -19,6 +20,8 @@ app.use(session({
         maxAge: 1000 * 60 * 60 * 24 * 14
     }
 }));
+
+app.use(checkForSession);
 
 massive(CONNECTION_STRING).then(db => {
     console.log("database connected");
