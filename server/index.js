@@ -6,6 +6,7 @@ const session = require('express-session');
 app.use(express.json());
 const { register, login, logout, userSession } = require('./controller/userController');
 const checkForSession = require('../middleware/sessionCheck');
+var proxy = require('http-proxy-middleware');
 
 const { CONNECTION_STRING, SESSION_SECRET, SERVER_PORT } = process.env;
 
@@ -65,6 +66,28 @@ app.get('/api/inventory', (req, res, next) => {
         res.status(200).send(inventory);
     })
 })
+
+app.use(
+    '/api',
+    proxy({
+      target: 'http://localhost:4000',
+      changeOrigin: true,
+    })
+);
+app.use(
+    '/auth',
+    proxy({
+      target: 'http://localhost:4000',
+      changeOrigin: true,
+    })
+);
+app.use(
+    '/',
+    proxy({
+      target: 'http://localhost:3000',
+      changeOrigin: true,
+    })
+);
 
 let port = SERVER_PORT || 4000
 app.listen(port, () => console.log(`server listening on ${port}`));

@@ -1,8 +1,8 @@
 module.exports = function(req, res, next) {
-        const { session } = req;
+    const { session } = req;
 
-        if(!session.user) {
-            session.user = { email: "", cart: [], total: 0 };
-        }
+    if(!session.user) {
+        session.user = { email: "", cart: [], total: 0 };
     }
-    next();
+next();
+}
