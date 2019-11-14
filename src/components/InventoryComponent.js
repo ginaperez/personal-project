@@ -7,36 +7,52 @@ class InventoryComponent extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            products: []
+            inventory: []
         }
+        this.getInventory = this.getInventory.bind(this);
+        this.addToCart = this.addToCart.bind(this);
     }
 
     componentDidMount() {
-        console.log(2222, this.props)
-        axios.get('/api/get_cart').then(res => {
-            console.log(333, res)
+        axios.get('/api/inventory').then(res => {
+            console.log(res);
             this.setState({
-                products: res.data
-            })
-        })
+                inventory: res.data
+            });
+        });
     }
 
-    buttonAddToCart = (id) => {
-        let cart = axios.post('/api/addToCart', {id})
-        this.props.addToCart(cart)
+
+    getInventory() {
+        axios.get('/api/inventory').then(res => {
+            console.log(res);
+            this.setState({
+                inventory: res.data
+            });
+        });
+    }
+
+    // TODO: Finish this! Add a cart to your state and add the id to it
+    addToCart(id) {
+        console.log(id);
     }
 
     render() {
         return(
-        <div>
+        <div className="inventory-grid">
             {
-                this.state.products.map((product, i) => {
+                this.state.inventory.map((inventoryItem, i) => {
                     return (
-                        <div key={i}>
-                            <h2>{product.name}</h2>
-                            <button onClick={() => this.buttonAddToCart(
-                                product.id
-                            )}>Add To Cart</button>
+                        <div className="inventory-child" key={i}>
+                            <div className="inventory-child-spacer">
+                                <img alt={'Inventory item ' + inventoryItem.item_name} src={inventoryItem.image} width="200px"/>
+                            </div>
+                            <div className="inventory-child-spacer">
+                                <h2>{inventoryItem.item_name}</h2>
+                            </div>
+                            <div className="wide-element inventory-child-spacer">
+                                <button className="wide-element" onClick={ () => this.addToCart(inventoryItem.item_id) }>Add To Cart</button>
+                            </div>
                         </div>
                     )
                 })
