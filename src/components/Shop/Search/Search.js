@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import CartIcon from 'react-icons/lib/fa/shopping-cart';
+// import CartIcon from 'react-icons/lib/fa/shopping-cart';
 
 import { connect } from 'react-redux';
 import { searchItems } from '../../../redux/reducer';
@@ -42,7 +42,7 @@ class Search extends Component {
                     <input id="Search_input" placeholder="Search by item type..." onKeyDown={ this. search } onChange={ this.handleChange } />
                     <div id="Search_cartContainer" onClick={ this.showCart }>
                         <span id="Search_cartNumber">{ cart.length }</span>
-                        <CartIcon id="Search_cartIcon" />    
+                        {/* <CartIcon id="Search_cartIcon" />     */}
                     </div> 
                 </div>
             </div>
@@ -50,4 +50,4 @@ class Search extends Component {
     }
 }
 
-export default connect(state => state, { searchitems })(Search);
+export default connect(state => state, { searchItems })(Search);

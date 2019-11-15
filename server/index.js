@@ -7,6 +7,9 @@ app.use(express.json());
 const { register, login, logout, userSession } = require('./controller/userController');
 const checkForSession = require('../middleware/sessionCheck');
 const cartController = require('./controller/cartController');
+const authController = require('../server/controller/authController');
+const itemController = require('../server/controller/itemController');
+const searchController = require('../server/controller/searchController');
 var proxy = require('http-proxy-middleware');
 
 const { CONNECTION_STRING, SESSION_SECRET, SERVER_PORT } = process.env;
@@ -32,12 +35,16 @@ massive(CONNECTION_STRING).then(db => {
     });
 });
 
+app.get('/api/items', itemController.read);
+
 app.post('/auth/register', register);
 app.post('/auth/login', login);
 
 app.post('/api/cart/checkout', cartController.checkout);
 app.post('/api/cart/:id', cartContoller.add);
 app.delete('/api/cart/:id', cartController.delete);
+
+app.get('/api/search', searchController.search);
 
 app.use((req, res, next) => {
     next();

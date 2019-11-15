@@ -1,4 +1,4 @@
-import Reach, { Component } from 'react';
+import React, { Component } from 'react';
 
 import { connect } from 'react-redux';
 import { addToCart } from '../../../redux/reducer';
@@ -22,4 +22,4 @@ class Item extends Component {
     }
 }
 
-export default connect(state => state, { addToCart })(Swag);
+export default connect(state => state, { addToCart })(Item);

@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
-import { connect } from 'tls';
 
-// import User from '../User/User';
-// import SignOut from '../SignOut/SignOut';
-// import Search from './Search/Search';
-// import Item from './Items/Item';
+import User from '../User/User';
+import SignOut from '../SignOut/SignOut';
+import Search from '../Shop/Search/Search';
+import Item from '../Shop/Items/Items';
 
-// import { connect } from 'react-redux';
-// import { getItem, getUser } from '../../redux/reducer';
+import { connect } from 'react-redux';
+import { getItems, getUser } from '../../redux/reducer';
 
 class Shop extends Component {
     componentDidMount() {
@@ -41,4 +40,4 @@ class Shop extends Component {
     }
 }
 
-export default connect(state => state, { getItem, getUser })(Shop);
+export default connect(state => state, { getItems, getUser })(Shop);

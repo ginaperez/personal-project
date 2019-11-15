@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
-import { connect } from 'tls';
 
-// import User from '../User/User';
-// import SignOut from '../SignOut/SignOut';
-// import Item from './Item/Item';
+import User from '../User/User';
+import SignOut from '../SignOut/SignOut';
+import Item from '../Shop/Items/Items';
 
 // import BackArrow from 'react-icons/lib/fa/arrow-left';
 
-// import { connect } from 'react-redux';
-// import { removeFromCart, checkout } from '../../redux/reducer';
+import { connect } from 'react-redux';
+import { removeFromCart, checkout } from '../../redux/reducer';
 
 class Checkout extends Component {
     constructor(props) {
@@ -24,7 +23,7 @@ class Checkout extends Component {
 
     render() {
         const { removeFromCart, checkout, cart, total, history } = this.props;
-        const cartSwag = cart.map( swag => (
+        const cartItem = cart.map( item => (
             <Item key={ item.id } id={ item.id } remove={ removeFromCart } title={ item.title } price={ item.price } />
         ));
 
@@ -34,7 +33,7 @@ class Checkout extends Component {
                 <SignOut history={ history } />
 
                 <div id="Checkout_backToShop" onClick={ this.backToShop }>
-                    <BackArrow id="Checkout_backArrow" />
+                    {/* <BackArrow id="Checkout_backArrow" /> */}
                     <span>Back to Store</span>
                 </div>
 
