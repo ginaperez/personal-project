@@ -3,7 +3,7 @@ import axios from 'axios';
 import logo from '../src/logo.jpg';
 import { Switch, NavLink, Link, Route, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { setUser } from './redux/reducer';
+// import { setUser } from './redux/reducer';
 import AuthComponent from './components/AuthComponent';
 import ProfileComponent from './components/ProfileComponent';
 import SearchComponent from './components/SearchComponent';
@@ -92,10 +92,10 @@ function mapReduxStateToProps(reduxState) {
   return reduxState
 };
 
-const mapDispatchToProps = {
-  setUser
-};
+// const mapDispatchToProps = {
+//   setUser
+// };
 
-const invokedConnect = connect(mapReduxStateToProps, mapDispatchToProps)
+// const invokedConnect = connect(mapReduxStateToProps, mapDispatchToProps)
 
-export default invokedConnect(withRouter(App));
+// export default invokedConnect(withRouter(App));

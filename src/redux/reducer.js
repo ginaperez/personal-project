@@ -59,3 +59,72 @@ export default function(state = initialState, action) {
         default: return state;
     }
 }
+
+export function login(obj, history) {
+    return {
+        type: LOGIN,
+        payload: axios.post(URL.login, obj).then(response => {
+            history.push('/shop');
+            return response.data;
+        })
+    };
+}
+
+export function register(obj, history) {
+    return {
+        type: REGISTER,
+        payload: axios.post(URL.register, obj).then(response => {
+            history.push('/shop');
+            return response.data;
+        })
+    };
+}
+
+export function getUser() {
+    return {
+        type: GET_USER,
+        payload: axios.get(URL.user).then(response => response.data)
+    };
+}
+
+export function getItems() {
+    return {
+        type: GET_ITEMS,
+        payload: axios.get(URL.items).then(response => response.data)
+    };
+}
+
+export function searchItems(category) {
+    return {
+        type: SEARCH_ITEMS,
+        payload: axios.get(`${URL.search}?category=${category}`).then(response => response.data)
+    };
+}
+
+export function addToCart(id) {
+    return {
+        type: ADD_TO_CART,
+        payload: axios.post(`${URL.cart}/${id}`).then(response => response.data)
+    };
+}
+
+export function removeFromCart(id) {
+    return {
+        type: REMOVE_FROM_CART,
+        payload: axios.delete(`${URL.cart}/${id}`).then(response => response.data)
+    };
+}
+
+export function checkout() {
+    return {
+        type: CHECKOUT,
+        payload: axios.post(URL.checkout).then(response => response.data)
+    };
+}
+
+export function signout(history) {
+    return {
+        type: SIGN_OUT,
+        payload: axios.post(URL.signout).then(() => history.push('/'))
+    };
+}
