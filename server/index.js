@@ -41,7 +41,7 @@ app.post('/auth/register', register);
 app.post('/auth/login', login);
 
 app.post('/api/cart/checkout', cartController.checkout);
-app.post('/api/cart/:id', cartContoller.add);
+app.post('/api/cart/:id', cartController.add);
 app.delete('/api/cart/:id', cartController.delete);
 
 app.get('/api/search', searchController.search);

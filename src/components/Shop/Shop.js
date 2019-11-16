@@ -18,7 +18,7 @@ class Shop extends Component {
     render() {
         const { history, item } = this.props;
         const itemComponents = item.map(item => (
-            <Item key={ item.id } title={ item.name } price={ item. price } id={ item. id} />
+            <Item key={ item.id } title={ item.name } price={ item.price } id={ item.id } />
         ));
 
         return (
