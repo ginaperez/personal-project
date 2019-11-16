@@ -4,10 +4,10 @@ const app = express();
 const massive = require('massive');
 const session = require('express-session');
 app.use(express.json());
-const { register, login, logout, userSession } = require('./controller/userController');
+// const { register, login, logout, userSession } = require('./controller/userController');
 const checkForSession = require('../middleware/sessionCheck');
 const cartController = require('./controller/cartController');
-const authController = require('../server/controller/authController');
+const userController = require('../server/controller/userController');
 const itemController = require('../server/controller/itemController');
 const searchController = require('../server/controller/searchController');
 var proxy = require('http-proxy-middleware');
@@ -37,8 +37,10 @@ massive(CONNECTION_STRING).then(db => {
 
 app.get('/api/items', itemController.read);
 
-app.post('/auth/register', register);
-app.post('/auth/login', login);
+app.post('/api/register', userController.register);
+app.post('/api/login', userController.login);
+app.get('/api/user_session' , userController.userSession);
+app.delete('/api/logout', userController.logout);
 
 app.post('/api/cart/checkout', cartController.checkout);
 app.post('/api/cart/:id', cartController.add);
@@ -58,8 +60,6 @@ app.use((req, res, next) => {
     // }
 })
 
-app.get('/auth/user_session' , userSession);
-
 app.get('/api/view_cart', function(req, res, next) {
     res.status(200).send(products) // replace with inventory from database
 });
@@ -69,8 +69,6 @@ app.post('/api/add_to_cart', function(req, res, next) {
     cart.push(addedProduct)
     res.status(200).send(cart)
 })
-
-app.delete('/auth/logout', logout);
 
 app.get('/api/inventory', (req, res, next) => {
     const db = req.app.get('db');
@@ -86,13 +84,13 @@ app.use(
       changeOrigin: true,
     })
 );
-app.use(
-    '/auth',
-    proxy({
-      target: 'http://localhost:4000',
-      changeOrigin: true,
-    })
-);
+// app.use(
+//     '/auth',
+//     proxy({
+//       target: 'http://localhost:4000',
+//       changeOrigin: true,
+//     })
+// );
 app.use(
     '/',
     proxy({

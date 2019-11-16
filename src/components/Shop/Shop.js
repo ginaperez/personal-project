@@ -10,14 +10,14 @@ import { getItems, getUser } from '../../redux/reducer';
 
 class Shop extends Component {
     componentDidMount() {
-        const { getItem, getUser } = this.props;
+        const { getItems, getUser } = this.props;
         getUser();
-        getItem();
+        getItems();
     }
 
     render() {
-        const { history, item } = this.props;
-        const itemComponents = item.map(item => (
+        const { history, items } = this.props;
+        const itemComponents = items.map(item => (
             <Item key={ item.id } title={ item.name } price={ item.price } id={ item.id } />
         ));
 

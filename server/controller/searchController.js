@@ -1,13 +1,17 @@
-// const item = require("database")
-
 module.exports = {
     search: (req, res) => {
-        const { category } = req.query;
-        if(!category) {
-            res.status(200).send(item);
-        } else {
-            const filteredItems = items.filter(item => item.category === category);
-            res.status(200).send(filteredItems);
+        const { query } = req.query;
+        const db = req.app.get('db');
+        dbQuery = 'SELECT * FROM inventory';
+        if(query) {
+            dbQuery += ` WHERE item_name ILIKE '%${query}%'`;
         }
+        db.query(dbQuery).then(inventoryItems => {
+            if (!inventoryItems) {
+                res.status(200).send(inventoryItems);
+            } else {
+                res.status(200).send(inventoryItems);
+            }
+        })
     }
 };

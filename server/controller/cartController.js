@@ -1,5 +1,3 @@
-// const item = require('../../src/components/InventoryComponent');
-
 module.exports = {
     add: (req, res) => {
         const { id } = req.params;
@@ -7,7 +5,7 @@ module.exports = {
 
         const index = user.cart.findIndex(item => item.id == id);
 
-        if(index=== -1) {
+        if(index === -1) {
             const selectedItem = item.find(item => item.id == id );
 
             user.cart.push(selectedItem);
@@ -30,6 +28,7 @@ module.exports = {
     },
     checkout: (req, res) => {
         const { user } = req.session;
+        console.log(user);
         user.cart = [];
         user.total = 0;
 
