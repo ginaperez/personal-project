@@ -7,7 +7,7 @@ export default class Item extends Component {
             <div id="CheckoutItem_parent">
                 <div id="CheckoutItem_child">
                     <span id="CheckoutItem_price">${price.toFixed(2)}</span>
-                    <span id="CheckoutItem_title">{title}</span>
+                    <span id="CheckoutItem_title">{name}</span>
                     <TrashIcon id="CheckoutItem_trash" onClick={() => remove( id )} />
                 </div>
             </div>

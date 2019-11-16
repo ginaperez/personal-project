@@ -24,7 +24,7 @@ class Checkout extends Component {
     render() {
         const { removeFromCart, checkout, cart, total, history } = this.props;
         const cartItem = cart.map( item => (
-            <Item key={ item.id } id={ item.id } remove={ removeFromCart } title={ item.title } price={ item.price } />
+            <Item key={ item.id } id={ item.id } remove={ removeFromCart } title={ item.name } price={ item.price } />
         ));
 
         return (

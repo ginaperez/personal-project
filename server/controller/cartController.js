@@ -1,4 +1,4 @@
-const item = require('../../src/components/InventoryComponent');
+// const item = require('../../src/components/InventoryComponent');
 
 module.exports = {
     add: (req, res) => {
