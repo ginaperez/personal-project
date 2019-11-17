@@ -15,7 +15,10 @@ module.exports = {
             const salt = await bcrypt.genSalt(saltRounds);
             const hashedPassword = await bcrypt.hash(password, salt);
             const newUser = await dbQueries.addUserToDatabase(db, email, hashedPassword);
-            req.session.user = newUser;
+            req.session.user = {
+                user_id: newUser.user_id,
+                email: newUser.email
+            };
             console.log(`Created user ${newUser.email}`);
             res.status(200).send(req.session.user)
         }

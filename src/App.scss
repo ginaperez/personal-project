@@ -19,10 +19,10 @@
 .header-class {
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-between;
+  flex-wrap: nowrap;
+  justify-content: space-around;
   align-items: center;
-  align-content: center;
+  align-content: space-around;
 }
 
 .navlinks {
@@ -61,7 +61,7 @@
   width: 25%;
 }
 
-.input-container {
+.register-input-container {
   color: green;
   display: flex;
   flex-direction: column;
@@ -79,7 +79,7 @@
 
 .auth-container {
   display: flex;
-	flex-direction: row-reverse;
+	flex-direction: row;
 	flex-wrap: nowrap;
 	justify-content: space-around;
 	align-items: center;
@@ -122,8 +122,18 @@
 
 .wide-element {
   width: 100%;
+  max-width: 300px;
 }
 
 .inventory-child-spacer {
   margin: 10px 0 10px 0;
+}
+
+.search-area {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  align-content: space-around;
 }

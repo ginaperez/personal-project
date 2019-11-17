@@ -1,3 +1,4 @@
+DROP TABLE IF EXISTS cart;
 DROP TABLE IF EXISTS purchase_history;
 DROP TABLE IF EXISTS inventory;
 DROP TABLE IF EXISTS users;
@@ -59,9 +60,18 @@ CREATE TABLE purchase_history (
 INSERT INTO purchase_history (user_id, item_id)
 VALUES (1, 1);
 
-SELECT users.user_id, email, password, purchase_date, item_name, inventory.item_id, price, image 
+SELECT users.user_id, email, password, purchase_date, item_name, inventory.item_id, price, image
 FROM users
 JOIN purchase_history
 ON (users.user_id = purchase_history.user_id)
 JOIN inventory
-ON(purchase_history.item_id = inventory.item_id)
+ON(purchase_history.item_id = inventory.item_id);
+
+CREATE TABLE cart (
+    user_id INTEGER REFERENCES users(user_id),
+    item_id INTEGER REFERENCES inventory(item_id),
+    item_qty INTEGER DEFAULT 0
+);
+
+INSERT INTO cart (user_id, item_id, item_qty)
+VALUES (1,1,1);

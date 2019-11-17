@@ -40,7 +40,7 @@ app.get('/api/items', itemController.read);
 app.post('/api/register', userController.register);
 app.post('/api/login', userController.login);
 app.post('/api/logout', userController.logout);
-app.get('/api/user_session' , userController.userSession);
+app.get('/api/session' , userController.userSession);
 
 app.post('/api/cart/checkout', cartController.checkout);
 app.post('/api/cart/:id', cartController.add);
