@@ -38,7 +38,7 @@ export default function(state = initialState, action) {
 
         case SEARCH_ITEMS + '_FULFILLED':
             return Object.assign({}, state, { items: payload });
-        
+
         case ADD_TO_CART + '_FULFILLED':
             return Object.assign({}, state, { cart: payload.cart, total: payload.total });
 
