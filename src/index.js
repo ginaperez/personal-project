@@ -30,7 +30,8 @@ const API = {
 	session: '/api/session',
 	inventory: '/api/inventory',
 	search: '/api/search',
-	orders: '/api/orders'
+	orders: '/api/orders',
+	purchaseHistory: '/api/purchaseHistory'
 }
 
 class App extends Component {
@@ -51,7 +52,10 @@ class App extends Component {
 			inventory: [],
 
 			// search
-			searchQuery: ""
+			searchQuery: "",
+
+			// purchase history
+			purchaseHistory: []
 		};
 
 		// auth
@@ -64,6 +68,9 @@ class App extends Component {
 
 		// search
 		this.searchInventory = this.searchInventory.bind(this);
+
+		// purchase history
+		this.getPurchaseHistory = this.getPurchaseHistory.bind(this);
 	}
 
 	componentDidMount() {
@@ -106,7 +113,7 @@ class App extends Component {
 
 	async searchInventory() {
 		const { searchQuery } = this.state;
-		const inventoryResponse = await axios.get(`${API.search}/?query=${searchQuery}`);
+		const inventoryResponse = await axios.get(`${API.search}?query=${searchQuery}`);
 
 		this.setState({ inventory: inventoryResponse.data })
 	}
@@ -114,6 +121,14 @@ class App extends Component {
 	// TODO: Finish this! Add a cart to your state and add the id to it
 	addToCart(id) {
 		console.log(id);
+	}
+
+	// purchase history
+	async getPurchaseHistory() {
+		const { purchaseHistory } = this.state;
+		const purchaseHistoryResponse = await axios.get(`${API.purchaseHistory}`);
+
+		this.setState({ purchaseHistory: purchaseHistoryResponse.data });
 	}
 
 
@@ -176,6 +191,23 @@ class App extends Component {
 							</div>
 							<button>Register</button>
 						</form>
+					</div>
+					<div className="purchase-history">
+						<div className="">
+							<button className="wide-element" onClick={() => this.getPurchaseHistory()}>Get Purchase History</button>
+						</div>
+						{
+							this.state.purchaseHistory.map((purchaseHistoryItem, i) => {
+								return (
+									<div className="">
+										<p>Purchase ID: {purchaseHistoryItem.purchase_id}</p>
+										<p>Purchase date: {purchaseHistoryItem.purchase_date}</p>
+										<p>User ID: {purchaseHistoryItem.user_id}</p>
+										<p>Item ID: {purchaseHistoryItem.item_id}</p>
+									</div>
+								)
+							})
+						}
 					</div>
 					<div className="inventory-grid">
 						{

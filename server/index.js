@@ -10,6 +10,7 @@ const cartController = require('./controller/cartController');
 const userController = require('../server/controller/userController');
 const itemController = require('../server/controller/itemController');
 const searchController = require('../server/controller/searchController');
+const purchaseHistoryController = require('../server/controller/purchaseHistoryController');
 var proxy = require('http-proxy-middleware');
 
 const { CONNECTION_STRING, SESSION_SECRET, SERVER_PORT } = process.env;
@@ -41,6 +42,8 @@ app.post('/api/register', userController.register);
 app.post('/api/login', userController.login);
 app.post('/api/logout', userController.logout);
 app.get('/api/session' , userController.userSession);
+
+app.get('/api/purchasehistory', purchaseHistoryController.getUserPurchaseHistory);
 
 app.post('/api/cart/checkout', cartController.checkout);
 app.post('/api/cart/:id', cartController.add);

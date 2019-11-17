@@ -6,5 +6,6 @@ export default {
     signout: '/api/logout',
     search: '/api/search',
     user: '/api/user_session',
-    checkout: '/api/cart/checkout'
+    checkout: '/api/cart/checkout',
+    purchaseHistory: '/api/cart/purchaseHistory',
   };

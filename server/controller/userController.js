@@ -3,7 +3,7 @@ const dbQueries = require('../dbQueries');
 
 module.exports = {
     register: async (req, res, next) => {
-       const { email, password } = req.body;
+        const { email, password } = req.body;
         const db = req.app.get('db');
         const foundUser = await dbQueries.findUserByEmail(db, email);
         if(foundUser) {

@@ -19,6 +19,15 @@ module.exports = {
             return false;
         }
     },
+    getUserPurchaseHistory: async (db, userId) => {
+        const userPurchaseHistoryQuery = `SELECT * FROM purchase_history WHERE user_id = '${userId}'`;
+        const userPurchaseHistory = await db.query(userPurchaseHistoryQuery);
+        if (userPurchaseHistory) {
+            return userPurchaseHistory;
+        } else {
+            return false;
+        }
+    },
     getUserCart: async (db, userId) => {
         const userCartQuery = `SELECT * FROM cart WHERE user_id = '${userId}'`;
         const userCart = await db.query(userCartQuery);
