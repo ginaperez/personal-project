@@ -1,13 +1,13 @@
 import React from 'react';
 
-// import UserIcon from 'recct-icons/lib/fa/user';
+import { FaUserAlt } from 'react-icons/fa';
 
 import { connect } from 'react-redux';
 
 function User({ user }) {
     return (
         <div id="User_parent">
-            {/* <UserIcon id="User)icon" /> */}
+            <FaUserAlt id="User_icon" />
             <span>{ user || 'Guest' }</span>
         </div>
     )

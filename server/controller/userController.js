@@ -3,7 +3,7 @@ const dbQueries = require('../dbQueries');
 
 module.exports = {
     register: async (req, res, next) => {
-       const { email, password, firstName, lastName } = req.body;
+       const { email, password } = req.body;
         const db = req.app.get('db');
         const foundUser = await dbQueries.findUserByEmail(db, email);
         if(foundUser) {
@@ -14,7 +14,7 @@ module.exports = {
             const saltRounds = 12;
             const salt = await bcrypt.genSalt(saltRounds);
             const hashedPassword = await bcrypt.hash(password, salt);
-            const newUser = await dbQueries.addUserToDatabase(db, email, hashedPassword, firstName, lastName);
+            const newUser = await dbQueries.addUserToDatabase(db, email, hashedPassword);
             req.session.user = newUser;
             console.log(`Created user ${newUser.email}`);
             res.status(200).send(req.session.user)
@@ -35,8 +35,8 @@ module.exports = {
                     user_id: foundUser.user_id,
                     email: foundUser.email
                 }
-                console.log(logMsg)
-                res.status(200).send(req.session.user)
+                console.log(`Authenticated user ${foundUser.email}`);
+                res.status(200).send(req.session.user);
             } else {
                 const logMsg = 'Invalid password.';
                 console.log(logMsg);

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-// import SignOutIcon from 'react-icons/lib/fa/sign-out';
+import { FaSignOutAlt } from 'react-icons/fa';
 
 import { connect } from 'react-redux';
 import { signout } from '../../redux/reducer';
@@ -10,8 +10,7 @@ class SignOut extends Component {
         const { signout, history } = this.props;
         return (
             <div id="SignOut_parent" onClick={() => signout(history)}>
-                {/* <SignOutIcon id="SignOutIcon" /> */}
-                <span>Sign Out</span>
+                <span><FaSignOutAlt id="SignOutIcon" /> Sign Out</span>
             </div>
         )
     }

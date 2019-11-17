@@ -4,14 +4,14 @@ DROP TABLE IF EXISTS users;
 
 CREATE TABLE users (
     user_id SERIAL PRIMARY KEY,
-    first_name TEXT NOT NULL,
-    last_name TEXT NOT NULL,
+    -- first_name TEXT NOT NULL,
+    -- last_name TEXT NOT NULL,
     password VARCHAR(64) NOT NULL,
     email TEXT unique NOT NULL
 );
 
-INSERT INTO users (first_name, last_name, password, email)
-VALUES ('Gina', 'Perez', 'gmp123', 'gmperez92@gmail.com');
+INSERT INTO users (password, email)
+VALUES ('$2b$12$Iep7Rr1ynT8I1rS1k0gSP.1cFH2W/6JOZdv3D1BBYENSop5gLjwDu', 'gmperez92@gmail.com');
 
 CREATE TABLE inventory (
     item_id SERIAL PRIMARY KEY,

@@ -9,9 +9,10 @@ import { connect } from 'react-redux';
 import { getItems, getUser } from '../../redux/reducer';
 
 class Shop extends Component {
-    componentDidMount() {
+    async componentDidMount() {
         const { getItems, getUser } = this.props;
-        getUser();
+        const user = await getUser();
+        console.log(user.payload);
         getItems();
     }
 

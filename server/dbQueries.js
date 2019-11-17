@@ -8,10 +8,10 @@ module.exports = {
             return false;
         }
     },
-    addUserToDatabase: async (db, email, hashedPassword, firstName, lastName) => {
-        const newUserQuery = 'INSERT INTO users (first_name, last_name, password, email)'+
-            `VALUES ('${firstName}', '${lastName}', '${hashedPassword}', '${email}')` +
-            `RETURNING first_name, last_name, password, email`;
+    addUserToDatabase: async (db, email, hashedPassword) => {
+        const newUserQuery = 'INSERT INTO users (password, email)'+
+            `VALUES ('${hashedPassword}', '${email}')` +
+            `RETURNING password, email`;
         const newUsers = await db.query(newUserQuery);
         if (newUsers.length > 0) {
             return newUsers[0];
