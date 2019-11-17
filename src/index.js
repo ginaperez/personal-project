@@ -32,7 +32,8 @@ const API = {
 	inventory: '/api/inventory',
 	search: '/api/search',
 	orders: '/api/orders',
-	purchaseHistory: '/api/purchaseHistory'
+	purchaseHistory: '/api/purchaseHistory',
+	cart: '/api/cart'
 }
 
 class App extends Component {
@@ -56,7 +57,10 @@ class App extends Component {
 			searchQuery: "",
 
 			// purchase history
-			purchaseHistory: []
+			purchaseHistory: [],
+
+			// cart
+			cart: []
 		};
 
 		// auth
@@ -73,6 +77,9 @@ class App extends Component {
 
 		// purchase history
 		this.getPurchaseHistory = this.getPurchaseHistory.bind(this);
+
+		// cart
+		this.getCart = this.getCart.bind(this);
 	}
 
 	componentDidMount() {
@@ -142,6 +149,14 @@ class App extends Component {
 
 
 	// cart functions
+
+	async getCart() {
+		const { cart } = this.state;
+		const cartResponse = await axios.get(API.cart);
+
+		this.setState({ cart: cartResponse.data });
+	}
+
 
 	render() {
 		const { registerEmail, registerPassword, loginEmail, loginPassword, session, inventory, searchQuery } = this.state;
@@ -215,6 +230,31 @@ class App extends Component {
 										<p>Purchase date: {purchaseHistoryItem.purchase_date}</p>
 										<p>User ID: {purchaseHistoryItem.user_id}</p>
 										<p>Item ID: {purchaseHistoryItem.item_id}</p>
+										<p>Item Name: {purchaseHistoryItem.item_name}</p>
+										<p>Item Qty: {purchaseHistoryItem.item_qty}</p>
+										<p>Item Unit Price: {purchaseHistoryItem.item_unit_price}</p>
+										<p>Item Total Price: {purchaseHistoryItem.total_price}</p>
+										<p>Item Image URL: {purchaseHistoryItem.image}</p>
+									</div>
+								)
+							})
+						}
+					</div>
+					<div className="cart-view">
+						<div className="">
+							<button className="wide-element" onClick={() => this.getCart()}>Get Cart</button>
+						</div>
+						{
+							this.state.cart.map((cartItem, i) => {
+								return (
+									<div className="">
+										<p>User ID: {cartItem.user_id}</p>
+										<p>Item ID: {cartItem.item_id}</p>
+										<p>Item Name: {cartItem.item_name}</p>
+										<p>Item Qty: {cartItem.item_qty}</p>
+										<p>Item Unit Price: {cartItem.item_unit_price}</p>
+										<p>Item Total Price: {cartItem.total_price}</p>
+										<p>Item Image URL: {cartItem.image}</p>
 									</div>
 								)
 							})

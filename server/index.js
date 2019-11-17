@@ -45,9 +45,10 @@ app.get('/api/session' , userController.userSession);
 
 app.get('/api/purchasehistory', purchaseHistoryController.getUserPurchaseHistory);
 
-app.post('/api/cart/checkout', cartController.checkout);
-app.post('/api/cart/:id', cartController.add);
-app.delete('/api/cart/:id', cartController.delete);
+// app.post('/api/cart/checkout', cartController.checkout);
+app.get('/api/cart', cartController.getCart);
+// app.post('/api/cart/:id', cartController.add);
+// app.delete('/api/cart/:id', cartController.delete);
 
 app.get('/api/search', searchController.search);
 

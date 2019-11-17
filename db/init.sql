@@ -54,13 +54,15 @@ CREATE TABLE purchase_history (
     purchase_id SERIAL PRIMARY KEY,
     purchase_date DATE DEFAULT NOW(),
     user_id INTEGER REFERENCES users(user_id),
-    item_id INTEGER REFERENCES inventory(item_id)
+    item_id INTEGER REFERENCES inventory(item_id),
+    item_qty INTEGER DEFAULT 0
 );
 
 INSERT INTO purchase_history (user_id, item_id)
 VALUES (1, 1);
 
-SELECT users.user_id, email, password, purchase_date, item_name, inventory.item_id, price, image
+-- query for purchase history
+SELECT users.user_id, email, purchase_date, item_name, item_qty, price as item_unit_price, item_qty * price as total_price, image
 FROM users
 JOIN purchase_history
 ON (users.user_id = purchase_history.user_id)
@@ -74,4 +76,12 @@ CREATE TABLE cart (
 );
 
 INSERT INTO cart (user_id, item_id, item_qty)
-VALUES (1,1,1);
+VALUES (1,1,10),(1,2,10);
+
+-- query for cart
+SELECT users.user_id, email, item_name, inventory.item_id, price as item_unit_price, cart.item_qty, cart.item_qty * price as total_price, image
+FROM users
+JOIN cart
+ON (users.user_id = cart.user_id)
+JOIN inventory
+ON(cart.item_id = inventory.item_id);
