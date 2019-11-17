@@ -49,7 +49,7 @@ module.exports = {
     },
     logout: (req, res, next) => {
         req.session.destroy();
-        res.status(200).send("Enjoy your new purchase!")
+        res.status(200).send("Logged out successfully")
     },
     userSession: (req, res, next) => {
         res.status(200).send(req.session.user);

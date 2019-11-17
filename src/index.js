@@ -28,6 +28,7 @@ const API = {
 	login: '/api/login',
 	register: '/api/register',
 	session: '/api/session',
+	logout: '/api/logout',
 	inventory: '/api/inventory',
 	search: '/api/search',
 	orders: '/api/orders',
@@ -61,6 +62,7 @@ class App extends Component {
 		// auth
 		this.register = this.register.bind(this);
 		this.login = this.login.bind(this);
+		this.logout = this.logout.bind(this);
 
 		// inventory
 		this.getInventory = this.getInventory.bind(this);
@@ -95,6 +97,13 @@ class App extends Component {
 		// TODO: check for success/fail login
 		// TODO: clear out the register text boxes
 		this.setState({ session: session.data })
+	}
+
+	async logout() {
+		const { session } = this.state;
+		const destroyedSession = await axios.post(API.logout, {});
+
+		this.setState({ session: { email: "", user_id: null } });
 	}
 
 	async getSession() {
@@ -162,8 +171,10 @@ class App extends Component {
 						</nav>
 					</div>
 					<div className='header-right-corner'>
+						{ session.user_id && ( <div className="">{`Logged in as ${session.email}`} <button onClick={() => this.logout()}>Log Out</button></div> )}
+						{ !session.user_id && <Link to="/login" className="login"><button>Login</button></Link> }
 						{
-							<Link to="/login" className="login"><button>{session.user_id ? `Logged in as ${session.email}` : "Login"}</button></Link>
+							// session.user_id && ({`Logged in as ${session.email}`}<button>Log Out</button> )
 						}
 					</div>
 				</header>
