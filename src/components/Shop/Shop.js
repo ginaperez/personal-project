@@ -11,6 +11,8 @@ import { getItems, getUser } from '../../redux/reducer';
 class Shop extends Component {
     async componentDidMount() {
         const { getItems, getUser } = this.props;
+        const user = await getUser();
+        console.log(user.payload);
         getItems();
     }
 
