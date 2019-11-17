@@ -14,14 +14,6 @@ import axios from 'axios';
 
 import logo from '../src/logo.jpg';
 
-// import AuthComponent from './components/old/AuthComponent.js';
-// import CartComponent from './components/old/CartComponent.js';
-// import InventoryComponent from './components/old/InventoryComponent.js';
-// import LoginComponent from './components/old/LoginComponent.js';
-// import ProfileComponent from './components/old/ProfileComponent.js';
-// import RegisterComponent from './components/old/RegisterComponent.js';
-// import SearchComponent from './components/old/SearchComponent.js';
-
 const store = createStore(reducer);
 
 const API = {
@@ -70,7 +62,7 @@ class App extends Component {
 
 		// inventory
 		this.getInventory = this.getInventory.bind(this);
-		this.addToCart = this.addToCart.bind(this);
+		this.modifyCart = this.modifyCart.bind(this);
 
 		// search
 		this.searchInventory = this.searchInventory.bind(this);
@@ -134,11 +126,6 @@ class App extends Component {
 		this.setState({ inventory: inventoryResponse.data })
 	}
 
-	// TODO: Finish this! Add a cart to your state and add the id to it
-	addToCart(id) {
-		console.log(id);
-	}
-
 	// purchase history
 	async getPurchaseHistory() {
 		const { purchaseHistory } = this.state;
@@ -149,7 +136,6 @@ class App extends Component {
 
 
 	// cart functions
-
 	async getCart() {
 		const { cart } = this.state;
 		const cartResponse = await axios.get(API.cart);
@@ -157,6 +143,20 @@ class App extends Component {
 		this.setState({ cart: cartResponse.data });
 	}
 
+	// TODO: Finish this! Add a cart to your state and add the id to it
+	async modifyCart(itemId, itemQty) {
+		if (itemQty === 0) {
+			const cartResponse = await axios.delete(`${API.cart}/${itemId}`);
+			console.log(cartResponse.data[0].item_id,cartResponse.data[0].item_qty);
+		} else {
+			const cartResponse = await axios.put(API.cart, {
+				itemId: itemId,
+				itemQty: itemQty
+			});
+			console.log(cartResponse.data[0].item_id,cartResponse.data[0].item_qty);
+		}
+		this.getCart();
+	}
 
 	render() {
 		const { registerEmail, registerPassword, loginEmail, loginPassword, session, inventory, searchQuery } = this.state;
@@ -186,8 +186,8 @@ class App extends Component {
 						</nav>
 					</div>
 					<div className='header-right-corner'>
-						{ session.user_id && ( <div className="">{`Logged in as ${session.email}`} <button onClick={() => this.logout()}>Log Out</button></div> )}
-						{ !session.user_id && <Link to="/login" className="login"><button>Login</button></Link> }
+						{session.user_id && (<div className="">{`Logged in as ${session.email}`} <button onClick={() => this.logout()}>Log Out</button></div>)}
+						{!session.user_id && <Link to="/login" className="login"><button>Login</button></Link>}
 						{
 							// session.user_id && ({`Logged in as ${session.email}`}<button>Log Out</button> )
 						}
@@ -255,6 +255,7 @@ class App extends Component {
 										<p>Item Unit Price: {cartItem.item_unit_price}</p>
 										<p>Item Total Price: {cartItem.total_price}</p>
 										<p>Item Image URL: {cartItem.image}</p>
+										<p><button onClick={() => {this.modifyCart(cartItem.item_id, 0);}}>Delete from Cart</button></p>
 									</div>
 								)
 							})
@@ -272,7 +273,7 @@ class App extends Component {
 											<h2>{inventoryItem.item_name}</h2>
 										</div>
 										<div className="wide-element inventory-child-spacer">
-											<button className="wide-element" onClick={() => this.addToCart(inventoryItem.item_id)}>Add To Cart</button>
+											<button className="wide-element" onClick={() => this.modifyCart(inventoryItem.item_id, 1)}>Add To Cart</button>
 										</div>
 									</div>
 								)

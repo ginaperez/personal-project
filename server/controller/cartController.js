@@ -13,7 +13,36 @@ module.exports = {
         } else {
             res.status(401).send('You are not authorized to view this information');
         }
-    }
+    },
+    updateCart: async (req, res, next) => {
+        const { itemId, itemQty } = req.body;
+        if (req.session.user.user_id) {
+            const db = req.app.get('db');
+            const updatedCartItem = await dbQueries.addOrUpdateCart(db, req.session.user.user_id, itemId, itemQty);
+            if (updatedCartItem && updatedCartItem.length > 0) {
+                res.status(200).send(updatedCartItem);
+            } else {
+                res.status(200).send({});
+            }
+        } else {
+            res.status(401).send('You are not authorized to perform this transaction');
+        }
+    },
+    deleteFromCart: async (req, res, next) => {
+        const { itemId } = req.params;
+        if (req.session.user.user_id) {
+            const db = req.app.get('db');
+            const updatedCartItem = await dbQueries.addOrUpdateCart(db, req.session.user.user_id, itemId, 0);
+            if (updatedCartItem && updatedCartItem.length > 0) {
+                res.status(200).send(updatedCartItem);
+            } else {
+                res.status(200).send({});
+            }
+        } else {
+            res.status(401).send('You are not authorized to perform this transaction');
+        }
+    },
+
 
     // add: (req, res) => {
     //     const { id } = req.params;
