@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import User from '../User/User';
 import SignOut from '../SignOut/SignOut';
-import Item from '../Shop/Items/Items';
+import Item from '../Shop/Items/Item';
 
 // import BackArrow from 'react-icons/lib/fa/arrow-left';
 

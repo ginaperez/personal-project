@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import { connect } from 'react-redux';
-import { addToCart } from '../../../redux/reducer';
+// import { addToCart } from '../../../redux/reducer';
 
 class Item extends Component {
     render() {
@@ -22,4 +22,4 @@ class Item extends Component {
     }
 }
 
-export default connect(state => state, { addToCart })(Item);
+export default connect(state => state, null)(Item);

@@ -94,10 +94,10 @@ export function getItems() {
     };
 }
 
-export function searchItems(category) {
+export function searchItems(query) {
     return {
         type: SEARCH_ITEMS,
-        payload: axios.get(`${URL.search}?category=${category}`).then(response => response.data)
+        payload: axios.get(`${URL.search}?query=${query}`).then(response => response.data)
     };
 }
 

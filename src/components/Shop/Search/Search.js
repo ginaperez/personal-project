@@ -9,7 +9,7 @@ class Search extends Component {
     constructor() {
         super();
         this.state= {
-            category: ""
+            query: ""
         };
         this.showCart = this.showCart.bind(this);
         this.handleChange = this.handleChange.bind(this);
@@ -22,15 +22,15 @@ class Search extends Component {
     }
 
     handleChange(event) {
-        this.setState({ category: event.target.value });
+        this.setState({ query: event.target.value });
     }
 
     search(event) {
         if( event.key === "Enter") {
             const { searchItems } = this.props;
-            const { category } = this.state;
+            const { query } = this.state;
 
-            searchItems(category);
+            searchItems(query);
         }
     }
 

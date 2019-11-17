@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import User from '../User/User';
 import SignOut from '../SignOut/SignOut';
 import Search from '../Shop/Search/Search';
-import Item from '../Shop/Items/Items';
+import Item from './Items/Item';
 
 import { connect } from 'react-redux';
 import { getItems, getUser } from '../../redux/reducer';
@@ -11,15 +11,14 @@ import { getItems, getUser } from '../../redux/reducer';
 class Shop extends Component {
     async componentDidMount() {
         const { getItems, getUser } = this.props;
-        const user = await getUser();
-        console.log(user.payload);
+        getUser();
         getItems();
     }
 
     render() {
         const { history, items } = this.props;
         const itemComponents = items.map(item => (
-            <Item key={ item.id } title={ item.name } price={ item.price } id={ item.id } />
+            <Item id={ item.item_id } name={ item.item_name } price={ item.price } />
         ));
 
         return (
