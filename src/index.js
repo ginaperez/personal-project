@@ -141,7 +141,6 @@ class App extends Component {
 
 	// purchase history
 	async getPurchaseHistory() {
-		const { purchaseHistory } = this.state;
 		const purchaseHistoryResponse = await axios.get(`${API.purchaseHistory}`);
 
 		this.setState({ purchaseHistory: purchaseHistoryResponse.data });
@@ -149,7 +148,6 @@ class App extends Component {
 
 	// cart functions
 	async getCart() {
-		const { cart } = this.state;
 		const cartResponse = await axios.get(API.cart);
 
 		const cartWithInitializedCartQty = cartResponse.data.map((cartItem) => {
@@ -184,9 +182,7 @@ class App extends Component {
 			console.log(cartResponse.data[0].item_id, cartResponse.data[0].item_qty);
 		} else {
 			console.log(itemId, itemQty);
-			// technically, axios.patch() should be used here, but axios doesn't seem to work
-			// with patch(url, body) for some reason
-			const cartResponse = await axios.put(API.cart, {
+			const cartResponse = await axios.patch(API.cart, {
 				itemId: itemId,
 				itemQty: itemQty
 			});

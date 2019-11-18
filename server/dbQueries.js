@@ -100,7 +100,7 @@ async function addOrUpdateCart(db, userId, itemId, itemQty) {
     }
 };
 
-async function modifyItemQtyInCart(db, userId, itemQty) {
+async function modifyItemQtyInCart(db, userId, itemId, itemQty) {
     if (itemQty === 0) {
         return await addOrUpdateCart(db, userId, itemQty);
     }

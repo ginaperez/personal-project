@@ -36,7 +36,7 @@ massive(CONNECTION_STRING).then(db => {
     });
 });
 
-app.get('/api/items', itemController.read);
+app.get('/api/inventory', itemController.read);
 
 app.post('/api/register', userController.register);
 app.post('/api/login', userController.login);
@@ -45,10 +45,9 @@ app.get('/api/session' , userController.userSession);
 
 app.get('/api/purchasehistory', purchaseHistoryController.getUserPurchaseHistory);
 
-// app.post('/api/cart/checkout', cartController.checkout);
 app.get('/api/cart', cartController.getCart);
-app.put('/api/cart/', cartController.updateCart);
-app.put('/api/cart/', cartController.updateItemQtyInCart);
+app.put('/api/cart', cartController.updateCart);
+app.patch('/api/cart', cartController.updateItemQtyInCart);
 app.delete('/api/cart/:itemId', cartController.deleteFromCart);
 app.delete('/api/cart', cartController.clearCart);
 app.post('/api/checkout', cartController.checkout);
@@ -67,22 +66,22 @@ app.use((req, res, next) => {
     // }
 })
 
-app.get('/api/view_cart', function(req, res, next) {
-    res.status(200).send(products) // replace with inventory from database
-});
-app.post('/api/add_to_cart', function(req, res, next) {
-    const { id, name, price, desc } = req.body;
-    let addedProduct = { id, name, price, desc }
-    cart.push(addedProduct)
-    res.status(200).send(cart)
-})
+// app.get('/api/view_cart', function(req, res, next) {
+//     res.status(200).send(products) // replace with inventory from database
+// });
+// app.post('/api/add_to_cart', function(req, res, next) {
+//     const { id, name, price, desc } = req.body;
+//     let addedProduct = { id, name, price, desc }
+//     cart.push(addedProduct)
+//     res.status(200).send(cart)
+// })
 
-app.get('/api/inventory', (req, res, next) => {
-    const db = req.app.get('db');
-    db.query('SELECT * FROM inventory').then(inventory => {
-        res.status(200).send(inventory);
-    })
-})
+// app.get('/api/inventory', (req, res, next) => {
+//     const db = req.app.get('db');
+//     db.query('SELECT * FROM inventory').then(inventory => {
+//         res.status(200).send(inventory);
+//     })
+// })
 
 app.use(
     '/api',
