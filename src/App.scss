@@ -1,6 +1,13 @@
 .logo {
   display: flex;
   align-items: center;
+  justify-content: center;
+  padding-bottom: 20px;
+  padding-top: 20px;
+}
+
+body {
+  background-color: #ffeddd;
 }
 
 .header-class {
@@ -10,6 +17,7 @@
   justify-content: space-around;
   align-items: center;
   align-content: space-around;
+  background-color: #f69fa3;
 }
 
 .navlinks {
@@ -20,6 +28,7 @@
 	justify-content: space-around;
 	align-items: center;
   align-content: stretch;
+  padding-bottom: 20px;
 }
 
 .logo-links-flex {
@@ -162,7 +171,6 @@ button:hover {
 
 .item-quantity-change {
   display: flex;
-
   border: solid;
   border-radius: 5px;
   padding: 5px;
@@ -175,6 +183,16 @@ button:hover {
 	flex-wrap: nowrap;
 	justify-content: flex-end;
 	align-items: baseline;
+  align-content: stretch;
+  color: #f69fa3;
+}
+
+.item-pairing {
+  display: flex;
+	flex-direction: row-reverse;
+	flex-wrap: nowrap;
+	justify-content: space-between;
+	align-items: stretch;
 	align-content: stretch;
 }
 
@@ -182,3 +200,4 @@ button:hover {
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   text-transform: uppercase;
 }
+

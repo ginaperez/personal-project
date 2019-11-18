@@ -264,7 +264,7 @@ class App extends Component {
 						</div>
 						<nav className='navlinks'>
 							{/* <NavLink activeClassName="active" exact to="/inventory">Products</NavLink> */}
-							<button className="wide-element" onClick={() => this.getPurchaseHistory()}>Purchase History</button>
+							<button className="wide-element" onClick={() => this.getPurchaseHistory()}>Purchase History</button> | 
 							<button className="wide-element" onClick={() => this.getCart()}>View Cart</button>
 							{/* <NavLink activeClassName="active" exact to="/my_orders">Purchase History</NavLink> */}
 						</nav>
@@ -317,7 +317,7 @@ class App extends Component {
 										<p>Item Qty: {purchaseHistoryItem.item_qty}</p>
 										<p>Item Unit Price: {purchaseHistoryItem.item_unit_price}</p>
 										<p>Item Total Price: {purchaseHistoryItem.total_price}</p>
-										<p>Item Image URL: {purchaseHistoryItem.image}</p>
+										<p><img src= {purchaseHistoryItem.image} width="200px" /></p>
 									</div>
 								)
 							})
@@ -360,8 +360,10 @@ class App extends Component {
 										</div>
 										<div className="wide-element inventory-child-spacer">
 											<form onSubmit={(e) => { e.preventDefault(); this.modifyCart(inventoryItem.item_id, inventoryItem.cartQty) }}>
+											  <div className="item-pairing">
 												<input className="item-quantity-change" type="number" value={inventoryItem.cartQty} onChange={(e) => { this.updateItemAddToCartQty(inventoryItem.item_id, e.target.value); }} />
 												<div className="price-display">${inventoryItem.price}</div>
+											  </div>
 												<button className="wide-element add-to-cart-btn">Add To Cart</button>
 											</form>
 										</div>
