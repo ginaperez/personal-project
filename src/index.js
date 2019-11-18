@@ -263,13 +263,15 @@ class App extends Component {
 							<img src={logo} alt='logo' />
 						</div>
 						<nav className='navlinks'>
-							<NavLink activeClassName="active" exact to="/inventory">Products</NavLink>
-							<NavLink activeClassName="active" exact to="/my_orders">My Orders</NavLink>
+							{/* <NavLink activeClassName="active" exact to="/inventory">Products</NavLink> */}
+							<button className="wide-element" onClick={() => this.getPurchaseHistory()}>Purchase History</button>
+							<button className="wide-element" onClick={() => this.getCart()}>View Cart</button>
+							{/* <NavLink activeClassName="active" exact to="/my_orders">Purchase History</NavLink> */}
 						</nav>
 					</div>
 					<div className='header-right-corner'>
 						{session.user_id && (<div className="">{`Logged in as ${session.email}`} <button onClick={() => this.logout()}>Log Out</button></div>)}
-						{!session.user_id && <Link to="/login" className="login"><button>Login</button></Link>}
+						{!session.user_id && <Link to="/login" className="login"><button className="header-login-button">Login</button></Link>}
 						{
 							// session.user_id && ({`Logged in as ${session.email}`}<button>Log Out</button> )
 						}
@@ -286,7 +288,7 @@ class App extends Component {
 								<label>Password: </label>
 								<input type="password" value={loginPassword} onChange={(e) => this.setState({ loginPassword: e.target.value })} />
 							</div>
-							<button>Login</button>
+							<button className="login-input-button">Login</button>
 						</form>
 						<form onSubmit={e => { e.preventDefault(); this.register(); }}>
 							<div className="register-input-container">
@@ -297,15 +299,15 @@ class App extends Component {
 								<label>Password: </label>
 								<input type="password" value={registerPassword} onChange={(e) => this.setState({ registerPassword: e.target.value })} />
 							</div>
-							<button>Register</button>
+							<button className="register-input-button">Register</button>
 						</form>
 					</div>
 					<div className="purchase-history">
-						<button className="wide-element" onClick={() => this.getPurchaseHistory()}>Get Purchase History</button>
+						{/* <button className="wide-element" onClick={() => this.getPurchaseHistory()}>Purchase History</button> */}
 						{
 							this.state.purchaseHistory.map((purchaseHistoryItem, i) => {
 								return (
-									<div className="">
+									<div className="purchase-history-details">
 										<p>Purchase ID: {purchaseHistoryItem.purchase_id}</p>
 										<p>Purchase date: {purchaseHistoryItem.purchase_date}</p>
 										<p>Transaction ID: {purchaseHistoryItem.transaction_id}</p>
@@ -322,7 +324,6 @@ class App extends Component {
 						}
 					</div>
 					<div className="cart-view">
-						<button className="wide-element" onClick={() => this.getCart()}>Get Cart</button>
 						<button className="wide-element" onClick={() => this.clearCart()}>Empty Cart</button>
 						<button className="wide-element" onClick={() => this.checkout()}>Checkout</button>
 						{
@@ -359,8 +360,9 @@ class App extends Component {
 										</div>
 										<div className="wide-element inventory-child-spacer">
 											<form onSubmit={(e) => { e.preventDefault(); this.modifyCart(inventoryItem.item_id, inventoryItem.cartQty) }}>
-												<input type="number" value={inventoryItem.cartQty} onChange={(e) => { this.updateItemAddToCartQty(inventoryItem.item_id, e.target.value); }} />
-												<button className="wide-element">Add To Cart</button>
+												<input className="item-quantity-change" type="number" value={inventoryItem.cartQty} onChange={(e) => { this.updateItemAddToCartQty(inventoryItem.item_id, e.target.value); }} />
+												<div className="price-display">${inventoryItem.price}</div>
+												<button className="wide-element add-to-cart-btn">Add To Cart</button>
 											</form>
 										</div>
 									</div>

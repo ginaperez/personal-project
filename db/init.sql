@@ -23,50 +23,22 @@ CREATE TABLE inventory (
 
 INSERT INTO inventory (item_name, price, image)
 VALUES
-('Bed', 100, 'https://gppersonalproject.s3.us-west-1.amazonaws.com/Bed.png'),
-('CoffeeTable', 100, 'https://gppersonalproject.s3.us-west-1.amazonaws.com/CoffeeTable.png'),
-('ConsoleTable', 100, 'https://gppersonalproject.s3.us-west-1.amazonaws.com/ConsoleTable.png'),
-('DeskSet', 100, 'https://gppersonalproject.s3.us-west-1.amazonaws.com/DeskSet.png'),
-('DiningSet', 100, 'https://gppersonalproject.s3.us-west-1.amazonaws.com/DiningSet.png'),
-('Dog', 100, 'https://gppersonalproject.s3.us-west-1.amazonaws.com/Dog.JPG'),
-('Dresser', 100, 'https://gppersonalproject.s3.us-west-1.amazonaws.com/Dresser.png'),
-('EndTable', 100, 'https://gppersonalproject.s3.us-west-1.amazonaws.com/EndTable.png'),
-('FullLengthMirror', 100, 'https://gppersonalproject.s3.us-west-1.amazonaws.com/FullLengthMirror.png'),
-('PoppinPinkFileCabinet', 100, 'https://gppersonalproject.s3.us-west-1.amazonaws.com/PoppinPinkFileCabinet.png'),
-('RattanChair', 100, 'https://gppersonalproject.s3.us-west-1.amazonaws.com/RattanChair.png'),
-('RattanPlantStand', 100, 'https://gppersonalproject.s3.us-west-1.amazonaws.com/RattanPlantStand.png'),
-('RecordShelf', 100, 'https://gppersonalproject.s3.us-west-1.amazonaws.com/RecordShelf.png'),
-('Sofa', 100, 'https://gppersonalproject.s3.us-west-1.amazonaws.com/Sofa.png'),
-('TVStand', 100, 'https://gppersonalproject.s3.us-west-1.amazonaws.com/TVStand.png')
+('Natural Wood Platform Bed', 200, 'https://gppersonalproject.s3.us-west-1.amazonaws.com/Bed.png'),
+('Naya Popup Coffee Table', 150, 'https://gppersonalproject.s3.us-west-1.amazonaws.com/CoffeeTable.png'),
+('Mid Mod Console Table', 175, 'https://gppersonalproject.s3.us-west-1.amazonaws.com/ConsoleTable.png'),
+('Vintage Desk Set', 300, 'https://gppersonalproject.s3.us-west-1.amazonaws.com/DeskSet.png'),
+('Haskall Breakfast Bar', 500, 'https://gppersonalproject.s3.us-west-1.amazonaws.com/DiningSet.png'),
+('The Goodest Boy', 100000000, 'https://gppersonalproject.s3.us-west-1.amazonaws.com/Dog.JPG'),
+('Vintage Minsmere Dresser', 250, 'https://gppersonalproject.s3.us-west-1.amazonaws.com/Dresser.png'),
+('Hafley Three Drawer End Table', 100, 'https://gppersonalproject.s3.us-west-1.amazonaws.com/EndTable.png'),
+('Ashton Mango Wood Mirror', 100, 'https://gppersonalproject.s3.us-west-1.amazonaws.com/FullLengthMirror.png'),
+('Poppin Pink File Cabinet', 150, 'https://gppersonalproject.s3.us-west-1.amazonaws.com/PoppinPinkFileCabinet.png'),
+('Lily Rattan Arm Chair', 100, 'https://gppersonalproject.s3.us-west-1.amazonaws.com/RattanChair.png'),
+('Natural Plant Stand', 50, 'https://gppersonalproject.s3.us-west-1.amazonaws.com/RattanPlantStand.png'),
+('Vinyl Record Storage Shelf', 40, 'https://gppersonalproject.s3.us-west-1.amazonaws.com/RecordShelf.png'),
+('Chamberlin Recycled Leather Sofa', 400, 'https://gppersonalproject.s3.us-west-1.amazonaws.com/Sofa.png'),
+('Minsmere Media Console', 200, 'https://gppersonalproject.s3.us-west-1.amazonaws.com/TVStand.png')
 ;
-
--- VALUES ('White Sofa', 400, 'https://images-na.ssl-images-amazon.com/images/I/81%2BLinGw%2BeL._SX425_.jpg');
--- INSERT INTO inventory (item_name, price, image)
--- VALUES ('Bastien Light Oak Shelf TV Stand', 200, 'https://images-na.ssl-images-amazon.com/images/I/81%2BLinGw%2BeL._SX425_.jpg');
--- INSERT INTO inventory (item_name, price, image)
--- VALUES ('Brown Wicker Bed Frame', 600, 'https://images-na.ssl-images-amazon.com/images/I/81%2BLinGw%2BeL._SX425_.jpg');
--- INSERT INTO inventory (item_name, price, image)
--- VALUES ('Dresser', 400, 'https://images-na.ssl-images-amazon.com/images/I/81%2BLinGw%2BeL._SX425_.jpg');
--- INSERT INTO inventory (item_name, price, image)
--- VALUES ('White Writing Desk', 400, 'https://images-na.ssl-images-amazon.com/images/I/81%2BLinGw%2BeL._SX425_.jpg');
--- INSERT INTO inventory (item_name, price, image)
--- VALUES ('Vintage Rattan Chair', 400, 'https://images-na.ssl-images-amazon.com/images/I/81%2BLinGw%2BeL._SX425_.jpg');
--- INSERT INTO inventory (item_name, price, image)
--- VALUES ('Natural Wood Matching End Table Set', 400, 'https://images-na.ssl-images-amazon.com/images/I/81%2BLinGw%2BeL._SX425_.jpg');
--- INSERT INTO inventory (item_name, price, image)
--- VALUES ('Dining Set', 400, 'https://images-na.ssl-images-amazon.com/images/I/81%2BLinGw%2BeL._SX425_.jpg');
--- INSERT INTO inventory (item_name, price, image)
--- VALUES ('Kitchen Console Table', 400, 'https://images-na.ssl-images-amazon.com/images/I/81%2BLinGw%2BeL._SX425_.jpg');
--- INSERT INTO inventory (item_name, price, image)
--- VALUES ('The Goodest Boy', 1000000, 'https://images-na.ssl-images-amazon.com/images/I/81%2BLinGw%2BeL._SX425_.jpg');
--- INSERT INTO inventory (item_name, price, image)
--- VALUES ('Plant Stand', 400, 'https://images-na.ssl-images-amazon.com/images/I/81%2BLinGw%2BeL._SX425_.jpg');
--- INSERT INTO inventory (item_name, price, image)
--- VALUES ('Poppin Pink File Cabinet', 400, 'https://images-na.ssl-images-amazon.com/images/I/81%2BLinGw%2BeL._SX425_.jpg');
--- INSERT INTO inventory (item_name, price, image)
--- VALUES ('Farmhouse Style Console Table', 400, 'https://images-na.ssl-images-amazon.com/images/I/81%2BLinGw%2BeL._SX425_.jpg');
--- INSERT INTO inventory (item_name, price, image)
--- VALUES ('Minsmere Coffee Table', 400, 'https://images-na.ssl-images-amazon.com/images/I/81%2BLinGw%2BeL._SX425_.jpg');
 
 CREATE TABLE purchase_history (
     purchase_id SERIAL PRIMARY KEY,

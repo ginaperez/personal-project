@@ -1,20 +1,7 @@
-
-
 .logo {
   display: flex;
   align-items: center;
 }
-
-.login {
-  text-decoration: none;
-}
-
-// .header-class {
-//   display: flex;
-//   flex-direction: row;
-//   justify-content: space-evenly;
-//   background-color: F69FA3;
-// }
 
 .header-class {
   display: flex;
@@ -55,6 +42,7 @@
 
 .header-right-corner {
   display: flex;
+  text-transform: uppercase;
   justify-content: space-around;
   align-items: center;
   flex-direction: column;
@@ -62,7 +50,7 @@
 }
 
 .register-input-container {
-  color: green;
+  text-transform: uppercase;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -70,7 +58,7 @@
 }
 
 .login-input-container {
-  color: red;
+  text-transform: uppercase;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
@@ -85,17 +73,6 @@
 	align-items: center;
   align-content: stretch;
   margin-top: 200px;
-  font-family: Futura;
-}
-
-.horizontal-line {
-  position: absolute;
-  width: 6px;
-  top: 0px;
-  bottom: 0;
-  left: 229;
-  background-color: red;
-  transform: rotate(90deg);
 }
 
 .inventory-grid {
@@ -122,7 +99,7 @@
 
 .wide-element {
   width: 100%;
-  max-width: 300px;
+  max-width: 200px;
 }
 
 .inventory-child-spacer {
@@ -136,6 +113,7 @@
   justify-content: center;
   align-items: center;
   align-content: space-around;
+  text-transform: uppercase;
 }
 
 .purchase-history {
@@ -154,4 +132,53 @@
   justify-content: center;
   align-items: center;
   align-content: space-around;
+}
+
+.add-to-cart-btn {
+  margin-top: 20px;
+  height: 30px;
+  border: solid;
+  border-color: black;
+  border-radius: 5px;
+  text-transform: uppercase;
+}
+
+img {
+  border: solid;
+  border-radius: 15px;
+}
+
+button { 
+  border: solid;
+  border-color: black;
+  border-radius: 5px;
+  text-transform: uppercase;
+}
+
+button:hover {
+  color: white;
+  background-color: black;
+}
+
+.item-quantity-change {
+  display: flex;
+
+  border: solid;
+  border-radius: 5px;
+  padding: 5px;
+  
+}
+
+.price-display {
+  display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: flex-end;
+	align-items: baseline;
+	align-content: stretch;
+}
+
+.app {
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  text-transform: uppercase;
 }

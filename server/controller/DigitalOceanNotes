@@ -1,0 +1,37 @@
+Deploy an Ubuntu 18.04 VM on digital ocean
+Through the Digital Ocean website, access the VM console
+Attempt to log in as root, using the password that Digital Ocean sent via email
+After pressing enter to log in as root, it will prompt you to change your password. Enter the current password, then enter a new password and enter it again to confirm
+Once logged in as root, follow this guide: https://www.digitalocean.com/community/tutorials/how-to-install-node-js-on-ubuntu-16-04
+
+The commands  that I ran from this guide were (executed all as root):
+
+apt-get update
+apt-get install nodejs
+apt-get install npm
+
+Then to validate everything is installed, I ran:
+
+nodejs -v
+npm -v
+
+Next, I cloned my GitHub repository https://github.com/ginaperez/personal-project.git using the command:
+
+git clone https://github.com/ginaperez/personal-project.git
+
+Then, I navigated into it using:
+
+cd personal-project
+
+Then, I installed my node_modules by running:
+
+npm install
+
+However, because my Digital Ocean VM (aka Droplet) only has 1GB of RAM, npm install failed and it got killed (by the operating system). I tried it again and it seems to have worked the second time. I was prepared to resize the Droplet to 2GB RAM if it continued to fail.
+
+Then, I had to install nodemon:
+
+npm install -g nodemon
+
+Then I ran nodemon, but it failed with this error:
+
