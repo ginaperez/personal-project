@@ -48,8 +48,10 @@ app.get('/api/purchasehistory', purchaseHistoryController.getUserPurchaseHistory
 // app.post('/api/cart/checkout', cartController.checkout);
 app.get('/api/cart', cartController.getCart);
 app.put('/api/cart/', cartController.updateCart);
-app.patch('/api/cart/', cartController.updateCart);
+app.put('/api/cart/', cartController.updateItemQtyInCart);
 app.delete('/api/cart/:itemId', cartController.deleteFromCart);
+app.delete('/api/cart', cartController.clearCart);
+app.post('/api/checkout', cartController.checkout);
 
 app.get('/api/search', searchController.search);
 

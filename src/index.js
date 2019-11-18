@@ -25,7 +25,8 @@ const API = {
 	search: '/api/search',
 	orders: '/api/orders',
 	purchaseHistory: '/api/purchaseHistory',
-	cart: '/api/cart'
+	cart: '/api/cart',
+	checkout: '/api/checkout'
 }
 
 class App extends Component {
@@ -72,6 +73,13 @@ class App extends Component {
 
 		// cart
 		this.getCart = this.getCart.bind(this);
+
+		// checkout
+		this.checkout = this.checkout.bind(this);
+
+		// ui-related
+		this.updateItemAddToCartQty = this.updateItemAddToCartQty.bind(this);
+		this.updateCartItemQty = this.updateCartItemQty.bind(this);
 	}
 
 	componentDidMount() {
@@ -116,7 +124,12 @@ class App extends Component {
 	async getInventory() {
 		const inventoryResponse = await axios.get(API.inventory);
 
-		this.setState({ inventory: inventoryResponse.data })
+		const inventoryWithInitializedCartQty = inventoryResponse.data.map((inventoryItem) => {
+			inventoryItem.cartQty = 1;
+			return inventoryItem;
+		});
+
+		this.setState({ inventory: inventoryWithInitializedCartQty })
 	}
 
 	async searchInventory() {
@@ -134,31 +147,104 @@ class App extends Component {
 		this.setState({ purchaseHistory: purchaseHistoryResponse.data });
 	}
 
-
 	// cart functions
 	async getCart() {
 		const { cart } = this.state;
 		const cartResponse = await axios.get(API.cart);
 
-		this.setState({ cart: cartResponse.data });
+		const cartWithInitializedCartQty = cartResponse.data.map((cartItem) => {
+			cartItem.cartQty = cartItem.item_qty;
+			return cartItem;
+		});
+
+		this.setState({ cart: cartWithInitializedCartQty });
 	}
 
-	// TODO: Finish this! Add a cart to your state and add the id to it
+	// modifyCart will ADD itemQty to the cart, or it will insert the new
+	// itemId into the cart w/ itemQty if it is not in the cart yet
 	async modifyCart(itemId, itemQty) {
 		if (itemQty === 0) {
 			const cartResponse = await axios.delete(`${API.cart}/${itemId}`);
-			console.log(cartResponse.data[0].item_id,cartResponse.data[0].item_qty);
+			console.log(cartResponse.data[0].item_id, cartResponse.data[0].item_qty);
 		} else {
 			const cartResponse = await axios.put(API.cart, {
 				itemId: itemId,
 				itemQty: itemQty
 			});
-			console.log(cartResponse.data[0].item_id,cartResponse.data[0].item_qty);
+			console.log(cartResponse.data[0].item_id, cartResponse.data[0].item_qty);
 		}
 		this.getCart();
 	}
 
+	// updateItemQtyInCart will SET the itemQty for the given itemId in the cart
+	// This is different from modifyCart in that it only works on existing cart itemsx
+	async updateItemQtyInCart(itemId, itemQty) {
+		if (itemQty === 0) {
+			const cartResponse = await axios.delete(`${API.cart}/${itemId}`);
+			console.log(cartResponse.data[0].item_id, cartResponse.data[0].item_qty);
+		} else {
+			console.log(itemId, itemQty);
+			// technically, axios.patch() should be used here, but axios doesn't seem to work
+			// with patch(url, body) for some reason
+			const cartResponse = await axios.put(API.cart, {
+				itemId: itemId,
+				itemQty: itemQty
+			});
+			console.log(cartResponse.data[0].item_id, cartResponse.data[0].item_qty);
+		}
+		this.getCart();
+	}
+
+	async clearCart() {
+		const freshCart = await axios.delete(API.cart);
+
+		this.setState({ cart: freshCart.data });
+		this.getCart();
+	}
+
+	// checkout function
+	async checkout() {
+		const freshCart = await axios.post(API.checkout);
+
+		this.setState({ cart: freshCart.data });
+		this.getPurchaseHistory();
+		this.getCart();
+	}
+
+	// ui function for modifying each item's "add to cart" quantity
+	// I noticed tht if I just bind the input text box "value" property directly
+	// to an inventory item and then use the event callback to update that value
+	// directly, react doesn't always seem to like it? using <form> html tags also fixed it
+	updateItemAddToCartQty(itemId, itemQty) {
+		// inventory has to be a var instead of a const
+		// because inventory.map() doesn't work with a const
+		var { inventory } = this.state;
+
+		inventory = inventory.map((inventoryItem) => {
+			if (inventoryItem.item_id === itemId) {
+				inventoryItem.cartQty = itemQty;
+			}
+			return inventoryItem
+		})
+
+		this.setState({ inventory: inventory });
+	}
+
+	updateCartItemQty(itemId, itemQty) {
+		var { cart } = this.state;
+
+		cart = cart.map((cartItem) => {
+			if (cartItem.item_id === itemId) {
+				cartItem.cartQty = itemQty;
+			}
+			return cartItem
+		})
+
+		this.setState({ cart: cart });
+	}
+
 	render() {
+		// TODO: clean up unused / unneeded this.state.cart / this.state.inventory references and tidy them up in here
 		const { registerEmail, registerPassword, loginEmail, loginPassword, session, inventory, searchQuery } = this.state;
 		return (
 			<div className="app">
@@ -219,15 +305,14 @@ class App extends Component {
 						</form>
 					</div>
 					<div className="purchase-history">
-						<div className="">
-							<button className="wide-element" onClick={() => this.getPurchaseHistory()}>Get Purchase History</button>
-						</div>
+						<button className="wide-element" onClick={() => this.getPurchaseHistory()}>Get Purchase History</button>
 						{
 							this.state.purchaseHistory.map((purchaseHistoryItem, i) => {
 								return (
 									<div className="">
 										<p>Purchase ID: {purchaseHistoryItem.purchase_id}</p>
 										<p>Purchase date: {purchaseHistoryItem.purchase_date}</p>
+										<p>Transaction ID: {purchaseHistoryItem.transaction_id}</p>
 										<p>User ID: {purchaseHistoryItem.user_id}</p>
 										<p>Item ID: {purchaseHistoryItem.item_id}</p>
 										<p>Item Name: {purchaseHistoryItem.item_name}</p>
@@ -241,9 +326,9 @@ class App extends Component {
 						}
 					</div>
 					<div className="cart-view">
-						<div className="">
-							<button className="wide-element" onClick={() => this.getCart()}>Get Cart</button>
-						</div>
+						<button className="wide-element" onClick={() => this.getCart()}>Get Cart</button>
+						<button className="wide-element" onClick={() => this.clearCart()}>Empty Cart</button>
+						<button className="wide-element" onClick={() => this.checkout()}>Checkout</button>
 						{
 							this.state.cart.map((cartItem, i) => {
 								return (
@@ -255,7 +340,11 @@ class App extends Component {
 										<p>Item Unit Price: {cartItem.item_unit_price}</p>
 										<p>Item Total Price: {cartItem.total_price}</p>
 										<p>Item Image URL: {cartItem.image}</p>
-										<p><button onClick={() => {this.modifyCart(cartItem.item_id, 0);}}>Delete from Cart</button></p>
+										<form onSubmit={(e) => { e.preventDefault(); this.updateItemQtyInCart(cartItem.item_id, cartItem.cartQty) }}>
+											<input type="number" value={cartItem.cartQty} onChange={(e) => { this.updateCartItemQty(cartItem.item_id, e.target.value); }} />
+											<button className="wide-element">Update Item Quantity</button>
+										</form>
+										<button className="wide-element" onClick={() => { this.modifyCart(cartItem.item_id, 0); }}>Delete from Cart</button>
 									</div>
 								)
 							})
@@ -273,7 +362,10 @@ class App extends Component {
 											<h2>{inventoryItem.item_name}</h2>
 										</div>
 										<div className="wide-element inventory-child-spacer">
-											<button className="wide-element" onClick={() => this.modifyCart(inventoryItem.item_id, 1)}>Add To Cart</button>
+											<form onSubmit={(e) => { e.preventDefault(); this.modifyCart(inventoryItem.item_id, inventoryItem.cartQty) }}>
+												<input type="number" value={inventoryItem.cartQty} onChange={(e) => { this.updateItemAddToCartQty(inventoryItem.item_id, e.target.value); }} />
+												<button className="wide-element">Add To Cart</button>
+											</form>
 										</div>
 									</div>
 								)
