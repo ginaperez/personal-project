@@ -54,4 +54,11 @@ module.exports = {
     userSession: (req, res, next) => {
         res.status(200).send(req.session.user);
     }
+
+    // userSession = async () => {
+    //     const userSession = await axios.get('/api/userSession').catch(err => console.log(err))
+    //     this.props.setUser(userSession.data);
+    // }
 }
+
+

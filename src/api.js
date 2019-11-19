@@ -1,11 +1,14 @@
-export default {
-    items: '/api/items',
-    cart: '/api/cart',
-    login: '/api/login',
-    register: '/api/register',
-    signout: '/api/logout',
-    search: '/api/search',
-    user: '/api/user_session',
-    checkout: '/api/cart/checkout',
-    purchaseHistory: '/api/cart/purchaseHistory',
-  };
+const API = {
+	login: '/api/login',
+	register: '/api/register',
+	session: '/api/session',
+	logout: '/api/logout',
+	inventory: '/api/inventory',
+	search: '/api/search',
+	orders: '/api/orders',
+	purchaseHistory: '/api/purchaseHistory',
+	cart: '/api/cart',
+	checkout: '/api/checkout'
+}
+
+export default API;

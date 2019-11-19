@@ -1,2 +1,2 @@
--- create a table with user_id, item_id
--- 
+SELECT * FROM cart 
+WHERE user_id = $;

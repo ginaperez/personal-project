@@ -1,69 +1,143 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { addToCart } from '../redux/cartReducer';
+// import { addToCart } from '../redux/cartReducer'; 
 import axios from 'axios';
+import API from '../../api';
+import { throwStatement } from '@babel/types';
 
-class InventoryComponent extends React.Component {
+export default class InventoryComponent extends Component {
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {
             inventory: []
         }
         this.getInventory = this.getInventory.bind(this);
-        this.addToCart = this.addToCart.bind(this);
     }
 
     componentDidMount() {
-        axios.get('/api/inventory').then(res => {
-            console.log(res);
-            this.setState({
-                inventory: res.data
-            });
-        });
+        this.getInventory();
     }
 
+    async getInventory() {
+		const inventoryResponse = await axios.get(API.inventory);
 
-    getInventory() {
-        axios.get('/api/inventory').then(res => {
-            console.log(res);
-            this.setState({
-                inventory: res.data
-            });
-        });
+		const inventoryWithInitializedCartQty = inventoryResponse.data.map((inventoryItem) => {
+			inventoryItem.cartQty = 1;
+			return inventoryItem;
+		});
+
+		this.setState({ inventory: inventoryWithInitializedCartQty })
     }
-
-    // TODO: Finish this! Add a cart to your state and add the id to it
-    addToCart(id) {
-        console.log(id);
+    
+    async modifyCart(itemId, itemQty) {
+		if (itemQty === 0) {
+			const cartResponse = await axios.delete(`${API.cart}/${itemId}`);
+			console.log(cartResponse.data[0].item_id, cartResponse.data[0].item_qty);
+		} else {
+			const cartResponse = await axios.put(API.cart, {
+				itemId: itemId,
+				itemQty: itemQty
+			});
+			console.log(cartResponse.data[0].item_id, cartResponse.data[0].item_qty);
+		}
     }
-
+    
     render() {
-        return(
-        <div className="inventory-grid">
-            {
-                this.state.inventory.map((inventoryItem, i) => {
-                    return (
-                        <div className="inventory-child" key={i}>
-                            <div className="inventory-child-spacer">
-                                <img alt={'Inventory item ' + inventoryItem.item_name} src={inventoryItem.image} width="200px"/>
+        const { inventory } = this.state;
+        return (
+            <div className="inventory-grid">
+                {
+                    this.state.inventory.map((inventoryItem, i) => {
+                        return (
+                            <div className="inventory-child" key={i}>
+                                <div className="inventory-child-spacer">
+                                    <img alt={'Inventory item ' + inventoryItem.item_name} src={inventoryItem.image} width="200px" />
+                                </div>
+                                <div className="inventory-child-spacer">
+                                    <h2>{inventoryItem.item_name}</h2>
+                                </div>
+                                <div className="wide-element inventory-child-spacer">
+                                    <form onSubmit={(e) => { e.preventDefault(); this.modifyCart(inventoryItem.item_id, inventoryItem.cartQty) }}>
+                                        <div className="item-pairing">
+                                        <input className="item-quantity-change" type="number" value={inventoryItem.cartQty} onChange={(e) => { this.updateItemAddToCartQty(inventoryItem.item_id, e.target.value); }} />
+                                        <div className="price-display">${inventoryItem.price}</div>
+                                        </div>
+                                        <button className="wide-element add-to-cart-btn">Add To Cart</button>
+                                    </form>
+                                </div>
                             </div>
-                            <div className="inventory-child-spacer">
-                                <h2>{inventoryItem.item_name}</h2>
-                            </div>
-                            <div className="wide-element inventory-child-spacer">
-                                <button className="wide-element" onClick={ () => this.addToCart(inventoryItem.item_id) }>Add To Cart</button>
-                            </div>
-                        </div>
-                    )
-                })
-            }
-        </div>
+                        )
+                    })
+                }
+            </div>
+
         )
     }
+
 }
 
-function mapStateToProps(state) {
-    return state
-}
 
-export default connect(mapStateToProps, { addToCart })(InventoryComponent)
+// class InventoryComponent extends React.Component {
+//     constructor(props) {
+//         super(props)
+//         this.state = {
+//             inventory: []
+//         }
+//         this.getInventory = this.getInventory.bind(this);
+//         this.addToCart = this.addToCart.bind(this);
+//     }
+
+//     componentDidMount() {
+//         axios.get('/api/inventory').then(res => {
+//             console.log(res);
+//             this.setState({
+//                 inventory: res.data
+//             });
+//         });
+//     }
+
+
+//     getInventory() {
+//         axios.get('/api/inventory').then(res => {
+//             console.log(res);
+//             this.setState({
+//                 inventory: res.data
+//             });
+//         });
+//     }
+
+//     // TODO: Finish this! Add a cart to your state and add the id to it
+//     addToCart(id) {
+//         console.log(id);
+//     }
+
+//     render() {
+//         return(
+//         <div className="inventory-grid">
+//             {
+//                 this.state.inventory.map((inventoryItem, i) => {
+//                     return (
+//                         <div className="inventory-child" key={i}>
+//                             <div className="inventory-child-spacer">
+//                                 <img alt={'Inventory item ' + inventoryItem.item_name} src={inventoryItem.image} width="200px"/>
+//                             </div>
+//                             <div className="inventory-child-spacer">
+//                                 <h2>{inventoryItem.item_name}</h2>
+//                             </div>
+//                             <div className="wide-element inventory-child-spacer">
+//                                 <button className="wide-element" onClick={ () => this.addToCart(inventoryItem.item_id) }>Add To Cart</button>
+//                             </div>
+//                         </div>
+//                     )
+//                 })
+//             }
+//         </div>
+//         )
+//     }
+// }
+
+// function mapStateToProps(state) {
+//     return state
+// }
+
+// export default connect(mapStateToProps, { addToCart })(InventoryComponent)

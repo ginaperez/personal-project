@@ -107,8 +107,12 @@ body {
 }
 
 .wide-element {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
   width: 100%;
   max-width: 200px;
+
 }
 
 .inventory-child-spacer {
@@ -197,7 +201,25 @@ button:hover {
 }
 
 .app {
+  display: flex;
+  flex-direction: column;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   text-transform: uppercase;
 }
 
+.cart-item-picture {
+  display: flex;
+  width: 100px;
+}
+
+.cart-item {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: column;
+  padding: 20px;
+  margin: 20px;
+  border: 5px solid black;
+  min-width: 450px;
+  background-color: white;
+}
