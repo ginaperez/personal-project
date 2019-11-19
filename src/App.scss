@@ -222,4 +222,32 @@ button:hover {
   border: 5px solid black;
   min-width: 450px;
   background-color: white;
+  border-radius: 15px;
+  color: darkslategray;
+}
+
+.nav-link-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  text-decoration: none;
+}
+
+.cart-navlink, .ph-navlink, .products-navlink {
+  text-decoration: none;
+  border: 3px solid black;
+  margin: 5px;
+  padding: 3px;
+  background-color: white;
+  color: black;
+  border-radius: 8px;
+}
+
+.cart-navlink:hover, .ph-navlink:hover, .products-navlink:hover {
+  background-color:black;
+  color: white;
+}
+
+.search-area-inventory {
+  padding-top: 20px;
 }

@@ -9,7 +9,8 @@ export default class InventoryComponent extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            inventory: []
+            inventory: [],
+            searchQuery: ""
         }
         this.getInventory = this.getInventory.bind(this);
     }
@@ -41,11 +42,25 @@ export default class InventoryComponent extends Component {
 			console.log(cartResponse.data[0].item_id, cartResponse.data[0].item_qty);
 		}
     }
+
+    async searchInventory() {
+		const { searchQuery } = this.state;
+		const inventoryResponse = await axios.get(`${API.search}?query=${searchQuery}`);
+
+		this.setState({ inventory: inventoryResponse.data })
+    }
     
     render() {
-        const { inventory } = this.state;
+        const { inventory, searchQuery } = this.state;
         return (
             <div className="inventory-grid">
+                <div className="search-area-inventory">
+							<form onSubmit={e => { e.preventDefault(); this.searchInventory(); }}>
+								<label>Search:</label>
+								<input value={searchQuery} onChange={(e) => { this.setState({ searchQuery: e.target.value }); }} />
+								<button>Search</button>
+				</form>
+                </div>
                 {
                     this.state.inventory.map((inventoryItem, i) => {
                         return (

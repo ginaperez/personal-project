@@ -67,8 +67,11 @@ class App extends Component {
 							{/* <NavLink activeClassName="active" exact to="/inventory">Products</NavLink> */}
 							{/* <button className="wide-element" onClick={() => this.getPurchaseHistory()}>Purchase History</button> |  */}
 							{/* <button className="wide-element" onClick={() => this.getCart()}>View Cart</button> */}
-                            <NavLink activeClassName="active" exact to="/my_cart">View Cart</NavLink>
-							<NavLink activeClassName="active" exact to="/my_orders">Purchase History</NavLink>
+                            <div className="navlink-buttons">
+                            <NavLink className="cart-navlink" activeClassName="active" exact to="/my_cart">View Cart</NavLink>
+							<NavLink className="ph-navlink"activeClassName="active" exact to="/my_orders">Purchase History</NavLink>
+                            <NavLink className="products-navlink" activeClassName="active" exact to="/">Products</NavLink>
+                            </div>
 						</nav>
 					</div>
 					<div className='header-right-corner'>
