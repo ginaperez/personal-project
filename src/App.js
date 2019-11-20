@@ -3,7 +3,6 @@ import { setUser } from './redux/reducer';
 import { connect } from 'react-redux';
 import { Switch, Route, NavLink, withRouter } from 'react-router-dom';
 import reducer from './redux/reducer';
-// const userSession = require('../server/controller/userController');
 import AuthComponent from './components/Auth/AuthComponent';
 import PurchaseHistoryComponent from './components/Purchase History/PurchaseHistoryComponent';
 import CartComponent from './components/Cart/CartComponent';
@@ -64,9 +63,6 @@ class App extends Component {
 							<img src={logo} alt='logo' />
 						</div>
 						<nav className='navlinks'>
-							{/* <NavLink activeClassName="active" exact to="/inventory">Products</NavLink> */}
-							{/* <button className="wide-element" onClick={() => this.getPurchaseHistory()}>Purchase History</button> |  */}
-							{/* <button className="wide-element" onClick={() => this.getCart()}>View Cart</button> */}
                             <div className="navlink-buttons">
                             <NavLink className="cart-navlink" activeClassName="active" exact to="/my_cart">View Cart</NavLink>
 							<NavLink className="ph-navlink"activeClassName="active" exact to="/my_orders">Purchase History</NavLink>
@@ -77,9 +73,6 @@ class App extends Component {
 					<div className='header-right-corner'>
                         {this.props.user && (<div className="">{`Hi, ${this.props.user.email}`} <button onClick={() => this.logout()}>Log Out</button></div>)}
 						{!this.props.user && <NavLink to="/login" className="login">Login</NavLink>}
-						{
-							// session.user_id && ({`Logged in as ${session.email}`}<button>Log Out</button> )
-						}
 					</div>
 				</header>
 					
