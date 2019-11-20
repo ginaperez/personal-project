@@ -49,18 +49,32 @@ export default class InventoryComponent extends Component {
 
 		this.setState({ inventory: inventoryResponse.data })
     }
+
+    updateItemAddToCartQty(itemId, itemQty) {
+		var { inventory } = this.state;
+
+		inventory = inventory.map((inventoryItem) => {
+			if (inventoryItem.item_id === itemId) {
+				inventoryItem.cartQty = itemQty;
+			}
+			return inventoryItem
+		})
+
+		this.setState({ inventory: inventory });
+	}
     
     render() {
         const { inventory, searchQuery } = this.state;
         return (
-            <div className="inventory-grid">
+            <div>
                 <div className="search-area-inventory">
-							<form onSubmit={e => { e.preventDefault(); this.searchInventory(); }}>
-								<label>Search:</label>
-								<input value={searchQuery} onChange={(e) => { this.setState({ searchQuery: e.target.value }); }} />
-								<button>Search</button>
-				</form>
-                </div>
+                        <form onSubmit={e => { e.preventDefault(); this.searchInventory(); }}>
+                            <label>Search:</label>
+                            <input value={searchQuery} onChange={(e) => { this.setState({ searchQuery: e.target.value }); }} />
+                            <button>Search</button>
+                        </form>
+                    </div>
+                <div className="inventory-grid">
                 {
                     this.state.inventory.map((inventoryItem, i) => {
                         return (
@@ -85,7 +99,7 @@ export default class InventoryComponent extends Component {
                     })
                 }
             </div>
-
+            </div>
         )
     }
 

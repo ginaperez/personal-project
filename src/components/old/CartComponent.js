@@ -91,8 +91,6 @@ class CartComponent extends React.Component {
 	}
 
 	updateItemAddToCartQty(itemId, itemQty) {
-		// inventory has to be a var instead of a const
-		// because inventory.map() doesn't work with a const
 		var { inventory } = this.state;
 
 		inventory = inventory.map((inventoryItem) => {
