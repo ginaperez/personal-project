@@ -4,10 +4,10 @@ import { connect } from 'react-redux';
 import { Switch, Route, NavLink, withRouter } from 'react-router-dom';
 import reducer from './redux/reducer';
 // const userSession = require('../server/controller/userController');
-import AuthComponent from './components/old/AuthComponent';
-import PurchaseHistoryComponent from './components/old/PurchaseHistoryComponent';
-import CartComponent from './components/old/CartComponent';
-import InventoryComponent from './components/old/InventoryComponent';
+import AuthComponent from './components/Auth/AuthComponent';
+import PurchaseHistoryComponent from './components/Purchase History/PurchaseHistoryComponent';
+import CartComponent from './components/Cart/CartComponent';
+import InventoryComponent from './components/Inventory/InventoryComponent';
 // import { getPurchaseHistory } from PurchaseHistoryComponent;
 import axios from 'axios';
 import logo from '../src/logo.jpg';
@@ -88,7 +88,6 @@ class App extends Component {
 							<Route path="/login" component={AuthComponent} />
 							<Route path="/my_orders" component={PurchaseHistoryComponent} />
                             <Route path="/my_cart" component={CartComponent} />
-							{/* <Route exact path="/inventory" component={InventoryComponent} /> */}
 						</Switch>
 				</div>
         )

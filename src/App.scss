@@ -1,4 +1,35 @@
-.logo {
+ $primary-color: black;
+ $secondary-color: #f69fa3;
+
+ //responsive
+ $xl-screen: 87.5em;
+ $lg-screen: 60em;
+ $med-screen: 40em;
+ $sm-screen: 28em;
+ $xs-screen: 20em;
+
+ @mixin transform-y($value) {
+   -webkit-transform: translateY($value);
+   -ms-transform: translateY($value);
+   -moz-transform: translateY($value);
+   -o-transform: translateY($value);
+   transform: translateY($value)
+ }
+
+ @mixin responsive($query) {
+   @media (min-width: + $query) {
+     @content;
+   }
+ }
+ 
+ .app {
+  display: flex;
+  flex-direction: column;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  text-transform: uppercase;
+}
+ 
+ .logo {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -17,7 +48,7 @@ body {
   justify-content: space-around;
   align-items: center;
   align-content: space-around;
-  background-color: #f69fa3;
+  background-color: $secondary-color;
 }
 
 .navlinks {
@@ -92,7 +123,7 @@ body {
   align-items: center;
   align-content: stretch;
 }
-// https://stackoverflow.com/questions/29546550/flexbox-4-items-per-row
+
 .inventory-child {
   display: flex;
   flex-direction: column;
@@ -153,7 +184,7 @@ body {
   margin-top: 20px;
   height: 30px;
   border: solid;
-  border-color: black;
+  border-color: $primary-color;
   border-radius: 5px;
   text-transform: uppercase;
   max-width: 200px;
@@ -166,14 +197,14 @@ img {
 
 button { 
   border: solid;
-  border-color: black;
+  border-color: $primary-color;
   border-radius: 5px;
   text-transform: uppercase;
 }
 
 button:hover {
   color: white;
-  background-color: black;
+  background-color: $primary-color;
 }
 
 .item-quantity-change {
@@ -192,7 +223,7 @@ button:hover {
 	justify-content: flex-end;
 	align-items: baseline;
   align-content: stretch;
-  color: #f69fa3;
+  color: $secondary-color;
   padding-right: 15px;
 }
 
@@ -203,13 +234,6 @@ button:hover {
 	justify-content: space-between;
 	align-items: stretch;
 	align-content: stretch;
-}
-
-.app {
-  display: flex;
-  flex-direction: column;
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-  text-transform: uppercase;
 }
 
 .cart-item-picture {
@@ -224,7 +248,7 @@ button:hover {
   flex-direction: column;
   padding: 20px;
   margin: 20px;
-  border: 5px solid black;
+  border: 5px solid $primary-color;
   min-width: 450px;
   background-color: white;
   border-radius: 15px;
@@ -240,16 +264,16 @@ button:hover {
 
 .cart-navlink, .ph-navlink, .products-navlink {
   text-decoration: none;
-  border: 3px solid black;
+  border: 3px solid $primary-color;
   margin: 5px;
   padding: 3px;
   background-color: white;
-  color: black;
+  color: $primary-color;
   border-radius: 8px;
 }
 
 .cart-navlink:hover, .ph-navlink:hover, .products-navlink:hover {
-  background-color:black;
+  background-color:$primary-color;
   color: white;
 }
 
@@ -263,9 +287,9 @@ button:hover {
 
 .header-right-corner {
   text-decoration: none;
-  border: 5px solid black;
+  border: 5px solid $primary-color;
   padding: 3px;
-  color: black;
+  color: $primary-color;
   background-color: white;
 }
 
@@ -276,7 +300,7 @@ button:hover {
   flex-direction: column;
   padding: 20px;
   margin: 20px;
-  border: 5px solid black;
+  border: 5px solid $primary-color;
   min-width: 450px;
   background-color: white;
   border-radius: 15px;

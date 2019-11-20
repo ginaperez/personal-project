@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { FaSignOutAlt } from 'react-icons/fa';
 
 import { connect } from 'react-redux';
-import { signout } from '../../redux/reducer';
+import { signout } from '../../src/redux/reducer';
 
 class SignOut extends Component {
     render() {
