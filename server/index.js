@@ -11,9 +11,11 @@ const userController = require('../server/controller/userController');
 const itemController = require('../server/controller/itemController');
 const searchController = require('../server/controller/searchController');
 const purchaseHistoryController = require('../server/controller/purchaseHistoryController');
-var proxy = require('http-proxy-middleware');
+// var proxy = require('http-proxy-middleware');
 
 const { CONNECTION_STRING, SESSION_SECRET, SERVER_PORT } = process.env;
+
+app.use(express.static(__dirname + "/../build"))
 
 const cart = [];
 // const products =
@@ -83,13 +85,13 @@ app.use((req, res, next) => {
 //     })
 // })
 
-app.use(
-    '/api',
-    proxy({
-      target: 'http://localhost:4000',
-      changeOrigin: true,
-    })
-);
+// app.use(
+//     '/api',
+//     proxy({
+//       target: 'http://localhost:4000',
+//       changeOrigin: true,
+//     })
+// );
 // app.use(
 //     '/auth',
 //     proxy({
@@ -97,13 +99,13 @@ app.use(
 //       changeOrigin: true,
 //     })
 // );
-app.use(
-    '/',
-    proxy({
-      target: 'http://localhost:3000',
-      changeOrigin: true,
-    })
-);
+// app.use(
+//     '/',
+//     proxy({
+//       target: 'http://localhost:3000',
+//       changeOrigin: true,
+//     })
+// );
 
 let port = SERVER_PORT || 4000
 app.listen(port, () => console.log(`server listening on ${port}`));
