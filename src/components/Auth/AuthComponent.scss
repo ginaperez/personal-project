@@ -1,0 +1,23 @@
+.auth-container {
+    display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      justify-content: space-around;
+      align-items: center;
+    align-content: stretch;
+    margin-top: 200px;
+    .login-input-container {
+        text-transform: uppercase;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        padding: 10px;
+      }
+    .register-input-container {
+    text-transform: uppercase;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px;
+    }
+}

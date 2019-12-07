@@ -71,7 +71,7 @@ class App extends Component {
 						</nav>
 					</div>
 					<div className='header-right-corner'>
-                        {this.props.user && (<div className="">{`Hi, ${this.props.user.email}`} <button onClick={() => this.logout()}>Log Out</button></div>)}
+                        {this.props.user && (<div className="user-salutation">{`Hi, ${this.props.user.email}`} <button onClick={() => this.logout()}>Log Out</button></div>)}
 						{!this.props.user && <NavLink to="/login" className="login">Login</NavLink>}
 					</div>
 				</header>

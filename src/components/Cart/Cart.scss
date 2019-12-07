@@ -1,0 +1,25 @@
+.cart-view {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    align-content: space-around;
+    .cart-item {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        flex-direction: column;
+        padding: 20px;
+        margin: 20px;
+        border: 5px solid $primary-color;
+        min-width: 450px;
+        background-color: white;
+        border-radius: 15px;
+        color: darkslategray;
+        .cart-item-picture {
+            display: flex;
+            width: 100px;
+          }
+      }
+  }
