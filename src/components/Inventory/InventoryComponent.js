@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 // import { addToCart } from '../redux/cartReducer'; 
 import axios from 'axios';
 import API from '../../api';
-import { throwStatement } from '@babel/types';
 
 export default class InventoryComponent extends Component {
     constructor(props) {
@@ -68,12 +67,12 @@ export default class InventoryComponent extends Component {
         return (
             <div>
                 <div className="search-area-inventory">
-                        <form onSubmit={e => { e.preventDefault(); this.searchInventory(); }}>
-                            <label>Search:</label>
-                            <input value={searchQuery} onChange={(e) => { this.setState({ searchQuery: e.target.value }); }} />
-                            <button>Search</button>
-                        </form>
-                    </div>
+                    <form onSubmit={e => { e.preventDefault(); this.searchInventory(); }}>
+                        <label>Search:</label>
+                        <input value={searchQuery} onChange={(e) => { this.setState({ searchQuery: e.target.value }); }} />
+                        <button>Search</button>
+                    </form>
+                </div>
                 <div className="inventory-grid">
                 {
                     this.state.inventory.map((inventoryItem, i) => {

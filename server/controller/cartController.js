@@ -1,6 +1,7 @@
 const dbQueries = require('../dbQueries');
 
 module.exports = {
+    
     getCart: async (req, res, next) => {
         if (req.session.user.user_id) {
             const db = req.app.get('db');
