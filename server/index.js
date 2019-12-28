@@ -38,8 +38,10 @@ massive(CONNECTION_STRING).then(db => {
     });
 });
 
+// endpoints for inventory display
 app.get('/api/inventory', itemController.read);
 
+// endpoints for login, logout, register
 app.post('/api/register', userController.register);
 app.post('/api/login', userController.login);
 app.post('/api/logout', userController.logout);
@@ -47,6 +49,7 @@ app.get('/api/session' , userController.userSession);
 
 app.get('/api/purchasehistory', purchaseHistoryController.getUserPurchaseHistory);
 
+// endpoints for cart
 app.get('/api/cart', cartController.getCart);
 app.put('/api/cart', cartController.updateCart);
 app.patch('/api/cart', cartController.updateItemQtyInCart);

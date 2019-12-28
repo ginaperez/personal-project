@@ -3,7 +3,7 @@ import axios from 'axios';
 import API from '../../api';
 import { connect } from 'react-redux';
 import { setUser } from '../../redux/reducer';
-import App from '../App';
+import App from '../../App';
 import { withRouter } from 'react-router-dom';
 
 class AuthComponent extends Component {

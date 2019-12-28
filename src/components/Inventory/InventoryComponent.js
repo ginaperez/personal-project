@@ -12,6 +12,9 @@ export default class InventoryComponent extends Component {
             searchQuery: ""
         }
         this.getInventory = this.getInventory.bind(this);
+        this.modifyCart = this.modifyCart.bind(this);
+        this.searchInventory = this.searchInventory.bind(this);
+        this.updateItemAddToCartQty = this.updateItemAddToCartQty.bind(this);
     }
 
     componentDidMount() {
@@ -77,23 +80,33 @@ export default class InventoryComponent extends Component {
                 {
                     this.state.inventory.map((inventoryItem, i) => {
                         return (
-                            <div className="inventory-child" key={i}>
-                                <div className="inventory-child-spacer">
-                                    <img alt={'Inventory item ' + inventoryItem.item_name} src={inventoryItem.image} width="200px" />
-                                </div>
-                                <div className="inventory-child-spacer">
-                                    <h2>{inventoryItem.item_name}</h2>
-                                </div>
-                                <div className="wide-element inventory-child-spacer">
-                                    <form onSubmit={(e) => { e.preventDefault(); this.modifyCart(inventoryItem.item_id, inventoryItem.cartQty) }}>
-                                        <div className="item-pairing">
-                                        <input className="item-quantity-change" type="number" value={inventoryItem.cartQty} onChange={(e) => { this.updateItemAddToCartQty(inventoryItem.item_id, e.target.value); }} />
-                                        <div className="price-display">${inventoryItem.price}</div>
+                            <div> 
+                                {inventory.map((inventoryItem) => {
+                                    <div className='card' key={i}>
+                                        <div className='card-body'>
+                                        <h5 className='card-title'>{inventoryItem.item_name}</h5>
+                                        <h6 className='card-price'>${inventoryItem.price}</h6>
                                         </div>
-                                        <button className="wide-element add-to-cart-btn">Add To Cart</button>
-                                    </form>
-                                </div>
-                            </div>
+                                    </div>
+                                })}
+                            </div>                            
+                            // <div className="inventory-child" key={i}>
+                            //     <div className="inventory-child-spacer">
+                            //         <img alt={'Inventory item ' + inventoryItem.item_name} src={inventoryItem.image} width="200px" />
+                            //     </div>
+                            //     <div className="inventory-child-spacer">
+                            //         <h2>{inventoryItem.item_name}</h2>
+                            //     </div>
+                            //     <div className="wide-element inventory-child-spacer">
+                            //         <form onSubmit={(e) => { e.preventDefault(); this.modifyCart(inventoryItem.item_id, inventoryItem.cartQty) }}>
+                            //             <div className="item-pairing">
+                            //             <input className="item-quantity-change" type="number" value={inventoryItem.cartQty} onChange={(e) => { this.updateItemAddToCartQty(inventoryItem.item_id, e.target.value); }} />
+                            //             <div className="price-display">${inventoryItem.price}</div>
+                            //             </div>
+                            //             <button className="wide-element add-to-cart-btn">Add To Cart</button>
+                            //         </form>
+                            //     </div>
+                            // </div>
                         )
                     })
                 }

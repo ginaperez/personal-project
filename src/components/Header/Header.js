@@ -3,7 +3,6 @@ import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { setUser } from '../../redux/reducer';
 import axios from 'axios';
-import logo from '../../../src/logo';
 import './Header.scss';
 
 function Header(props) {
@@ -16,24 +15,21 @@ function Header(props) {
     return (
         <div className='header-main'>
             <div className='header-contents'>
-                <NavLink to='/' onClick={() => {props.setSidebar(false)}}>
-                    <img className={props.sidebar ? 'moved' : 'logo'} src={logo} alt='logo'/>
-                </NavLink>
                 <span className='navbar'>
                     {props.user ? (
                         <button className='toggler' onClick={toggler}>
-                            <img className='toggle-img' src={props.user.image} alt={`${props.user.username} Image`} />
+                            <img className='toggle-img' src={props.user.image} alt={`${props.user.email} Image`} />
                         </button>
                     ) : (
-                        <NavLink className='nav' to='/login-register'>
+                        <NavLink className='nav' to='/login'>
                             {props.title}
                         </NavLink>
                     )}
 
                     {props.user && (
                         <div className={show ? 'show' : ""}>
-                            <NavLink className='nav' onClick={() => toggler()} to='/dashboard'>
-                                Dashboard
+                            <NavLink className='nav' onClick={() => toggler()} to='/purchase_histo'>
+                                Purchase History
                             </NavLink>
                             <NavLink className='nav' onClick={() => {
                                 toggler();
