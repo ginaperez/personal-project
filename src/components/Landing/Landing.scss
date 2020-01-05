@@ -1,7 +1,56 @@
+$pale-green: #8ba244;
+
 .landing-main {
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
     .picture-element {
+        background-image: url('../../photos/Landing-Photo.jpg');
+        background-position: center;
+        background-attachment: fixed;
+        background-repeat: no-repeat;
+        background-size: cover;
+        height: 90vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
         .header-container{
-            
+            background-color: rgba(255, 255, 255, 0.7);
+            color: #000000;
+            padding-left: 85px; 
+            padding-right: 95px; 
+            padding-top: 90px;
+            padding-bottom: 90px;
         }
+        h1 {
+            font-size: 100px;
+        }
+        h2 {
+            font-size: 40px;
+        }
+        .landing-button {
+            color: $pale-green;
+            border: solid 2px $pale-green;
+            height: 60px;
+            width: 160px;
+            font-size: 18px;
+            font-weight: 5px;
+        }
+        &.hover {
+            cursor: pointer;
+        }
+    }
+    .first-content-block {
+        background-color: blue;
+    }
+    .second-content-block {
+        background-color: green;
+    }
+    .third-content-block {
+        background-color: pink;
+    }
+    .fourth-content-block {
+        background-color: yellow;
     }
 }

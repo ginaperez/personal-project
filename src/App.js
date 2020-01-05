@@ -37,7 +37,7 @@ class App extends React.Component {
           )}
           />
           {this.props.user && (
-            <Route path='/inventory' render={props => (
+            <Route path='/products' render={props => (
               <InventoryComponent changeTitle={this.changeTitle} {...props} />
             )}
             />
