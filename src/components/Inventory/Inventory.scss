@@ -1,3 +1,5 @@
+@import '../../App.scss';
+
 .search-area-inventory {
     display: flex;
     align-items: center;
@@ -12,17 +14,21 @@
     justify-content: space-around;
     align-items: center;
     align-content: stretch;
+    margin-left: 340px;
+    margin-right: 340px;
     .inventory-child {
         display: flex;
         flex-direction: column;
         flex-wrap: nowrap;
-        width: calc(100% * (1/5) - 10px - 1px);
+        // width: calc(100% * (1/5) - 10px - 1px);
         flex-grow: 1;
         height: 100%;
         margin: 20px 0 0 2%;
-        padding: 10px 10px 10px 10px;
+        padding: 50px 50px 50px 50px;
         align-items: center;
         justify-content: space-around;
+        border: solid 5px black;
+        background-color: white;
         .inventory-child-spacer {
             margin: 10px 0 10px 0;
           }
@@ -55,7 +61,7 @@
                 justify-content: flex-end;
                 align-items: baseline;
                 align-content: stretch;
-                color: $secondary-color;
+                color: $black;
                 padding-right: 15px;
             }
          }
@@ -63,7 +69,7 @@
             margin-top: 20px;
             height: 30px;
             border: solid;
-            border-color: $primary-color;
+            border-color: $black;
             border-radius: 5px;
             text-transform: uppercase;
             max-width: 200px;

@@ -33,6 +33,7 @@ class Header extends React.Component {
     render() {
         return (
             <header className='header'>
+                <div className='divider'>
                 <div className='head'>
                     <NavLink to='/'>
                         <img className='logo' src={logo} alt='logo'></img>
@@ -44,6 +45,7 @@ class Header extends React.Component {
                     {!this.props.user ? (
                         <nav className={this.state.toggle ? 'show' : ''}>
                             <NavLink className='navlink' to='/products'>Products</NavLink>
+                            <NavLink className='navlink' to='/cart'>Cart</NavLink>
                             <NavLink className='navlink' to='/login-register'>Login</NavLink>
                         </nav>
                     ) : (
@@ -55,6 +57,7 @@ class Header extends React.Component {
                             <NavLink onClick={() => this.logout()} to='/'>Logout</NavLink>
                         </nav>
                     )}
+                </div>
                 </div>
             </header>
         );

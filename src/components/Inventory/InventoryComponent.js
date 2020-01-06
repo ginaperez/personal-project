@@ -4,6 +4,7 @@ import { addToCart } from '../../redux/reducer';
 import axios from 'axios';
 import Header from '../Header/Header';
 import API from '../../api';
+import './Inventory.scss';
 
 export default class InventoryComponent extends Component {
     constructor(props) {
@@ -22,14 +23,10 @@ export default class InventoryComponent extends Component {
 
     componentDidMount() {
         this.getInventory();
-        setTimeout(() => {
-            this.setState({
-                isLoading: false
-            });
-        }, 2000);
-    }
+    };
 
     async getInventory() {
+        console.log(3333, 'invintory')
 		const inventoryResponse = await axios.get('/api/products');
 		const inventoryWithInitializedCartQty = inventoryResponse.data.map((inventoryItem) => {
 			inventoryItem.cartQty = 1;
@@ -79,9 +76,14 @@ export default class InventoryComponent extends Component {
             };
         });
     }
+
+    buttonAddToCart = async (user_id, item_id) => {
+        let cart = await axios.post('/api/cart', { user_id, item_id});
+        this.props.addToCart(cart.data);
+    };
     
     render() {
-        const { inventory, searchQuery } = this.state;
+        const { inventory, searchQuery, cartItem } = this.state;
         return (
             <div>
                 <div className="search-area-inventory">
@@ -98,12 +100,6 @@ export default class InventoryComponent extends Component {
                                 <div>
                                     {
                                         inventory.map((inventoryItem) => {
-                                            // <div className='card' key={i}>
-                                            //     <div className='card-body'>
-                                            //         <h5 className='card-title'>{inventoryItem.item_name}</h5>
-                                            //         <h6 className='card-price'>${inventoryItem.price}</h6>
-                                            //     </div>
-                                            // </div>
                                         })
                                     }
                                     <div className="inventory-child" key={i}>
@@ -118,10 +114,10 @@ export default class InventoryComponent extends Component {
                                                 <div className="item-pairing">
                                                     <input className="item-quantity-change" type="number" value={inventoryItem.cartQty} onChange={(e) => { this.updateItemAddToCartQty(inventoryItem.item_id, e.target.value); }} />
                                                     <div className="price-display">
-                                                        ${inventoryItem.price}
+                                                        ${inventoryItem.price}.00
                                                     </div>
                                                 </div>
-                                                <button className="wide-element add-to-cart-btn">Add To Cart</button>
+                                                <button className="wide-element add-to-cart-btn" onClick={() => { this.buttonAddToCart(this.props.user.user_id)}}>Add To Cart</button>
                                             </form>
                                         </div>
                                     </div>

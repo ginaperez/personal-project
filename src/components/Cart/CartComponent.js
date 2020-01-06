@@ -3,6 +3,7 @@ import axios from 'axios';
 import { connect } from 'react-redux';
 // import { getCart } from '../redux/cartReducer';
 import API from '../../api';
+import './Cart.scss';
 
 class CartComponent extends React.Component {
     constructor(props) {

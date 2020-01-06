@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { setUser } from '../../redux/reducer';
 import App from '../../App';
 import { withRouter } from 'react-router-dom';
+import './AuthComponent.scss';
 
 class AuthComponent extends Component {
     constructor(props) {
@@ -55,30 +56,26 @@ class AuthComponent extends Component {
         const { loginEmail, loginPassword, registerEmail, registerPassword, } = this.state;
         return (
             <div className="main-area">
-            <div className='auth-container'>
-                <form onSubmit={e => { e.preventDefault(); this.login(); }}>
+                <div className='auth-container'>
                     <div className='login-input-container'>
-                        <label>Email: </label>
-                        <input type="email" value={loginEmail} onChange={(e) => this.setState({ loginEmail: e.target.value })} />
+                        <form onSubmit={e => { e.preventDefault(); this.login(); }}>
+                                <label>Email: </label>
+                                <input type="email" value={loginEmail} onChange={(e) => this.setState({ loginEmail: e.target.value })} />
+                                <label>Password: </label>
+                                <input type="password" value={loginPassword} onChange={(e) => this.setState({ loginPassword: e.target.value })} />
+                            <button className="login-input-button">Login</button>
+                        </form>
                     </div>
-                    <div className='login-input-container'>
-                        <label>Password: </label>
-                        <input type="password" value={loginPassword} onChange={(e) => this.setState({ loginPassword: e.target.value })} />
+                    <div className='register-input-container'>
+                        <form onSubmit={e => { e.preventDefault(); this.register(); }}>
+                                <label>Email: </label>
+                                <input type="email" value={registerEmail} onChange={(e) => this.setState({ registerEmail: e.target.value })} />
+                                <label>Password: </label>
+                                <input type="password" value={registerPassword} onChange={(e) => this.setState({ registerPassword: e.target.value })} />
+                            <button className="register-input-button">Register</button>
+                        </form>
                     </div>
-                    <button className="login-input-button">Login</button>
-                </form>
-                <form onSubmit={e => { e.preventDefault(); this.register(); }}>
-                    <div className="register-input-container">
-                        <label>Email: </label>
-                        <input type="email" value={registerEmail} onChange={(e) => this.setState({ registerEmail: e.target.value })} />
-                    </div>
-                    <div className="register-input-container">
-                        <label>Password: </label>
-                        <input type="password" value={registerPassword} onChange={(e) => this.setState({ registerPassword: e.target.value })} />
-                    </div>
-                    <button className="register-input-button">Register</button>
-                </form>
-            </div>
+                </div>
             </div>
         )
     }

@@ -3,7 +3,7 @@ const API = {
 	register: '/api/register',
 	session: '/api/session',
 	logout: '/api/logout',
-	inventory: '/api/inventory',
+	inventory: '/api/products',
 	search: '/api/search',
 	orders: '/api/orders',
 	purchaseHistory: '/api/purchaseHistory',

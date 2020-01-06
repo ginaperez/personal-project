@@ -26,16 +26,16 @@ VALUES
 ('Mid Mod Console Table', 175, 'https://gppersonalproject.s3.us-west-1.amazonaws.com/ConsoleTable.png'),
 ('Vintage Desk Set', 300, 'https://gppersonalproject.s3.us-west-1.amazonaws.com/DeskSet.png'),
 ('Haskall Breakfast Bar', 500, 'https://gppersonalproject.s3.us-west-1.amazonaws.com/DiningSet.png'),
-('Vintage Minsmere Dresser', 250, 'https://gppersonalproject.s3.us-west-1.amazonaws.com/Dresser.png'),
-('Hafley Three Drawer End Table', 100, 'https://gppersonalproject.s3.us-west-1.amazonaws.com/EndTable.png'),
+-- ('Vintage Minsmere Dresser', 250, 'https://gppersonalproject.s3.us-west-1.amazonaws.com/Dresser.png'),
+-- ('Hafley Three Drawer End Table', 100, 'https://gppersonalproject.s3.us-west-1.amazonaws.com/EndTable.png'),
 ('Ashton Mango Wood Mirror', 100, 'https://gppersonalproject.s3.us-west-1.amazonaws.com/FullLengthMirror.png'),
-('Poppin Pink File Cabinet', 150, 'https://gppersonalproject.s3.us-west-1.amazonaws.com/PoppinPinkFileCabinet.png'),
-('Lily Rattan Arm Chair', 100, 'https://gppersonalproject.s3.us-west-1.amazonaws.com/RattanChair.png'),
-('Natural Plant Stand', 50, 'https://gppersonalproject.s3.us-west-1.amazonaws.com/RattanPlantStand.png'),
+-- ('Poppin Pink File Cabinet', 150, 'https://gppersonalproject.s3.us-west-1.amazonaws.com/PoppinPinkFileCabinet.png'),
+-- ('Lily Rattan Arm Chair', 100, 'https://gppersonalproject.s3.us-west-1.amazonaws.com/RattanChair.png'),
+-- ('Natural Plant Stand', 50, 'https://gppersonalproject.s3.us-west-1.amazonaws.com/RattanPlantStand.png'),
 ('Vinyl Record Storage Shelf', 40, 'https://gppersonalproject.s3.us-west-1.amazonaws.com/RecordShelf.png'),
-('Chamberlin Recycled Leather Sofa', 400, 'https://gppersonalproject.s3.us-west-1.amazonaws.com/Sofa.png'),
-('Minsmere Media Console', 200, 'https://gppersonalproject.s3.us-west-1.amazonaws.com/TVStand.png')
-;
+('Chamberlin Recycled Leather Sofa', 400, 'https://gppersonalproject.s3.us-west-1.amazonaws.com/Sofa.png');
+-- ('Minsmere Media Console', 200, 'https://gppersonalproject.s3.us-west-1.amazonaws.com/TVStand.png')
+
 
 CREATE TABLE purchase_history (
     purchase_id SERIAL PRIMARY KEY,

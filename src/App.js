@@ -7,6 +7,7 @@ import Landing from './components/Landing/Landing';
 import AuthComponent from './components/Auth/AuthComponent';
 import PurchaseHistoryComponent from './components/Purchase History/PurchaseHistoryComponent';
 import InventoryComponent from './components/Inventory/InventoryComponent';
+import CartComponent from './components/Cart/CartComponent';
 
 class App extends React.Component {
   constructor(props) {
@@ -36,12 +37,16 @@ class App extends React.Component {
             <AuthComponent changeTitle={this.changeTitle} {...props} />
           )}
           />
-          {this.props.user && (
+          <Route path='/cart' render={props => (
+            <CartComponent changeTitle={this.changeTitle} {...props} />
+          )}
+          />
+          {/* {this.props.user && ( */}
             <Route path='/products' render={props => (
               <InventoryComponent changeTitle={this.changeTitle} {...props} />
             )}
             />
-          )}
+          }
           {this.props.user && (
             <Route path='/purchase_history' render={props => (
               <PurchaseHistoryComponent changeTitle={this.changeTitle} {...props} />
@@ -49,7 +54,7 @@ class App extends React.Component {
             />
           )}
           <Route path='*' render={() => {
-            return <Redirect to='/inventory' />;
+            return <Redirect to='/products' />;
           }}
           />
         </Switch>
