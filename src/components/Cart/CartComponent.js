@@ -122,32 +122,31 @@ class CartComponent extends React.Component {
         const { cartItem } = this.state;
         return (
             <div className="cart-view">
-						<button className="wide-element" onClick={() => this.clearCart()}>Empty Cart</button>
-						<button className="wide-element" onClick={() => this.checkout()}>Checkout</button>
 						{
 							this.state.cart.map((cartItem, i) => {
 								return (
 									<div className="cart-view">
                                         <div className="cart-item">
                                         <p><img className="cart-item-picture" src={cartItem.image} /></p>
-                                        <p>Item Name: {cartItem.item_name}</p>
-                                        <p>Item Qty: {cartItem.item_qty}</p>
-                                        <p>Item Total Price: {cartItem.total_price}</p>
-										<p>User ID: {cartItem.user_id}</p>
-										<p>Item ID: {cartItem.item_id}</p>
-										<p>Item Unit Price: {cartItem.item_unit_price}</p>
-										
+                                        <p>{cartItem.item_name}</p>
+										<p>${cartItem.item_unit_price}.00</p>
+                                        <p>Qty: {cartItem.item_qty}</p>
+										<p>Total Price: ${cartItem.total_price}.00</p>
                                         
 										<form onSubmit={(e) => { e.preventDefault(); this.updateItemQtyInCart(cartItem.item_id, cartItem.cartQty) }}>
 											<input type="number" value={cartItem.cartQty} onChange={(e) => { this.updateCartItemQty(cartItem.item_id, e.target.value); }} />
-											<button className="wide-element">Update Item Quantity</button>
+											<button className="form-button">Update Item Quantity</button>
 										</form>
-										<button className="wide-element" onClick={() => { this.modifyCart(cartItem.item_id, 0); }}>Delete from Cart</button>
+										<button className="form-button" onClick={() => { this.modifyCart(cartItem.item_id, 0); }}>Delete from Cart</button>
 									</div>
                                     </div>
 								)
 							})
 						}
+						<div className='bottom-buttons'>
+						<button className="wide-element" onClick={() => this.clearCart()}>Empty Cart</button>
+						<button className="wide-element" onClick={() => this.checkout()}>Checkout</button>
+						</div>
 					</div>
         )
     }

@@ -35,27 +35,10 @@ $pale-green: #8ba244;
             padding-bottom: 70px;
         }
         .landing-button {
-            background-color: goldenrod;
-            border: solid 2px goldenrod;
-            height: 60px;
-            width: 160px;
-            font-size: 18px;
-            font-weight: 5px;
+            @extend %landing-button;
         }
-        &.hover {
+       .landing-button:hover {
             cursor: pointer;
+          }
         }
     }
-    .first-content-block {
-        background-color: blue;
-    }
-    .second-content-block {
-        background-color: green;
-    }
-    .third-content-block {
-        background-color: pink;
-    }
-    .fourth-content-block {
-        background-color: yellow;
-    }
-}

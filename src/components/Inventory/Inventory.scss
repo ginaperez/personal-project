@@ -1,80 +1,79 @@
 @import '../../App.scss';
 
-.search-area-inventory {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding-top: 25px;
-  
-}
-.inventory-grid {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    align-items: center;
-    align-content: stretch;
-    margin-left: 340px;
-    margin-right: 340px;
-    .inventory-child {
-        display: flex;
-        flex-direction: column;
-        flex-wrap: nowrap;
-        // width: calc(100% * (1/5) - 10px - 1px);
-        flex-grow: 1;
-        height: 100%;
-        margin: 20px 0 0 2%;
-        padding: 50px 50px 50px 50px;
-        align-items: center;
-        justify-content: space-around;
-        border: solid 5px black;
-        background-color: white;
-        .inventory-child-spacer {
-            margin: 10px 0 10px 0;
+.inventory-main-area {
+  background-color: $cream;
+  .search-area-inventory {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding-top: 25px;
+  }
+  .inventory-grid {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      align-items: center;
+      align-content: stretch;
+      margin-left: 340px;
+      margin-right: 340px;
+      .inventory-child {
+          display: flex;
+          flex-direction: column;
+          flex-wrap: nowrap;
+          flex-grow: 1;
+          height: 100%;
+          margin: 20px 0 0 2%;
+          padding: 50px 50px 50px 50px;
+          align-items: center;
+          justify-content: space-around;
+          border: solid 5px black;
+          background-color: white;
+          .inventory-child-spacer {
+              margin: 10px 0 10px 0;
           }
-        .wide-element {
-        display: flex;
-        flex-direction: row;
-        align-items: flex-start;
-        width: 100%;
-        max-width: 200px;
-        margin-top: 20px;
-        justify-content: center;
-        .item-pairing {
-            display: flex;
-              flex-direction: row-reverse;
-              flex-wrap: nowrap;
-              justify-content: space-between;
-              align-items: stretch;
-              align-content: stretch;
-              .item-quantity-change {
-                display: flex;
-                border: solid;
-                border-radius: 5px;
-                padding: 5px;
-                max-width: 30px;
-            }  
-            .price-display {
-                display: flex;
-                flex-direction: row;
+          .wide-element {
+          display: flex;
+          flex-direction: row;
+          align-items: flex-start;
+          width: 100%;
+          max-width: 200px;
+          margin-top: 20px;
+          justify-content: center;
+          .item-pairing {
+              display: flex;
+                flex-direction: row-reverse;
                 flex-wrap: nowrap;
-                justify-content: flex-end;
-                align-items: baseline;
+                justify-content: space-between;
+                align-items: stretch;
                 align-content: stretch;
-                color: $black;
-                padding-right: 15px;
-            }
-         }
-         .add-to-cart-btn {
-            margin-top: 20px;
-            height: 30px;
-            border: solid;
-            border-color: $black;
-            border-radius: 5px;
-            text-transform: uppercase;
-            max-width: 200px;
+                .item-quantity-change {
+                  display: flex;
+                  border: solid;
+                  border-radius: 5px;
+                  padding: 5px;
+                  max-width: 30px;
+              }  
+              .price-display {
+                  display: flex;
+                  flex-direction: row;
+                  flex-wrap: nowrap;
+                  justify-content: flex-end;
+                  align-items: baseline;
+                  align-content: stretch;
+                  color: $black;
+                  padding-right: 15px;
+              }
+          }
+          .add-to-cart-btn {
+              @extend %inventory-button;
+          }
+          button:hover {
+              @extend %inventory-button-hover;
+              cursor: pointer;
           }
       }
     }
-      
+        
   }
+}

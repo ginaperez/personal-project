@@ -33,12 +33,12 @@ class PurchaseHistoryComponent extends Component {
                                 <p>Purchase ID: {purchaseHistoryItem.purchase_id}</p>
                                 <p>Purchase date: {purchaseHistoryItem.purchase_date}</p>
                                 <p>Transaction ID: {purchaseHistoryItem.transaction_id}</p>
-                                <p>User ID: {purchaseHistoryItem.user_id}</p>
+                                <p>{purchaseHistoryItem.user_id}</p>
                                 <p>Item ID: {purchaseHistoryItem.item_id}</p>
-                                <p>Item Name: {purchaseHistoryItem.item_name}</p>
-                                <p>Item Qty: {purchaseHistoryItem.item_qty}</p>
-                                <p>Item Unit Price: {purchaseHistoryItem.item_unit_price}</p>
-                                <p>Item Total Price: {purchaseHistoryItem.total_price}</p>
+                                <p>{purchaseHistoryItem.item_name}</p>
+                                <p>Qty: {purchaseHistoryItem.item_qty}</p>
+                                <p>${purchaseHistoryItem.item_unit_price}.00</p>
+                                <p>Total Price: {purchaseHistoryItem.total_price}</p>
                                 <p><img src= {purchaseHistoryItem.image} width="200px" /></p>
                             </div>
                         )

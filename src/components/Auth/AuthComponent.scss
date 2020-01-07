@@ -2,6 +2,7 @@
 
 .main-area {
   height: 100%;
+  background-color: $cream;
   .auth-container {
     display: flex;
     flex-direction: row;
@@ -10,29 +11,27 @@
     align-items: center;
     align-content: stretch;
     height: 100%;
-    .login-input-container {
-      text-transform: uppercase;
-      display: flex;
-      padding: 10px;
-      border: solid 2.5px black;
-      background-color: white;
-    }
-    .login-input-button {
-      display: flex;
-      align-items: center;
-    }
-    .register-input-container {
-      text-transform: uppercase;
+    .input-container {
       display: flex;
       flex-direction: column;
-      // align-items: flex-start;
       padding: 10px;
       border: solid 2.5px black;
       background-color: white;
+      form {
+        height: 300px;
+        width: 400px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-evenly;
+      }
     }
-    .register-input-button {
-      display: flex;
-      align-items: center;
+    .input-button {
+      @extend %smaller-buttons;
+    }
+    button:hover {
+      @extend %smaller-buttons-hover;
+      cursor: pointer;
     }
     h2 {
       font-size: 40px;

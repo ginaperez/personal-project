@@ -2,11 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { addToCart } from '../../redux/reducer';
 import axios from 'axios';
-import Header from '../Header/Header';
 import API from '../../api';
 import './Inventory.scss';
 
-export default class InventoryComponent extends Component {
+class InventoryComponent extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -26,7 +25,6 @@ export default class InventoryComponent extends Component {
     };
 
     async getInventory() {
-        console.log(3333, 'invintory')
 		const inventoryResponse = await axios.get('/api/products');
 		const inventoryWithInitializedCartQty = inventoryResponse.data.map((inventoryItem) => {
 			inventoryItem.cartQty = 1;
@@ -83,9 +81,9 @@ export default class InventoryComponent extends Component {
     };
     
     render() {
-        const { inventory, searchQuery, cartItem } = this.state;
+        const { searchQuery } = this.state;
         return (
-            <div>
+            <div className='inventory-main-area'>
                 <div className="search-area-inventory">
                     <form onSubmit={e => { e.preventDefault(); this.searchInventory(); }}>
                         <label>Search:</label>
@@ -130,3 +128,9 @@ export default class InventoryComponent extends Component {
         )
     }
 }
+
+function mapStateToProps(state) {
+    return state;
+}
+
+export default connect(mapStateToProps, {addToCart})(InventoryComponent);

@@ -10,7 +10,7 @@ CREATE TABLE users (
 );
 
 INSERT INTO users (password, email)
-VALUES ('$2b$12$Iep7Rr1ynT8I1rS1k0gSP.1cFH2W/6JOZdv3D1BBYENSop5gLjwDu', 'gmperez92@gmail.com');
+VALUES ('test', 'test@test');
 
 CREATE TABLE inventory (
     item_id SERIAL PRIMARY KEY,

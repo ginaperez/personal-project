@@ -17,11 +17,43 @@
         border: 5px solid $black;
         min-width: 450px;
         background-color: white;
-        border-radius: 15px;
         color: darkslategray;
         .cart-item-picture {
             display: flex;
             width: 100px;
           }
-      }
+        form {
+            height: 125px;
+            width: 200px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-evenly;
+        }
+        .form-button {
+            @extend %smaller-buttons;
+            width: 200px;
+        }
+        .form-button:hover {
+            @extend %smaller-buttons-hover;
+            width: 200px;
+            cursor: pointer;
+        }
+    }
   }
+.bottom-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 30%;
+    .wide-element {
+        @extend %smaller-buttons;
+        width: 200px;
+    }
+    .wide-element:hover {
+        @extend %smaller-buttons-hover;
+        width: 200px;
+        cursor: pointer;
+    }
+}
+  

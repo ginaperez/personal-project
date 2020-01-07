@@ -3,8 +3,7 @@ import axios from 'axios';
 import API from '../../api';
 import { connect } from 'react-redux';
 import { setUser } from '../../redux/reducer';
-import App from '../../App';
-import { withRouter } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import './AuthComponent.scss';
 
 class AuthComponent extends Component {
@@ -55,30 +54,42 @@ class AuthComponent extends Component {
     
 
     render() {
-        const { loginEmail, loginPassword, registerEmail, registerPassword, } = this.state;
-        return (
+        const { loginEmail, loginPassword, registerEmail, registerPassword, register, failed } = this.state;
+        let errorMessage;
+        if(failed && register) {
+            errorMessage = <p className='error'>User already exists!</p>
+        } else if (failed && !register) {
+            errorMessage = <p classsName='error'>Incorrect email or password.</p>
+        } else {
+            errorMessage = <p className='error'></p>;
+        }
+        return this.props.user ? (
+            <Redirect to='/products' />
+        ) : (
             <div className="main-area">
                 <div className='auth-container'>
-                    <div className='login-input-container'>
+                    <div className='input-container'>
                         <form onSubmit={e => { e.preventDefault(); this.login(); }}>
                                 <h2 className='title'>Sign In</h2>
-                                <h3 className='subtext'>Text</h3>
+                                <h3 className='subtext'>Sign in below to access your account.</h3>
                                 <label for='email'>Email: </label>
                                 <input type="email" value={loginEmail} onChange={(e) => this.setState({ loginEmail: e.target.value })} />
                                 <label for='password'>Password: </label>
                                 <input type="password" value={loginPassword} onChange={(e) => this.setState({ loginPassword: e.target.value })} />
-                            <button className="login-input-button">Login</button>
+                            <button className="input-button">Login</button>
+                            {errorMessage}
                         </form>
                     </div>
-                    <div className='register-input-container'>
+                    <div className='input-container'>
                         <form onSubmit={e => { e.preventDefault(); this.register(); }}>
                                 <h2 className='title'>Register</h2>
-                                <h3 className='subtext'>Text</h3>
+                                <h3 className='subtext'>Don't have an account? Register below.</h3>
                                 <label for='email'>Email: </label>
                                 <input type="email" value={registerEmail} onChange={(e) => this.setState({ registerEmail: e.target.value })} />
                                 <label for='password'>Password: </label>
                                 <input type="password" value={registerPassword} onChange={(e) => this.setState({ registerPassword: e.target.value })} />
-                            <button className="register-input-button">Register</button>
+                            <button className="input-button">Register</button>
+                            {errorMessage}
                         </form>
                     </div>
                 </div>
