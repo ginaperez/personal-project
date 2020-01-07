@@ -59,18 +59,22 @@ class AuthComponent extends Component {
                 <div className='auth-container'>
                     <div className='login-input-container'>
                         <form onSubmit={e => { e.preventDefault(); this.login(); }}>
-                                <label>Email: </label>
+                                <h2 className='title'>Sign In</h2>
+                                <h3 className='subtext'>Text</h3>
+                                <label for='email'>Email: </label>
                                 <input type="email" value={loginEmail} onChange={(e) => this.setState({ loginEmail: e.target.value })} />
-                                <label>Password: </label>
+                                <label for='password'>Password: </label>
                                 <input type="password" value={loginPassword} onChange={(e) => this.setState({ loginPassword: e.target.value })} />
                             <button className="login-input-button">Login</button>
                         </form>
                     </div>
                     <div className='register-input-container'>
                         <form onSubmit={e => { e.preventDefault(); this.register(); }}>
-                                <label>Email: </label>
+                                <h2 className='title'>Register</h2>
+                                <h3 className='subtext'>Text</h3>
+                                <label for='email'>Email: </label>
                                 <input type="email" value={registerEmail} onChange={(e) => this.setState({ registerEmail: e.target.value })} />
-                                <label>Password: </label>
+                                <label for='password'>Password: </label>
                                 <input type="password" value={registerPassword} onChange={(e) => this.setState({ registerPassword: e.target.value })} />
                             <button className="register-input-button">Register</button>
                         </form>

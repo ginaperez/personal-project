@@ -10,14 +10,14 @@ export default class Landing extends React.Component {
             <div className='landing-main'>
                 <div className='picture-element'>
                     <div className='header-container'>
-                        <h1>Furniture Store</h1>
+                        <h1 >Furniture Store</h1>
                         <h2>Sub-Copy</h2>
                         <button className='landing-button' onClick={() => {
                             
                         }}>Shop Now</button>
                     </div>
                 </div>
-                <div className='first-content-block'>
+                {/* <div className='first-content-block'>
                     First Content Block
                 </div>
                 <div className='second-content-block'>
@@ -28,7 +28,7 @@ export default class Landing extends React.Component {
                 </div>
                 <div className='fourth-content-block'>
                     Fourth Content Block
-                </div>
+                </div> */}
             </div>
         )
     }

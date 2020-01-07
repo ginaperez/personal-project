@@ -8,6 +8,7 @@ import AuthComponent from './components/Auth/AuthComponent';
 import PurchaseHistoryComponent from './components/Purchase History/PurchaseHistoryComponent';
 import InventoryComponent from './components/Inventory/InventoryComponent';
 import CartComponent from './components/Cart/CartComponent';
+import './App.scss';
 
 class App extends React.Component {
   constructor(props) {

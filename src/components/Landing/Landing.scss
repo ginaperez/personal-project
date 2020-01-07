@@ -1,3 +1,5 @@
+@import '../../App.scss';
+
 $pale-green: #8ba244;
 
 .landing-main {
@@ -25,13 +27,16 @@ $pale-green: #8ba244;
         }
         h1 {
             font-size: 100px;
+            padding: 20px;
+            color: goldenrod
         }
         h2 {
             font-size: 40px;
+            padding-bottom: 70px;
         }
         .landing-button {
-            background-color: $pale-green;
-            border: solid 2px $pale-green;
+            background-color: goldenrod;
+            border: solid 2px goldenrod;
             height: 60px;
             width: 160px;
             font-size: 18px;
