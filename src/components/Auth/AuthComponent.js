@@ -27,11 +27,12 @@ class AuthComponent extends Component {
 
     async register() {
         const { registerEmail, registerPassword } = this.state;
-        const session = await axios.post(API.register, {
+        const loggedInUser = await axios.post(API.register, {
             email: registerEmail,
             password: registerPassword
         });
-        this.setState({ session: session.data });
+        this.props.setUser(loggedInUser.data);
+        console.log(loggedInUser);
     }
     
     async login() {
@@ -45,10 +46,11 @@ class AuthComponent extends Component {
     }
     
     async logout() {
-        const { session } = this.state;
-        const destroyedSession = await axios.post(API.logout, {});
+        // const { email, user_id } = this.state;
+        const loggedInUser = await axios.post(API.logout, {});
     
-        this.setState({ session: { email: "", user_id: null } });
+        this.props.setUser(loggedInUser);
+        console.log(loggedInUser);
     }
     
 

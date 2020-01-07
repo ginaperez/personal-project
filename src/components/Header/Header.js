@@ -25,7 +25,7 @@ class Header extends React.Component {
     }
 
     logout() {
-        axios.delete('/auth/logout').then(res => {
+        axios.delete('/api/logout').then(res => {
             this.props.logOutUser();
         });
     }

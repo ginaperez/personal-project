@@ -28,7 +28,7 @@ register: (req, res) => {
     res.status(200).send(session.user);
 },
 
-signout: (req, res) => {
+logout: (req, res) => {
     req.session.destroy();
     res.status(200).send(req.session);
 },

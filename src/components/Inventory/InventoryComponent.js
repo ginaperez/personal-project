@@ -77,8 +77,8 @@ export default class InventoryComponent extends Component {
         });
     }
 
-    buttonAddToCart = async (user_id, item_id) => {
-        let cart = await axios.post('/api/cart', { user_id, item_id});
+    async buttonAddToCart (item_id, item_qty) {
+        let cart = await axios.put('/api/cart', {item_id, item_qty});
         this.props.addToCart(cart.data);
     };
     
@@ -98,10 +98,10 @@ export default class InventoryComponent extends Component {
                         this.state.inventory.map((inventoryItem, i) => {
                             return (
                                 <div>
-                                    {
+                                    {/* {
                                         inventory.map((inventoryItem) => {
                                         })
-                                    }
+                                    } */}
                                     <div className="inventory-child" key={i}>
                                         <div className="inventory-child-spacer">
                                             <img alt={'Inventory item ' + inventoryItem.item_name} src={inventoryItem.image} width="200px" />
@@ -117,7 +117,7 @@ export default class InventoryComponent extends Component {
                                                         ${inventoryItem.price}.00
                                                     </div>
                                                 </div>
-                                                <button className="wide-element add-to-cart-btn" onClick={() => { this.buttonAddToCart(this.props.user.user_id)}}>Add To Cart</button>
+                                                <button className="wide-element add-to-cart-btn">Add To Cart</button>
                                             </form>
                                         </div>
                                     </div>

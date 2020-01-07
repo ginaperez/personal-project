@@ -45,6 +45,7 @@ app.get('/api/products', itemController.read);
 app.post('/api/register', userController.register);
 app.post('/api/login', userController.login);
 app.post('/api/logout', userController.logout);
+app.delete('/api/logout', userController.logout);
 app.get('/api/session' , userController.userSession);
 
 app.get('/api/purchasehistory', purchaseHistoryController.getUserPurchaseHistory);
