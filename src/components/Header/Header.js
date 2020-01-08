@@ -53,7 +53,6 @@ class Header extends React.Component {
                             <NavLink className='navlink' to='/products'>Products</NavLink>
                             <NavLink className='cart' to='/cart'>Cart</NavLink>
                             <NavLink className='navlink' to='/purchase_history'>Purchase History</NavLink>
-                            <NavLink className='user-profile-navlink' to='/profile'>{this.props.user.username}</NavLink>
                             <NavLink onClick={() => this.logout()} to='/'>Logout</NavLink>
                         </nav>
                     )}

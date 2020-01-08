@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { addToCart } from '../../redux/reducer';
+import { addToCart, getUser } from '../../redux/reducer';
 import axios from 'axios';
 import API from '../../api';
 import './Inventory.scss';
@@ -25,13 +25,18 @@ class InventoryComponent extends Component {
     };
 
     async getInventory() {
-		const inventoryResponse = await axios.get('/api/products');
-		const inventoryWithInitializedCartQty = inventoryResponse.data.map((inventoryItem) => {
-			inventoryItem.cartQty = 1;
-			return inventoryItem;
-		});
-
-		this.setState({ inventory: inventoryWithInitializedCartQty })
+        try {
+            const inventoryResponse = await axios.get('/api/products');
+            const inventoryWithInitializedCartQty = inventoryResponse.data.map((inventoryItem) => {
+                inventoryItem.cartQty = 1;
+                return inventoryItem;
+            });
+    
+            this.setState({ inventory: inventoryWithInitializedCartQty, infoMessage: "" })
+        } catch (err) {
+            this.setState({infoMessage: err.response.data})
+        }
+        
     }
     
     async modifyCart(itemId, itemQty) {
@@ -81,7 +86,23 @@ class InventoryComponent extends Component {
     };
     
     render() {
-        const { searchQuery } = this.state;
+        const { searchQuery, infoMessage } = this.state;
+
+        var productInteractionDisplay = <div>{infoMessage}</div>;
+        if(infoMessage) {
+            productInteractionDisplay = <div>{infoMessage}</div>
+        } else {
+            const loggedInUser = this.props.getUser();
+            console.log(loggedInUser);
+            if(loggedInUser) {
+                productInteractionDisplay = <div>
+                    <button className="wide-element add-to-cart-btn">Add To Cart</button>
+                </div>
+            } else {
+                productInteractionDisplay = <div>Please sign in to add products to your cart!</div>
+            }
+        }
+
         return (
             <div className='inventory-main-area'>
                 <div className="search-area-inventory">
@@ -115,7 +136,8 @@ class InventoryComponent extends Component {
                                                         ${inventoryItem.price}.00
                                                     </div>
                                                 </div>
-                                                <button className="wide-element add-to-cart-btn">Add To Cart</button>
+                                                {productInteractionDisplay}
+                                                {/* <button className="wide-element add-to-cart-btn">Add To Cart</button> */}
                                             </form>
                                         </div>
                                     </div>
@@ -129,8 +151,15 @@ class InventoryComponent extends Component {
     }
 }
 
-function mapStateToProps(state) {
-    return state;
-}
+function mapReduxStateToProps(reduxState) {
+    return reduxState;
+};
 
-export default connect(mapStateToProps, {addToCart})(InventoryComponent);
+const mapDispatchToProps = {
+    getUser,
+    addToCart
+};
+
+const invokedConnect = connect(mapReduxStateToProps, mapDispatchToProps);
+
+export default invokedConnect(InventoryComponent);

@@ -1,5 +1,15 @@
 const uuidv4 = require('uuid/v4');
 
+async function getInventory(db) {
+    const dbQuery = 'SELECT * FROM inventory';
+    const inventoryResult = await db.query(dbQuery);
+    if(inventoryResult.length) {
+        return inventoryResult;
+    } else {
+        return false;
+    }
+}
+
 async function findUserByEmail(db, email) {
     const dbQuery = `SELECT * FROM users WHERE email = '${email.toString().toLowerCase()}'`;
     const matchedUsers = await db.query(dbQuery);
@@ -116,7 +126,6 @@ async function modifyItemQtyInCart(db, userId, itemId, itemQty) {
             return [];
         }
     } else {
-        // the item does not exist, there is no item to modify
         return false;
     }
 };
@@ -124,10 +133,6 @@ async function modifyItemQtyInCart(db, userId, itemId, itemQty) {
 async function clearCart(db, userId) {
     const clearCartQuery = `DELETE FROM cart WHERE user_id = '${userId}' RETURNING *;`;
     const clearCartResult = await db.query(clearCartQuery);
-    // if some results come back, it means stuff was deleted,
-    // but the user doesn't really care what was deleted, so
-    // just return an empty array so that the web frontend will show an empty
-    // cart
     if (clearCartResult) {
         return [];
     } else {
@@ -153,8 +158,9 @@ async function checkout(db, userId) {
     }
 }
 
-// I had to do it this way because trying to reuse the local function getUserCart wouldn't work
+
 module.exports = {
+    getInventory: getInventory,
     findUserByEmail: findUserByEmail,
     addUserToDatabase: addUserToDatabase,
     getUserPurchaseHistory: getUserPurchaseHistory,

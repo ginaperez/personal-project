@@ -8,6 +8,7 @@ export const SET_USER = "SET_USER";
 export const LOGOUT_USER = "LOGOUT_USER";
 export const ADD_TO_CART = "ADD_TO_CART";
 export const GET_CART = "GET_CART";
+export const GET_USER = "GET_USER";
 
 export default function reducer(state = initialState, action) {
     const { type, payload } = action;
@@ -16,6 +17,10 @@ export default function reducer(state = initialState, action) {
             return { 
                 ...state,
                 user: payload 
+            };
+        case GET_USER:
+            return { 
+                ...state
             };
         case LOGOUT_USER: 
             return {
@@ -38,6 +43,12 @@ export function setUser(user) {
         type: SET_USER,
         payload: user
     };
+};
+
+export function getUser() {
+    return {
+        type: GET_USER
+    }
 }
 
 export function logOutUser() {

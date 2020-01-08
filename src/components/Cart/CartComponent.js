@@ -25,7 +25,6 @@ class CartComponent extends React.Component {
     async getCart() {
 		try {
 			const cartResponse = await axios.get(API.cart);
-
 			const cartWithInitializedCartQty = cartResponse.data.map((cartItem) => {
 				cartItem.cartQty = cartItem.item_qty;
 				return cartItem;

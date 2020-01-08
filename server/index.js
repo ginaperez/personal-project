@@ -39,7 +39,7 @@ massive(CONNECTION_STRING).then(db => {
 });
 
 // endpoints for inventory display
-app.get('/api/products', itemController.read);
+app.get('/api/products', itemController.getInventory);
 
 // endpoints for login, logout, register
 app.post('/api/register', userController.register);
