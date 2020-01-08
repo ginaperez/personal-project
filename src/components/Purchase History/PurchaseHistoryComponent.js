@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import API from '../../api';
+import './PurchaseHistory.scss';
 
 class PurchaseHistoryComponent extends Component {
     constructor(props) {
@@ -30,16 +31,15 @@ class PurchaseHistoryComponent extends Component {
                     this.state.purchaseHistory.map((purchaseHistoryItem, i) => {
                         return (
                             <div className="purchase-history-details">
+                                <p><img src= {purchaseHistoryItem.image} width="200px" /></p>
+                                <p>{purchaseHistoryItem.item_name}</p>
+                                <p>${purchaseHistoryItem.item_unit_price}.00</p>
+                                <p>Qty: {purchaseHistoryItem.item_qty}</p>
+                                <p>Total Price: ${purchaseHistoryItem.total_price}.00</p>
                                 <p>Purchase ID: {purchaseHistoryItem.purchase_id}</p>
                                 <p>Purchase date: {purchaseHistoryItem.purchase_date}</p>
                                 <p>Transaction ID: {purchaseHistoryItem.transaction_id}</p>
-                                <p>{purchaseHistoryItem.user_id}</p>
                                 <p>Item ID: {purchaseHistoryItem.item_id}</p>
-                                <p>{purchaseHistoryItem.item_name}</p>
-                                <p>Qty: {purchaseHistoryItem.item_qty}</p>
-                                <p>${purchaseHistoryItem.item_unit_price}.00</p>
-                                <p>Total Price: {purchaseHistoryItem.total_price}</p>
-                                <p><img src= {purchaseHistoryItem.image} width="200px" /></p>
                             </div>
                         )
                     })

@@ -19,22 +19,22 @@ class CartComponent extends React.Component {
     }
 
     componentDidMount() {
-        axios.get('/api/cart').then(response => {
-            this.setState({
-                cart: response.data,
-            })
-        })
+        this.getCart();
     }
 
     async getCart() {
-		const cartResponse = await axios.get(API.cart);
+		try {
+			const cartResponse = await axios.get(API.cart);
 
-		const cartWithInitializedCartQty = cartResponse.data.map((cartItem) => {
-			cartItem.cartQty = cartItem.item_qty;
-			return cartItem;
-		});
+			const cartWithInitializedCartQty = cartResponse.data.map((cartItem) => {
+				cartItem.cartQty = cartItem.item_qty;
+				return cartItem;
+			});
 
-		this.setState({ cart: cartWithInitializedCartQty });
+			this.setState({ cart: cartWithInitializedCartQty, infoMessage: "" });
+	 	} catch (err) {
+			this.setState({infoMessage: err.response.data});
+		}
 	}
 
 	// modifyCart will ADD itemQty to the cart, or it will insert the new
@@ -119,7 +119,24 @@ class CartComponent extends React.Component {
 
 
     render() {
-        const { cartItem } = this.state;
+		const { infoMessage, cart } = this.state;
+		
+		var cartInteractionDisplay = <div>{infoMessage}</div>;
+		if (infoMessage) {
+			cartInteractionDisplay = <div>{infoMessage}</div>;
+		} else {
+			if (cart.length) {
+				cartInteractionDisplay = <div>
+					<button className="wide-element" onClick={() => this.clearCart()}>Empty Cart</button>
+					<button className="wide-element" onClick={() => this.checkout()}>Checkout</button>
+				</div>
+			} else {
+				cartInteractionDisplay = <div>
+					Your cart is empty!
+				</div>
+			}
+		}
+
         return (
             <div className="cart-view">
 						{
@@ -127,7 +144,7 @@ class CartComponent extends React.Component {
 								return (
 									<div className="cart-view">
                                         <div className="cart-item">
-                                        <p><img className="cart-item-picture" src={cartItem.image} /></p>
+                                        <p><img className="cart-item-picture" src={cartItem.image} alt='Cart Item'/></p>
                                         <p>{cartItem.item_name}</p>
 										<p>${cartItem.item_unit_price}.00</p>
                                         <p>Qty: {cartItem.item_qty}</p>
@@ -144,8 +161,7 @@ class CartComponent extends React.Component {
 							})
 						}
 						<div className='bottom-buttons'>
-						<button className="wide-element" onClick={() => this.clearCart()}>Empty Cart</button>
-						<button className="wide-element" onClick={() => this.checkout()}>Checkout</button>
+							{cartInteractionDisplay}
 						</div>
 					</div>
         )

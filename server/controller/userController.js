@@ -28,9 +28,9 @@ module.exports = {
         const db = req.app.get('db');
         const foundUser = await dbQueries.findUserByEmail(db, email);
         if(!foundUser) {
-            const logMsg = 'User not found. Please create an account.';
+            const logMsg = 'User not found! Please create an account.';
             console.log(logMsg)
-            res.status(400).send(logMsg);
+            res.status(401).send(logMsg);
         } else {
             const isAuthenticated = await bcrypt.compare(password, foundUser.password);
             if(isAuthenticated) {
@@ -41,7 +41,7 @@ module.exports = {
                 console.log(`Authenticated user ${foundUser.email}`);
                 res.status(200).send(req.session.user);
             } else {
-                const logMsg = 'Invalid password.';
+                const logMsg = 'Invalid email or password.';
                 console.log(logMsg);
                 res.status(401).send(logMsg);
             }

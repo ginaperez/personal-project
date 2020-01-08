@@ -26,22 +26,34 @@ class AuthComponent extends Component {
 
     async register() {
         const { registerEmail, registerPassword } = this.state;
-        const loggedInUser = await axios.post(API.register, {
-            email: registerEmail,
-            password: registerPassword
-        });
-        this.props.setUser(loggedInUser.data);
-        console.log(loggedInUser);
+        var loggedInUser
+        try {
+            loggedInUser = await axios.post(API.register, {
+                email: registerEmail,
+                password: registerPassword
+            });
+            this.props.setUser(loggedInUser.data);
+            this.setState({registerResponseMsg: ""});
+            console.log(loggedInUser);
+        } catch (err) {
+            this.setState({registerResponseMsg: err.response.data})
+        }
     }
     
     async login() {
         const { loginEmail, loginPassword } = this.state;
-        const loggedInUser = await axios.post(API.login, {
-            email: loginEmail,
-            password: loginPassword
-        });
-        this.props.setUser(loggedInUser.data);
-        console.log(loggedInUser)
+        var loggedInUser;
+        try {
+            loggedInUser = await axios.post(API.login, {
+                email: loginEmail,
+                password: loginPassword
+            });
+            this.props.setUser(loggedInUser.data);
+            this.setState({loginResponseMsg: ""});
+            console.log(loggedInUser);
+        } catch (err) {
+            this.setState({loginResponseMsg: err.response.data});
+        }
     }
     
     async logout() {
@@ -54,15 +66,7 @@ class AuthComponent extends Component {
     
 
     render() {
-        const { loginEmail, loginPassword, registerEmail, registerPassword, register, failed } = this.state;
-        let errorMessage;
-        if(failed && register) {
-            errorMessage = <p className='error'>User already exists!</p>
-        } else if (failed && !register) {
-            errorMessage = <p classsName='error'>Incorrect email or password.</p>
-        } else {
-            errorMessage = <p className='error'></p>;
-        }
+        const { loginEmail, loginPassword, registerEmail, registerPassword, loginResponseMsg, registerResponseMsg } = this.state;
         return this.props.user ? (
             <Redirect to='/products' />
         ) : (
@@ -77,8 +81,8 @@ class AuthComponent extends Component {
                                 <label for='password'>Password: </label>
                                 <input type="password" value={loginPassword} onChange={(e) => this.setState({ loginPassword: e.target.value })} />
                             <button className="input-button">Login</button>
-                            {errorMessage}
                         </form>
+                        {loginResponseMsg}
                     </div>
                     <div className='input-container'>
                         <form onSubmit={e => { e.preventDefault(); this.register(); }}>
@@ -89,7 +93,7 @@ class AuthComponent extends Component {
                                 <label for='password'>Password: </label>
                                 <input type="password" value={registerPassword} onChange={(e) => this.setState({ registerPassword: e.target.value })} />
                             <button className="input-button">Register</button>
-                            {errorMessage}
+                            {registerResponseMsg}
                         </form>
                     </div>
                 </div>

@@ -18,7 +18,7 @@ $pale-green: #8ba244;
         align-items: center;
         justify-content: center;
         .header-container{
-            background-color: rgba(255, 255, 255, 0.7);
+            background-color: rgba(255, 255, 255, 0.6);
             color: #000000;
             padding-left: 85px; 
             padding-right: 95px; 
@@ -39,6 +39,6 @@ $pale-green: #8ba244;
         }
        .landing-button:hover {
             cursor: pointer;
-          }
         }
     }
+}
