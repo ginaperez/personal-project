@@ -23,7 +23,6 @@ class PurchaseHistoryComponent extends Component {
     }
     
     render() {
-        const { purchaseHistoryItem } = this.state;
         return (
             <div className="purchase-history">
                 {/* <button className="wide-element" onClick={() => this.getPurchaseHistory()}>Purchase History</button> */}
@@ -31,7 +30,7 @@ class PurchaseHistoryComponent extends Component {
                     this.state.purchaseHistory.map((purchaseHistoryItem, i) => {
                         return (
                             <div className="purchase-history-details">
-                                <p><img src= {purchaseHistoryItem.image} width="200px" /></p>
+                                <p><img src= {purchaseHistoryItem.image} width="200px" alt='Purchase History Item'/></p>
                                 <p>{purchaseHistoryItem.item_name}</p>
                                 <p>${purchaseHistoryItem.item_unit_price}.00</p>
                                 <p>Qty: {purchaseHistoryItem.item_qty}</p>

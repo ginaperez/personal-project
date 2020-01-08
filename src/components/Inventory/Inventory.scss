@@ -6,7 +6,8 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      padding-top: 25px;
+      padding-top: 40px;
+      padding-bottom: 25px;
   }
   .inventory-grid {
       display: flex;
@@ -23,14 +24,18 @@
           flex-wrap: nowrap;
           flex-grow: 1;
           height: 100%;
+          width: 280px;
           margin: 20px 0 0 2%;
           padding: 50px 50px 50px 50px;
           align-items: center;
           justify-content: space-around;
-          border: solid 5px black;
+          border: solid 2.5px black;
           background-color: white;
           .inventory-child-spacer {
               margin: 10px 0 10px 0;
+              h2 {
+                font-weight: bold;
+              }
           }
           .wide-element {
           display: flex;

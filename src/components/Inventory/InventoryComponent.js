@@ -88,7 +88,7 @@ class InventoryComponent extends Component {
                     <form onSubmit={e => { e.preventDefault(); this.searchInventory(); }}>
                         <label>Search:</label>
                         <input value={searchQuery} onChange={(e) => { this.setState({ searchQuery: e.target.value }); }} />
-                        <button>Search</button>
+                        <button className='search'>Search</button>
                     </form>
                 </div>
                 <div className="inventory-grid">

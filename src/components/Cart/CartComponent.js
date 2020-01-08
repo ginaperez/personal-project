@@ -126,7 +126,7 @@ class CartComponent extends React.Component {
 			cartInteractionDisplay = <div>{infoMessage}</div>;
 		} else {
 			if (cart.length) {
-				cartInteractionDisplay = <div>
+				cartInteractionDisplay = <div className='interaction-display'>
 					<button className="wide-element" onClick={() => this.clearCart()}>Empty Cart</button>
 					<button className="wide-element" onClick={() => this.checkout()}>Checkout</button>
 				</div>
@@ -145,7 +145,7 @@ class CartComponent extends React.Component {
 									<div className="cart-view">
                                         <div className="cart-item">
                                         <p><img className="cart-item-picture" src={cartItem.image} alt='Cart Item'/></p>
-                                        <p>{cartItem.item_name}</p>
+                                        <p className='cart-item-name'>{cartItem.item_name}</p>
 										<p>${cartItem.item_unit_price}.00</p>
                                         <p>Qty: {cartItem.item_qty}</p>
 										<p>Total Price: ${cartItem.total_price}.00</p>

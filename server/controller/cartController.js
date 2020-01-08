@@ -12,7 +12,7 @@ module.exports = {
                 res.status(200).send([]);
             }
         } else {
-            res.status(401).send('You are not authorized to view this information');
+            res.status(401).send('Your cart is empty! Please sign in or register to add products to your cart.');
         }
     },
     updateCart: async (req, res, next) => {
@@ -26,7 +26,7 @@ module.exports = {
                 res.status(200).send({});
             }
         } else {
-            res.status(401).send('You are not authorized to perform this transaction');
+            res.status(401).send('Your cart is empty!');
         }
     },
     updateItemQtyInCart: async (req, res, next) => {

@@ -18,7 +18,7 @@ $pale-green: #8ba244;
         align-items: center;
         justify-content: center;
         .header-container{
-            background-color: rgba(255, 255, 255, 0.6);
+            background-color: rgba(255, 255, 255, 0.8);
             color: #000000;
             padding-left: 85px; 
             padding-right: 95px; 
@@ -26,16 +26,20 @@ $pale-green: #8ba244;
             padding-bottom: 90px;
         }
         h1 {
-            font-size: 100px;
+            font-size: 120px;
             padding: 20px;
-            color: goldenrod
+            color: $pale-green;
+            // font-family: 'Alegreya', serif;
         }
         h2 {
-            font-size: 40px;
+            font-size: 30px;
             padding-bottom: 70px;
         }
         .landing-button {
             @extend %landing-button;
+            background-color: $pale-green;
+            border: $pale-green;
+            text-transform: uppercase;
         }
        .landing-button:hover {
             cursor: pointer;
