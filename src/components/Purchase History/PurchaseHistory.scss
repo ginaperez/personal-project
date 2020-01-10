@@ -10,13 +10,20 @@
     .purchase-history-details {
         display: flex;
         align-items: center;
-        justify-content: flex-start;
+        justify-content: space-around;
         flex-direction: column;
         padding: 20px;
-        margin: 20px;
+        margin-top: 20px;
         border: 2.5px solid $black;
         min-width: 450px;
         background-color: white;
         color: darkslategray;
+        .ph-item-name {
+            margin-top: 40px;
+        }
+        .ph-item {
+            display: flex;
+            margin-top: 10px;
+        }
       }
   }

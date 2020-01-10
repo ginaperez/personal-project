@@ -32,14 +32,14 @@ class PurchaseHistoryComponent extends Component {
                         return (
                             <div className="purchase-history-details"  key={i}>
                                 <p><img src= {purchaseHistoryItem.image} width="200px" alt='Purchase History Item'/></p>
-                                <p>{purchaseHistoryItem.item_name}</p>
-                                <p>${purchaseHistoryItem.item_unit_price}.00</p>
-                                <p>Qty: {purchaseHistoryItem.item_qty}</p>
-                                <p>Total Price: ${purchaseHistoryItem.total_price}.00</p>
-                                <p>Purchase ID: {purchaseHistoryItem.purchase_id}</p>
-                                <p>Purchase date: {purchaseHistoryItem.purchase_date}</p>
-                                <p>Transaction ID: {purchaseHistoryItem.transaction_id}</p>
-                                <p>Item ID: {purchaseHistoryItem.item_id}</p>
+                                <p className='ph-item-name'>{purchaseHistoryItem.item_name}</p>
+                                <p className='ph-item'>${purchaseHistoryItem.item_unit_price}.00</p>
+                                <p className='ph-item'>Qty: {purchaseHistoryItem.item_qty}</p>
+                                <p className='ph-item'>Total Price: ${purchaseHistoryItem.total_price}.00</p>
+                                <p className='ph-item'>Purchase ID: {purchaseHistoryItem.purchase_id}</p>
+                                <p className='ph-item'>Purchase date: {purchaseHistoryItem.purchase_date}</p>
+                                <p className='ph-item'>Transaction ID: {purchaseHistoryItem.transaction_id}</p>
+                                <p className='ph-item'>Item ID: {purchaseHistoryItem.item_id}</p>
                             </div>
                         )
                     })

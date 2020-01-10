@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { addToCart } from '../../redux/reducer';
 import axios from 'axios';
 import API from '../../api';
+import { GoSearch } from 'react-icons/go';
 import './Inventory.scss';
 
 class InventoryComponent extends Component {
@@ -97,7 +98,7 @@ class InventoryComponent extends Component {
                     <button className="wide-element add-to-cart-btn">Add To Cart</button>
                 </div>
             } else {
-                productInteractionDisplay = <div>Please sign in to add products to your cart!</div>
+                productInteractionDisplay = <div className='interaction-display'>Please sign in to add products to your cart!</div>
             }
         }
 
@@ -105,9 +106,8 @@ class InventoryComponent extends Component {
             <div className='inventory-main-area'>
                 <div className="search-area-inventory">
                     <form onSubmit={e => { e.preventDefault(); this.searchInventory(); }}>
-                        <label>Search:</label>
-                        <input value={searchQuery} onChange={(e) => { this.setState({ searchQuery: e.target.value }); }} />
-                        <button className='search'>Search</button>
+                        <input className='search-input-box' value={searchQuery} placeholder="Search..." onChange={(e) => { this.setState({ searchQuery: e.target.value }); }} />
+                        <button className='search-button'><GoSearch /></button>
                     </form>
                 </div>
                 <div className="inventory-grid">

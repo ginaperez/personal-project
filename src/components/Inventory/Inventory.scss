@@ -1,13 +1,28 @@
 @import '../../App.scss';
 
+.interaction-display {
+  display: flex;
+  margin-top: 45px;
+}
 .inventory-main-area {
   background-color: $cream;
   .search-area-inventory {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding-top: 40px;
-      padding-bottom: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 40px;
+    padding-bottom: 25px;
+    .search-button {
+      height: 50px;
+      background: transparent;
+      border: none;
+    }
+    .search-input-box {
+      background: white;
+      border: solid 2px black;
+      padding: 5px;
+      width: 200px;
+    }
   }
   .inventory-grid {
       display: flex;
@@ -38,24 +53,23 @@
               }
           }
           .wide-element {
-          display: flex;
-          flex-direction: row;
-          align-items: flex-start;
-          width: 100%;
-          max-width: 200px;
-          margin-top: 20px;
-          justify-content: center;
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start;
+            width: 100%;
+            max-width: 200px;
+            margin-top: 20px;
+            justify-content: center;
           .item-pairing {
               display: flex;
-                flex-direction: row-reverse;
-                flex-wrap: nowrap;
-                justify-content: space-between;
-                align-items: stretch;
-                align-content: stretch;
+              flex-direction: row-reverse;
+              flex-wrap: nowrap;
+              justify-content: space-between;
+              align-items: stretch;
+              align-content: stretch;
                 .item-quantity-change {
                   display: flex;
                   border: solid;
-                  border-radius: 5px;
                   padding: 5px;
                   max-width: 30px;
               }  
@@ -72,9 +86,11 @@
           }
           .add-to-cart-btn {
               @extend %inventory-button;
+              margin-top: 50px;
           }
           button:hover {
               @extend %inventory-button-hover;
+              margin-top: 50px;
               cursor: pointer;
           }
       }

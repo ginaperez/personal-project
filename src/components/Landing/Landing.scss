@@ -1,7 +1,5 @@
 @import '../../App.scss';
 
-$pale-green: #8ba244;
-
 .landing-main {
     display: flex;
     flex-direction: column;
@@ -28,8 +26,7 @@ $pale-green: #8ba244;
         h1 {
             font-size: 120px;
             padding: 20px;
-            color: $pale-green;
-            // font-family: 'Alegreya', serif;
+            color: $black;
         }
         h2 {
             font-size: 30px;
@@ -37,9 +34,6 @@ $pale-green: #8ba244;
         }
         .landing-button {
             @extend %landing-button;
-            background-color: $pale-green;
-            border: $pale-green;
-            text-transform: uppercase;
         }
        .landing-button:hover {
             cursor: pointer;

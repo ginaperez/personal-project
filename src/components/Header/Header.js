@@ -2,7 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { setUser, logOutUser } from '../../redux/reducer';
-import logo from '../../photos/logo.jpg';
+import logo from '../../photos/FurnLogo.png';
 import axios from 'axios';
 import './Header.scss';
 

@@ -125,7 +125,7 @@ class CartComponent extends React.Component {
 					<button className="wide-element" onClick={() => this.checkout()}>Checkout</button>
 				</div>
 			} else {
-				cartInteractionDisplay = <div>
+				cartInteractionDisplay = <div className='empty-cart-display'>
 					Your cart is empty!
 				</div>
 			}
