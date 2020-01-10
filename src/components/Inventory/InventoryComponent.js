@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { addToCart, getUser } from '../../redux/reducer';
+import { addToCart } from '../../redux/reducer';
 import axios from 'axios';
 import API from '../../api';
 import './Inventory.scss';
@@ -12,7 +12,8 @@ class InventoryComponent extends Component {
             inventory: [],
             searchQuery: "",
             isLoading: true,
-            toggle: false
+            toggle: false,
+            user: null
         }
         this.getInventory = this.getInventory.bind(this);
         this.modifyCart = this.modifyCart.bind(this);
@@ -41,14 +42,12 @@ class InventoryComponent extends Component {
     
     async modifyCart(itemId, itemQty) {
 		if (itemQty === 0) {
-			const cartResponse = await axios.delete(`${API.cart}/${itemId}`);
-			console.log(cartResponse.data[0].item_id, cartResponse.data[0].item_qty);
+			await axios.delete(`${API.cart}/${itemId}`);
 		} else {
-			const cartResponse = await axios.put(API.cart, {
+			await axios.put(API.cart, {
 				itemId: itemId,
 				itemQty: itemQty
 			});
-			console.log(cartResponse.data[0].item_id, cartResponse.data[0].item_qty);
 		}
     }
 
@@ -92,8 +91,7 @@ class InventoryComponent extends Component {
         if(infoMessage) {
             productInteractionDisplay = <div>{infoMessage}</div>
         } else {
-            const loggedInUser = this.props.getUser();
-            console.log(loggedInUser);
+            const loggedInUser = this.props.user;
             if(loggedInUser) {
                 productInteractionDisplay = <div>
                     <button className="wide-element add-to-cart-btn">Add To Cart</button>
@@ -116,11 +114,7 @@ class InventoryComponent extends Component {
                     {
                         this.state.inventory.map((inventoryItem, i) => {
                             return (
-                                <div>
-                                    {/* {
-                                        inventory.map((inventoryItem) => {
-                                        })
-                                    } */}
+                                <div key={i}>
                                     <div className="inventory-child" key={i}>
                                         <div className="inventory-child-spacer">
                                             <img alt={'Inventory item ' + inventoryItem.item_name} src={inventoryItem.image} width="200px" />
@@ -156,7 +150,6 @@ function mapReduxStateToProps(reduxState) {
 };
 
 const mapDispatchToProps = {
-    getUser,
     addToCart
 };
 

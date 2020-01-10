@@ -1,14 +1,16 @@
 const initialState = {
     user: null,
     cart: [],
-    loading: false
+    loading: false,
+    registerMessage: "",
+    loginMessage: ""
 };
 
 export const SET_USER = "SET_USER";
 export const LOGOUT_USER = "LOGOUT_USER";
 export const ADD_TO_CART = "ADD_TO_CART";
-export const GET_CART = "GET_CART";
-export const GET_USER = "GET_USER";
+export const SET_REGISTER_MESSAGE = "SET_REGISTER_MESSAGE";
+export const SET_LOGIN_MESSAGE = "SET_LOGIN_MESSAGE";
 
 export default function reducer(state = initialState, action) {
     const { type, payload } = action;
@@ -18,20 +20,20 @@ export default function reducer(state = initialState, action) {
                 ...state,
                 user: payload 
             };
-        case GET_USER:
-            return { 
-                ...state
-            };
         case LOGOUT_USER: 
             return {
                 ...state,
                 user: null
             }
-        case GET_CART:
+        case SET_REGISTER_MESSAGE:
+            return { 
+                ...state,
+                registerMessage: payload 
+            };
+        case SET_LOGIN_MESSAGE:
             return {
                 ...state,
-                cart: payload,
-                loading: false
+                loginMessage: payload
             }
         default:
             return state;
@@ -45,23 +47,24 @@ export function setUser(user) {
     };
 };
 
-export function getUser() {
+export function setRegisterMessage(message) {
     return {
-        type: GET_USER
-    }
-}
+        type: SET_REGISTER_MESSAGE,
+        payload: message
+    };
+};
+
+export function setLoginMessage(message) {
+    return {
+        type: SET_LOGIN_MESSAGE,
+        payload: message
+    };
+};
 
 export function logOutUser() {
     return {
         type: LOGOUT_USER,
         payload: null
-    }
-};
-
-export function getCart(arr) {
-    return {
-        type: GET_CART,
-        payload: arr
     }
 };
 

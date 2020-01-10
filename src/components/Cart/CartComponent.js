@@ -40,14 +40,12 @@ class CartComponent extends React.Component {
 	// itemId into the cart w/ itemQty if it is not in the cart yet
 	async modifyCart(itemId, itemQty) {
 		if (itemQty === 0) {
-			const cartResponse = await axios.delete(`${API.cart}/${itemId}`);
-			console.log(cartResponse.data[0].item_id, cartResponse.data[0].item_qty);
+			await axios.delete(`${API.cart}/${itemId}`);
 		} else {
-			const cartResponse = await axios.put(API.cart, {
+			await axios.put(API.cart, {
 				itemId: itemId,
 				itemQty: itemQty
 			});
-			console.log(cartResponse.data[0].item_id, cartResponse.data[0].item_qty);
 		}
 		this.getCart();
 	}
@@ -56,15 +54,12 @@ class CartComponent extends React.Component {
 	// This is different from modifyCart in that it only works on existing cart itemsx
 	async updateItemQtyInCart(itemId, itemQty) {
 		if (itemQty === 0) {
-			const cartResponse = await axios.delete(`${API.cart}/${itemId}`);
-			console.log(cartResponse.data[0].item_id, cartResponse.data[0].item_qty);
+			await axios.delete(`${API.cart}/${itemId}`);
 		} else {
-			console.log(itemId, itemQty);
-			const cartResponse = await axios.patch(API.cart, {
+			await axios.patch(API.cart, {
 				itemId: itemId,
 				itemQty: itemQty
 			});
-			console.log(cartResponse.data[0].item_id, cartResponse.data[0].item_qty);
 		}
 		this.getCart();
 	}
@@ -141,7 +136,7 @@ class CartComponent extends React.Component {
 						{
 							this.state.cart.map((cartItem, i) => {
 								return (
-									<div className="cart-view">
+									<div className="cart-view" key={i}>
                                         <div className="cart-item">
                                         <p><img className="cart-item-picture" src={cartItem.image} alt='Cart Item'/></p>
                                         <p className='cart-item-name'>{cartItem.item_name}</p>
@@ -167,8 +162,8 @@ class CartComponent extends React.Component {
     }
 }
 
-function mapStateToProps(state) {
-    return state.cartReducer
+function mapReduxStateToProps(reduxState) {
+    return reduxState
 }
 
-export default connect(mapStateToProps)(CartComponent)
+export default connect(mapReduxStateToProps)(CartComponent)
