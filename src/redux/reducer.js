@@ -3,7 +3,8 @@ const initialState = {
     cart: [],
     loading: false,
     registerMessage: "",
-    loginMessage: ""
+    loginMessage: "",
+    popupMessage: ""
 };
 
 export const SET_USER = "SET_USER";
@@ -11,6 +12,8 @@ export const LOGOUT_USER = "LOGOUT_USER";
 export const ADD_TO_CART = "ADD_TO_CART";
 export const SET_REGISTER_MESSAGE = "SET_REGISTER_MESSAGE";
 export const SET_LOGIN_MESSAGE = "SET_LOGIN_MESSAGE";
+export const SHOW_POPUP = "SHOW_POPUP";
+export const HIDE_POPUP = "HIDE_POPUP";
 
 export default function reducer(state = initialState, action) {
     const { type, payload } = action;
@@ -35,10 +38,34 @@ export default function reducer(state = initialState, action) {
                 ...state,
                 loginMessage: payload
             }
+        case SHOW_POPUP:
+            return {
+                ...state,
+                popupMessage: payload
+            }
+        case HIDE_POPUP:
+            return {
+                ...state,
+                popupMessage: payload
+            }
         default:
             return state;
     }
 }
+
+export function hidePopup() {
+    return {
+        type: HIDE_POPUP,
+        payload: ""
+    }
+}
+
+export function showPopup(message) {
+    return {
+        type: SHOW_POPUP,
+        payload: message
+    }
+};
 
 export function setUser(user) {
     return {

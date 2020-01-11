@@ -75,4 +75,26 @@ $pale-green: #8ba244;
   width: 100%;
   background-color: $cream;
   text-align: center;
+  .popup {
+    position: fixed;
+    left: 3%;
+    width: 15%;
+    height: 10%;
+    top: calc(95% - 100px);
+    background-color: white;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    border: solid 2px black;
+    .closePopup {
+      display: float;
+      position: absolute;
+      left: 90%;
+      top: 2.5%;
+      cursor: pointer;
+    }
+  }
+  .popup-hidden {
+    display: none;
+  }
 }

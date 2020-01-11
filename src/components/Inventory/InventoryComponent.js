@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { addToCart } from '../../redux/reducer';
+import { addToCart, showPopup, hidePopup } from '../../redux/reducer';
 import axios from 'axios';
 import API from '../../api';
 import { GoSearch } from 'react-icons/go';
@@ -45,10 +45,18 @@ class InventoryComponent extends Component {
 		if (itemQty === 0) {
 			await axios.delete(`${API.cart}/${itemId}`);
 		} else {
-			await axios.put(API.cart, {
-				itemId: itemId,
-				itemQty: itemQty
-			});
+            try {
+                await axios.put(API.cart, {
+                    itemId: itemId,
+                    itemQty: itemQty
+                });
+                this.props.showPopup("Your cart has been successfully updated!");
+                setTimeout(this.props.hidePopup, 5000);
+            } catch (err) {
+                this.props.showPopup("Your cart has failed to update. Please try again!");
+                setTimeout(this.props.hidePopup, 5000);
+            }
+			
 		}
     }
 
@@ -61,7 +69,6 @@ class InventoryComponent extends Component {
 
     updateItemAddToCartQty(itemId, itemQty) {
 		var { inventory } = this.state;
-
 		inventory = inventory.map((inventoryItem) => {
 			if (inventoryItem.item_id === itemId) {
 				inventoryItem.cartQty = itemQty;
@@ -124,11 +131,11 @@ class InventoryComponent extends Component {
                                         </div>
                                         <div className="wide-element inventory-child-spacer">
                                             <form onSubmit={(e) => { e.preventDefault(); this.modifyCart(inventoryItem.item_id, inventoryItem.cartQty) }}>
+                                                <div className="price-display">
+                                                            ${inventoryItem.price}.00
+                                                </div>
                                                 <div className="item-pairing">
                                                     <input className="item-quantity-change" type="number" value={inventoryItem.cartQty} onChange={(e) => { this.updateItemAddToCartQty(inventoryItem.item_id, e.target.value); }} />
-                                                    <div className="price-display">
-                                                        ${inventoryItem.price}.00
-                                                    </div>
                                                 </div>
                                                 {productInteractionDisplay}
                                                 {/* <button className="wide-element add-to-cart-btn">Add To Cart</button> */}
@@ -150,7 +157,9 @@ function mapReduxStateToProps(reduxState) {
 };
 
 const mapDispatchToProps = {
-    addToCart
+    addToCart,
+    showPopup,
+    hidePopup
 };
 
 const invokedConnect = connect(mapReduxStateToProps, mapDispatchToProps);

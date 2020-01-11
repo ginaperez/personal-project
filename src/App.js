@@ -1,7 +1,8 @@
 import React from 'react';
 import { Switch, Route, withRouter, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { setUser } from './redux/reducer';
+import { setUser, showPopup } from './redux/reducer';
+import { MdCancel } from 'react-icons/md';
 import Header from './components/Header/Header';
 import Landing from './components/Landing/Landing';
 import AuthComponent from './components/Auth/AuthComponent';
@@ -26,9 +27,15 @@ class App extends React.Component {
   }
 
   render() {
+    const { popupMessage } = this.props;
+    var popupMessageDisplay = <div className="popup"><span className="closePopup" onClick={() => {this.props.showPopup("");}}><MdCancel /></span>{popupMessage}</div>
+    if (popupMessage === "") {
+      popupMessageDisplay = <div className="popup-hidden"></div>
+    }
     return (
       <div className='App'>
         <Header title={this.state.title} user={this.props.user} />
+        {popupMessageDisplay}
         <Switch>
           <Route exact path='/' render={props => (
             <Landing changeTitle={this.changeTitle} {...props}/>
@@ -69,114 +76,10 @@ function mapReduxStateToProps (reduxState) {
 };
 
 const mapDispatchToProps = {
-  setUser
+  setUser,
+  showPopup
 };
 
 const invokedConnect = connect(mapReduxStateToProps, mapDispatchToProps);
 
 export default invokedConnect(withRouter(App));
-
-
-
-
-
-// import React, {Component} from 'react';
-// import { setUser } from './redux/reducer';
-// import { connect } from 'react-redux';
-// import { Switch, Route, NavLink, withRouter } from 'react-router-dom';
-// import reducer from './redux/reducer';
-// import AuthComponent from './components/Auth/AuthComponent';
-// import PurchaseHistoryComponent from './components/Purchase History/PurchaseHistoryComponent';
-// import CartComponent from './components/Cart/CartComponent';
-// import InventoryComponent from './components/Inventory/InventoryComponent';
-// // import { getPurchaseHistory } from PurchaseHistoryComponent;
-// import axios from 'axios';
-// import logo from '../src/logo.jpg';
-// import API from './api';
-
-// class App extends Component {
-// 	constructor(props) {
-// 		super(props);
-// 		this.state = {
-// 			searchQuery: "",
-// 		};
-// 		this.searchInventory = this.searchInventory.bind(this);
-// 	}
-
-// 	componentDidMount() {
-//        console.log(this.props.user);
-// 	}
-
-// 	async getSession() {
-// 		const session = await axios.get(API.session);
-// 		this.setState({ session: session.data })
-// 	}
-
-// 	async searchInventory() {
-// 		const { searchQuery } = this.state;
-// 		const inventoryResponse = await axios.get(`${API.search}?query=${searchQuery}`);
-
-// 		this.setState({ inventory: inventoryResponse.data })
-//     }
-    
-//     async logout() {
-//         const { session } = this.state;
-//         const destroyedSession = await axios.post(API.logout, {});
-    
-//         this.setState({ session: { email: "", user_id: null } });
-//     }
-
-// 	render() {
-//         const { session, inventory, searchQuery } = this.state;
-// 		return (
-// 			<div className="app">
-// 				<header className="header-class">
-// 					<div className="header-left-corner">
-// 						<div className="search-area">
-// 							<form onSubmit={e => { e.preventDefault(); this.searchInventory(); }}>
-// 								<label>Search:</label>
-// 								<input value={searchQuery} onChange={(e) => { this.setState({ searchQuery: e.target.value }); }} />
-// 								<button>Search</button>
-// 							</form>
-// 						</div>
-// 					</div>
-// 					<div className='logo-links-flex'>
-// 						<div className='logo'>
-// 							<img src={logo} alt='logo' />
-// 						</div>
-// 						<nav className='navlinks'>
-//                             <div className="navlink-buttons">
-//                             <NavLink className="cart-navlink" activeClassName="active" exact to="/my_cart">View Cart</NavLink>
-// 							<NavLink className="ph-navlink"activeClassName="active" exact to="/my_orders">Purchase History</NavLink>
-//                             <NavLink className="products-navlink" activeClassName="active" exact to="/">Products</NavLink>
-//                             </div>
-// 						</nav>
-// 					</div>
-// 					<div className='header-right-corner'>
-//                         {this.props.user && (<div className="user-salutation">{`Hi, ${this.props.user.email}`} <button onClick={() => this.logout()}>Log Out</button></div>)}
-// 						{!this.props.user && <NavLink to="/login" className="login">Login</NavLink>}
-// 					</div>
-// 				</header>
-					
-// 						<Switch>
-//                             <Route exact path="/" component={InventoryComponent}/>
-// 							<Route path="/login" component={AuthComponent} />
-// 							<Route path="/my_orders" component={PurchaseHistoryComponent} />
-//                             <Route path="/my_cart" component={CartComponent} />
-// 						</Switch>
-// 				</div>
-//         )
-// 	}
-// }
-
-// function mapReduxStateToProps(reduxState) {
-//     return reduxState
-// }
-
-// const mapDispatchToProps = {
-//     setUser
-// }
-
-// const invokedConnect = connect(mapReduxStateToProps, mapDispatchToProps);
-
-// export default invokedConnect(withRouter(App));

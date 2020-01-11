@@ -63,10 +63,9 @@
           .item-pairing {
               display: flex;
               flex-direction: row-reverse;
-              flex-wrap: nowrap;
-              justify-content: space-between;
-              align-items: stretch;
-              align-content: stretch;
+              align-items: center;
+              justify-content: center;
+              margin-top: 20px;
                 .item-quantity-change {
                   display: flex;
                   border: solid;
@@ -87,6 +86,11 @@
           .add-to-cart-btn {
               @extend %inventory-button;
               margin-top: 50px;
+              .popup {
+                position: relative;
+                display: inline-block;
+                cursor: pointer;
+              }
           }
           button:hover {
               @extend %inventory-button-hover;
