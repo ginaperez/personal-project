@@ -15,7 +15,7 @@
         padding: 20px;
         margin-top: 20px;
         border: 2.5px solid $black;
-        min-width: 450px;
+        width: 450px;
         background-color: white;
         color: darkslategray;
         .ph-item-name {
@@ -25,5 +25,13 @@
             display: flex;
             margin-top: 10px;
         }
-      }
-  }
+    }
+}
+
+@media (max-width: 375px) {
+    .purchase-history {
+        .purchase-history-details {
+            width: 300px;
+        }
+    }
+}

@@ -45,3 +45,49 @@
     }
   }
 }
+
+@media (max-width: 650px) {
+  .main-area {
+    .auth-container {
+      width: 675px;
+      .input-container {
+        display: flex;
+        background-color: white;
+        width: 260px;
+        form {
+          width: 260px;
+        }
+      }
+      h2 {
+        font-size: 30px;
+      }
+      h3 {
+        font-size: 15px;
+      }
+    }
+  }
+} 
+
+@media (max-width: 375px) {
+  .main-area {
+    .auth-container {
+      display: flex;
+      flex-direction: column;
+      width: 375px;
+      .input-container {
+        width: 315px;
+        display: flex;
+        justify-content: center;
+        form {
+          width: 315px;
+        }
+      }
+      h2 {
+        font-size: 25px;
+      }
+      h3 {
+        font-size: 14px;
+      }
+    }
+  }
+}

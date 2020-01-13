@@ -36,7 +36,7 @@
         padding: 20px;
         margin: 60px;
         border: 2.5px solid $black;
-        min-width: 450px;
+        width: 450px;
         background-color: white;
         color: darkslategray;
         .cart-item-picture {
@@ -69,4 +69,19 @@
     display: flex;
     margin-bottom: 75px;
 }
-  
+
+@media (max-width: 375px) {
+    .interaction-display {
+        .wide-element {
+            width: 150px;
+        }
+    }
+    .cart-view {
+        width: 375px;
+        .cart-item {
+            width: 275px;
+            form {
+            }
+        }
+    }
+}

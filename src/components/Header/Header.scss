@@ -48,3 +48,21 @@
     }
 }
 
+@media (max-width: 375px) {
+    .header {
+        width: 375px;
+        .head {
+            width: 375px;
+            .logo {
+                width: 100px;
+            }
+        }
+        .head nav > ul {
+            display: flex;
+            width: 300px;
+        }
+        .head a {
+            font-size: 15px;
+        }
+    }
+}

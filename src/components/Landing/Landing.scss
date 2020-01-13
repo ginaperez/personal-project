@@ -40,3 +40,52 @@
         }
     }
 }
+
+@media (max-width: 1000px) {
+    .landing-main {
+        .picture-element {
+            .header-container {
+
+            }
+            h1 {
+                font-size: 80px;
+            }
+            h2 {
+                font-size: 20px;
+            }
+        }
+    }
+}
+
+@media (max-width: 650px) {
+    .landing-main {
+        .picture-element {
+            .header-container {
+                width: 300px;
+            }
+            h1 {
+                font-size: 70px;
+                padding: 0;
+            }
+        }
+    }
+}
+
+@media (max-width: 375px) {
+    .landing-main {
+        .picture-element {
+            .header-container {
+                width: 375px;
+                height: 325px;
+                padding: 0;
+                padding-top: 50px;
+            }
+            h1 {
+                font-size: 50px;
+            }
+            h2 {
+                font-size: 17px;
+            }
+        }
+    }
+}
