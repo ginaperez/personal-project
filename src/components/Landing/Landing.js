@@ -11,8 +11,8 @@ export default class Landing extends React.Component {
             <div className='landing-main'>
                 <div className='picture-element'>
                     <div className='header-container'>
-                        <h1 >Furniture Store</h1>
-                        <h2>Sub-Copy</h2>
+                        <h1 >Semi Annual Sale</h1>
+                        <h2>Sofas, console tables, and so much more.</h2>
                         <Link to='/products'><button className='landing-button'>Shop Now</button></Link>
                     </div>
                 </div>

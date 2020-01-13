@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import API from '../../api';
 import { connect } from 'react-redux';
-import { setUser, setRegisterMessage, setLoginMessage } from '../../redux/reducer';
+import { setUser, setRegisterMessage, setLoginMessage, showPopup, hidePopup } from '../../redux/reducer';
 import { Redirect } from 'react-router-dom';
 import './AuthComponent.scss';
 
@@ -37,7 +37,8 @@ class AuthComponent extends Component {
             this.props.setRegisterMessage("");
         } catch (err) {
             // inform the user why the registration attempt failed
-            this.props.setRegisterMessage(loggedInUser);
+            this.props.showPopup("User already exists! Log in to continue.");
+            setTimeout(this.props.hidePopup, 5000);
         }
     }
     
@@ -52,7 +53,8 @@ class AuthComponent extends Component {
             this.props.setUser(loggedInUser.data);
             this.props.setLoginMessage("");
         } catch (err) {
-            this.props.setLoginMessage(loggedInUser);
+            this.props.showPopup("User not found! Please create an account.");
+            setTimeout(this.props.hidePopup, 5000);
         }
     }
     
@@ -63,7 +65,7 @@ class AuthComponent extends Component {
     
 
     render() {
-        const { loginEmail, loginPassword, registerEmail, registerPassword, loginMessage, registerMessage } = this.state;
+        const { loginEmail, loginPassword, registerEmail, registerPassword } = this.state;
         return this.props.user ? (
             <Redirect to='/products' />
         ) : (
@@ -79,7 +81,7 @@ class AuthComponent extends Component {
                                 <input id="login-password" autoComplete="current-password" type="password" value={loginPassword} onChange={(e) => this.setState({ loginPassword: e.target.value })} />
                             <button className="input-button">Login</button>
                         </form>
-                        {loginMessage}
+                        {this.props.loginMessage}
                     </div>
                     <div className='input-container'>
                         <form onSubmit={e => { e.preventDefault(); this.register(); }}>
@@ -90,7 +92,7 @@ class AuthComponent extends Component {
                                 <label htmlFor="password">Password: </label>
                                 <input id="register-password" autoComplete="new-password" type="password" value={registerPassword} onChange={(e) => this.setState({ registerPassword: e.target.value })} />
                             <button className="input-button">Register</button>
-                            {registerMessage}
+                            {this.props.registerMessage}
                         </form>
                     </div>
                 </div>
@@ -106,7 +108,9 @@ function mapReduxStateToProps(reduxState) {
 const mapDispatchToProps = {
     setUser,
     setRegisterMessage,
-    setLoginMessage
+    setLoginMessage,
+    showPopup,
+    hidePopup
 };
 
 const invokedConnect = connect(mapReduxStateToProps, mapDispatchToProps)

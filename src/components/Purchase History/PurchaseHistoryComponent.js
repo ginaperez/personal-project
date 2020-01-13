@@ -26,7 +26,6 @@ class PurchaseHistoryComponent extends Component {
     render() {
         return (
             <div className="purchase-history">
-                {/* <button className="wide-element" onClick={() => this.getPurchaseHistory()}>Purchase History</button> */}
                 {
                     this.state.purchaseHistory.map((purchaseHistoryItem, i) => {
                         return (

@@ -49,7 +49,6 @@ class App extends React.Component {
             <CartComponent changeTitle={this.changeTitle} {...props} />
           )}
           />
-          {/* {this.props.user && ( */}
             <Route path='/products' render={props => (
               <InventoryComponent changeTitle={this.changeTitle} {...props} />
             )}
@@ -62,7 +61,7 @@ class App extends React.Component {
             />
           )}
           <Route path='*' render={() => {
-            return <Redirect to='/products' />;
+            return <Redirect to='/' />;
           }}
           />
         </Switch>

@@ -8,6 +8,8 @@
     .wide-element {
         @extend %smaller-buttons;
         width: 200px;
+        margin-right: 25px;
+        margin-left: 25px;
     }
     .wide-element:hover {
         @extend %smaller-buttons-hover;
@@ -25,8 +27,7 @@
     flex-wrap: nowrap;
     justify-content: space-around;
     align-items: center;
-    // align-content: space-around;
-    height: 100%;
+    height: 90%;
     .cart-item {
         display: flex;
         align-items: center;

@@ -38,9 +38,6 @@ class Header extends React.Component {
                     <NavLink to='/'>
                         <img className='logo' src={logo} alt='logo'></img>
                     </NavLink>
-                    {/* <button onClick={this.toggler} className='menu'>
-                        Menu Icon
-                    </button> */}
 
                     {!this.props.user ? (
                         <nav className={this.state.toggle ? 'show' : ''}>
@@ -53,7 +50,7 @@ class Header extends React.Component {
                             <NavLink className='navlink' to='/products'>Products</NavLink>
                             <NavLink className='cart' to='/cart'>Cart</NavLink>
                             <NavLink className='navlink' to='/purchase_history'>Purchase History</NavLink>
-                            <NavLink onClick={() => this.logout()} to='/'>Logout</NavLink>
+                            <NavLink className='navlink' onClick={() => this.logout()} to='/logout'>Logout</NavLink>
                         </nav>
                     )}
                 </div>

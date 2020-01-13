@@ -31,8 +31,7 @@
       justify-content: space-around;
       align-items: center;
       align-content: stretch;
-      margin-left: 340px;
-      margin-right: 340px;
+      margin-bottom: 50px;
       .inventory-child {
           display: flex;
           flex-direction: column;
@@ -40,7 +39,7 @@
           flex-grow: 1;
           height: 100%;
           width: 280px;
-          margin: 20px 0 0 2%;
+          margin: 20px 20px 20px 2%;
           padding: 50px 50px 50px 50px;
           align-items: center;
           justify-content: space-around;

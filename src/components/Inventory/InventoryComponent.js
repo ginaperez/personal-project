@@ -138,7 +138,6 @@ class InventoryComponent extends Component {
                                                     <input className="item-quantity-change" type="number" value={inventoryItem.cartQty} onChange={(e) => { this.updateItemAddToCartQty(inventoryItem.item_id, e.target.value); }} />
                                                 </div>
                                                 {productInteractionDisplay}
-                                                {/* <button className="wide-element add-to-cart-btn">Add To Cart</button> */}
                                             </form>
                                         </div>
                                     </div>
