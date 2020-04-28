@@ -1,13 +1,18 @@
 #!/bin/bash -xe
+CONTAINER_NAME=gmp-store-api
+IMAGE_NAME=$CONTAINER_NAME
+
+source ../.env
+
 cd ..
-docker rm -f gmp-store-api || true
+docker rm -f "${CONTAINER_NAME}" || true
 docker run \
-    --name="gmp-store-api" \
+    --name="${CONTAINER_NAME}" \
     -d \
     -it \
-    -p 3001:3001 \
+    -p "${SERVER_PORT}:${SERVER_PORT}" \
     -v $(pwd)/.env:/opt/srv/.env:ro \
-    gmp-store-api:latest
+    ${IMAGE_NAME}:latest
 cd -
 
-docker logs -f gmp-store-api
+docker logs -f "${CONTAINER_NAME}"
